@@ -1,0 +1,17 @@
+.container {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  padding-bottom: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn var(--transition-base);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 3rem 2.5rem;
+    padding-bottom: 2rem;
+  }
+}
+

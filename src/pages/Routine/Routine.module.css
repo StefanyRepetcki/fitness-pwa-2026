@@ -1,0 +1,166 @@
+.intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+.routineGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.dayCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.dayCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.dayCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--color-primary-light);
+}
+
+.dayCard:hover::before {
+  opacity: 1;
+}
+
+.dayCard.rest {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  border-color: var(--color-primary);
+  opacity: 0.9;
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--color-border-light);
+  position: relative;
+}
+
+.dayHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: 2px;
+}
+
+.dayCard.rest .dayHeader {
+  border-bottom-color: var(--color-primary);
+}
+
+.icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 2px 4px rgba(244, 182, 194, 0.2));
+  transition: transform var(--transition-base);
+}
+
+.dayCard:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.dayName {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.restContent {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.restText {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.restSubtext {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.workoutLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  margin-top: 0.75rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.workoutLink:hover {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-md);
+}
+
+.workoutName {
+  font-weight: 500;
+  color: var(--color-text);
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.workoutLink:hover .workoutName {
+  color: white;
+}
+
+.arrow {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.workoutLink:hover .arrow {
+  color: white;
+  transform: translateX(4px);
+}
+
+@media (min-width: 768px) {
+  .routineGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .routineGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
