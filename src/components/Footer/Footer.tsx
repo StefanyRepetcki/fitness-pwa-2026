@@ -33,6 +33,15 @@ export const Footer = () => {
               >
                 <span>Instagram</span>
               </a>
+              <a
+                href="https://www.linkedin.com/in/stefany-repetcki/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+                aria-label="LinkedIn de Stefany Repetcki"
+              >
+                <span>LinkedIn</span>
+              </a>
             </div>
 
             <p className={styles.note}>
