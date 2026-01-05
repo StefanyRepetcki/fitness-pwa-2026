@@ -105,6 +105,20 @@ src/
 - Background: #FFFFFF (Branco)
 - Surface: #FFF5F9 (Rosa muito claro)
 
+## 👩‍💻 Desenvolvedora
+
+**Stefany Repetcki** - Desenvolvedora Frontend
+
+- 💻 [GitHub](https://github.com/StefanyRepetcki)
+- 💼 [LinkedIn](https://www.linkedin.com/in/stefany-repetcki)
+- ✉️ Email: [Entre em contato](mailto:stefany.repetcki@example.com)
+
+Este projeto foi desenvolvido com muito cuidado e atenção aos detalhes. Se você gostou ou tem alguma sugestão, sinta-se à vontade para entrar em contato!
+
 ## 📝 Licença
 
 Este projeto foi criado para uso pessoal.
+
+---
+
+**Desenvolvido com 💜 por Stefany Repetcki**

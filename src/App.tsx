@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
+import { Footer } from './components/Footer/Footer';
 import { SEO } from './components/SEO/SEO';
 import './styles/global.css';
 
@@ -32,10 +34,11 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <BrowserRouter>
-      <SEO />
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <Suspense fallback={<PageLoader />}>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <SEO />
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route 
               path="/" 
@@ -141,9 +144,11 @@ function App() {
             />
           </Routes>
         </Suspense>
-        <BottomNavigation />
-      </div>
-    </BrowserRouter>
+          <BottomNavigation />
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
