@@ -28,6 +28,12 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.streakContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
 .header.hidden {
   transform: translateY(-100%);
 }

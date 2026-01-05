@@ -16,9 +16,9 @@
   --color-gray-warm: #F5F5F5;
   
   /* Texto - contraste garantido */
-  --color-text: #2C2C2C; /* Cinza muito escuro para legibilidade */
-  --color-text-light: #6B6B6B; /* Cinza médio */
-  --color-text-lighter: #9A9A9A; /* Cinza claro */
+  --color-text: #1A1A1A; /* Preto suave para máxima legibilidade */
+  --color-text-light: #4A4A4A; /* Cinza escuro (melhor contraste) */
+  --color-text-lighter: #6B6B6B; /* Cinza médio */
   
   /* Bordas */
   --color-border: #E8E8E8;

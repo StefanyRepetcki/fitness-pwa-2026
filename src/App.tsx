@@ -6,6 +6,9 @@ import { Footer } from './components/Footer/Footer';
 import { SEO } from './components/SEO/SEO';
 import { SkipLink } from './components/SkipLink/SkipLink';
 import { MenuProvider } from './contexts/MenuContext';
+import { ToastProvider } from './contexts/ToastContext';
+import { SkeletonLoader } from './components/SkeletonLoader/SkeletonLoader';
+import { SafetyDisclaimer } from './components/SafetyDisclaimer/SafetyDisclaimer';
 import './styles/global.css';
 
 // Lazy loading de páginas para melhor performance
@@ -20,24 +23,20 @@ const Supplements = lazy(() => import('./pages/Supplements/Supplements').then(m 
 const Tips = lazy(() => import('./pages/Tips/Tips').then(m => ({ default: m.Tips })));
 const Stretches = lazy(() => import('./pages/Stretches/Stretches').then(m => ({ default: m.Stretches })));
 const Warmup = lazy(() => import('./pages/Warmup/Warmup').then(m => ({ default: m.Warmup })));
+const Stats = lazy(() => import('./pages/Stats/Stats').then(m => ({ default: m.Stats })));
+const Diary = lazy(() => import('./pages/Diary/Diary').then(m => ({ default: m.Diary })));
+const Recipes = lazy(() => import('./pages/Recipes/Recipes').then(m => ({ default: m.Recipes })));
 
-// Loading component melhorado
+// Loading component melhorado com Skeleton Loader
 const PageLoader = () => (
   <div 
     style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '50vh',
-      color: 'var(--color-primary)'
+      padding: '2rem 1rem',
     }}
     role="status"
     aria-label="Carregando página"
   >
-    <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: '2rem', marginBottom: '1rem' }} aria-hidden="true">💪</div>
-      <div>Carregando...</div>
-    </div>
+    <SkeletonLoader type="card" count={3} />
   </div>
 );
 
@@ -46,8 +45,10 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <MenuProvider>
-          <SkipLink />
-          <SEO />
+          <ToastProvider>
+            <SafetyDisclaimer />
+            <SkipLink />
+            <SEO />
           <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Suspense fallback={<PageLoader />}>
             <Routes>
@@ -192,11 +193,51 @@ function App() {
                 </>
               } 
             />
+            <Route 
+              path="/stats" 
+              element={
+                <>
+                  <SEO 
+                    title="Minhas Estatísticas - Ciclei"
+                    description="Veja seu progresso, conquistas e estatísticas de treino. Acompanhe sua evolução no Ciclei."
+                    keywords="ciclei, estatísticas, progresso, conquistas, badges, streaks, evolução"
+                  />
+                  <Stats />
+                </>
+              } 
+            />
+            <Route 
+              path="/diary" 
+              element={
+                <>
+                  <SEO 
+                    title="Meu Diário - Ciclei"
+                    description="Registre como você se sentiu em cada treino. Acompanhe sua evolução emocional e física."
+                    keywords="ciclei, diário, anotações, treino, bem-estar, evolução"
+                  />
+                  <Diary />
+                </>
+              } 
+            />
+            <Route 
+              path="/recipes" 
+              element={
+                <>
+                  <SEO 
+                    title="Receitas - Ciclei"
+                    description="Receitas práticas e saudáveis para seu ciclo alimentar. Receitas para café da manhã, almoço, lanche, pré-treino, pós-treino e jantar."
+                    keywords="ciclei, receitas, receitas saudáveis, receitas fitness, receitas para treino, comida saudável"
+                  />
+                  <Recipes />
+                </>
+              } 
+            />
             </Routes>
           </Suspense>
             <BottomNavigation />
             <Footer />
           </div>
+          </ToastProvider>
         </MenuProvider>
       </BrowserRouter>
     </ErrorBoundary>

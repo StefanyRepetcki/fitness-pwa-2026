@@ -69,7 +69,27 @@ export const ExerciseList = ({
                   <span className={styles.separator} aria-hidden="true">•</span>
                   <span className={styles.label}>Reps:</span>
                   <span className={styles.value}>{exercise.reps}</span>
+                  {exercise.restTime && (
+                    <>
+                      <span className={styles.separator} aria-hidden="true">•</span>
+                      <span className={styles.label}>Descanso:</span>
+                      <span className={styles.value}>{exercise.restTime}</span>
+                    </>
+                  )}
+                  {exercise.rpe && (
+                    <>
+                      <span className={styles.separator} aria-hidden="true">•</span>
+                      <span className={styles.label}>RPE:</span>
+                      <span className={styles.value}>{exercise.rpe}/10</span>
+                    </>
+                  )}
                 </div>
+                {exercise.cadence && (
+                  <div className={styles.cadence} role="note">
+                    <span className={styles.cadenceIcon} aria-hidden="true">⏱️</span>
+                    <span className={styles.cadenceText}>Cadência: {exercise.cadence}</span>
+                  </div>
+                )}
                 {exercise.notes && (
                   <div className={styles.notes} role="note">
                     <span className={styles.notesIcon} aria-hidden="true">💡</span>

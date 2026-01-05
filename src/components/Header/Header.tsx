@@ -1,17 +1,24 @@
 import { useScrollHide } from '../../hooks/useScrollHide';
+import { StreakBadge } from '../StreakBadge/StreakBadge';
 import styles from './Header.module.css';
 
 interface HeaderProps {
   title: string;
   showLogo?: boolean;
+  showStreak?: boolean;
 }
 
-export const Header = ({ title, showLogo = false }: HeaderProps) => {
+export const Header = ({ title, showLogo = false, showStreak = true }: HeaderProps) => {
   const isScrollingDown = useScrollHide(50);
   const shouldHide = isScrollingDown;
   
   return (
     <header className={`${styles.header} ${shouldHide ? styles.hidden : ''}`}>
+      {showStreak && (
+        <div className={styles.streakContainer}>
+          <StreakBadge />
+        </div>
+      )}
       {showLogo && (
         <div className={styles.logoContainer}>
           {/* Logo completa com texto e pêssego */}

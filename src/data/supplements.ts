@@ -25,7 +25,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Multivitamínico',
         dosage: '1 cápsula',
         time: '07:00',
-        notes: 'Após o café da manhã',
+        notes: 'Após o café da manhã (com refeição gordurosa para melhor absorção de vitaminas lipossolúveis). Ciclo: 3 meses on, 1 mês off.',
         icon: '💊'
       },
       {
@@ -33,7 +33,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Vitamina D',
         dosage: '2000 UI',
         time: '07:00',
-        notes: 'Junto com o multivitamínico',
+        notes: 'Junto com o multivitamínico. Não tomar junto com cálcio (competem por absorção).',
         icon: '☀️'
       },
       {
@@ -41,7 +41,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Ômega 3',
         dosage: '2 cápsulas',
         time: '07:00',
-        notes: 'Com refeição para melhor absorção',
+        notes: 'Com refeição para melhor absorção. Evitar tomar junto com cálcio.',
         icon: '🐟'
       }
     ]
@@ -71,7 +71,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Probiótico',
         dosage: '1 cápsula',
         time: '13:00',
-        notes: 'Após o almoço, para digestão',
+        notes: 'Após o almoço, para digestão. Ciclo: 2 meses on, 1 mês off.',
         icon: '🦠'
       }
     ]
@@ -84,9 +84,9 @@ export const supplementSchedule: SupplementSchedule[] = [
       {
         id: 's6',
         name: 'Creatina',
-        dosage: '5g',
+        dosage: '5g (ou 0.03g/kg de peso)',
         time: '30min antes',
-        notes: 'Com suco ou água',
+        notes: 'Com suco ou água (fonte de carboidrato melhora absorção). Ciclo: 8 semanas on, 4 semanas off (ou uso contínuo com dosagem menor).',
         icon: '⚡'
       },
       {
@@ -107,17 +107,17 @@ export const supplementSchedule: SupplementSchedule[] = [
       {
         id: 's8',
         name: 'Whey Protein',
-        dosage: '30g',
+        dosage: '30g (ou 0.4-0.5g/kg de peso)',
         time: 'Imediato',
-        notes: 'Até 30min após o treino',
+        notes: 'Até 30min após o treino (janela anabólica). Pode misturar com creatina.',
         icon: '🥤'
       },
       {
         id: 's9',
         name: 'Creatina',
-        dosage: '5g',
+        dosage: '5g (ou 0.03g/kg de peso)',
         time: 'Imediato',
-        notes: 'Junto com o whey',
+        notes: 'Junto com o whey (melhor absorção com carboidrato/proteína)',
         icon: '⚡'
       }
     ]
@@ -132,7 +132,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Magnésio',
         dosage: '400mg',
         time: '21:00',
-        notes: 'Antes de dormir, ajuda no sono',
+        notes: 'Antes de dormir, ajuda no sono e recuperação muscular. Não tomar junto com cálcio (competem por absorção).',
         icon: '😴'
       },
       {
@@ -140,7 +140,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Zinco',
         dosage: '15mg',
         time: '21:00',
-        notes: 'Junto com o magnésio',
+        notes: 'Junto com o magnésio. Não tomar junto com cálcio ou ferro (competem por absorção).',
         icon: '🌙'
       }
     ]

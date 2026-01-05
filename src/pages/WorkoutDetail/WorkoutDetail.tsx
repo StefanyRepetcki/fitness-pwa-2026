@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { ExerciseList } from '../../components/ExerciseList/ExerciseList';
+import { CelebrationModal } from '../../components/CelebrationModal/CelebrationModal';
 import { workouts } from '../../data/workouts';
 import { 
   getWorkoutProgress, 
@@ -10,6 +11,11 @@ import {
   clearWorkoutProgress,
   type WorkoutProgress 
 } from '../../data/workoutProgress';
+import { updateStreak } from '../../data/streaks';
+import { checkAndUnlockBadges, type Badge } from '../../data/badges';
+import { saveWorkoutHistory } from '../../data/workoutHistory';
+import { showWorkoutCompleteNotification, showStreakNotification } from '../../utils/notifications';
+import { useToast } from '../../contexts/ToastContext';
 import { RotateCcw } from 'lucide-react';
 import styles from './WorkoutDetail.module.css';
 
@@ -17,6 +23,9 @@ export const WorkoutDetail = () => {
   const { id } = useParams<{ id: string }>();
   const workout = workouts.find((w) => w.id === id);
   const [progress, setProgress] = useState<WorkoutProgress | null>(null);
+  const [celebrationBadge, setCelebrationBadge] = useState<Badge | null>(null);
+  const [celebrationStreak, setCelebrationStreak] = useState<number | null>(null);
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (id) {
@@ -42,9 +51,40 @@ export const WorkoutDetail = () => {
   }
 
   const handleToggleExercise = (exerciseId: string) => {
-    if (!id) return;
+    if (!id || !workout) return;
     const updated = toggleExercise(id, exerciseId);
     setProgress(updated);
+    
+    // Verificar se completou todos os exercícios
+    const allCompleted = updated.completedExercises.length === workout.exercises.length;
+    
+    if (allCompleted) {
+      // Salvar no histórico
+      const today = new Date().toISOString().split('T')[0];
+      saveWorkoutHistory({
+        date: today,
+        workoutId: workout.id,
+        workoutName: workout.name
+      });
+      
+      // Atualizar streak
+      const streakData = updateStreak();
+      
+      // Verificar badges (passar horário do treino para Early Bird/Night Owl)
+      const workoutTime = new Date();
+      const unlockedBadges = checkAndUnlockBadges(streakData, workoutTime);
+      
+      // Notificações
+      showWorkoutCompleteNotification();
+      showStreakNotification(streakData.currentStreak);
+      
+      // Mostrar celebração
+      if (unlockedBadges.length > 0) {
+        setCelebrationBadge(unlockedBadges[0]);
+      } else if (streakData.currentStreak > 0 && streakData.currentStreak % 7 === 0) {
+        setCelebrationStreak(streakData.currentStreak);
+      }
+    }
   };
 
   const handleClearProgress = () => {
@@ -52,6 +92,7 @@ export const WorkoutDetail = () => {
     if (window.confirm('Tem certeza que deseja limpar todo o progresso deste treino?')) {
       clearWorkoutProgress(id);
       setProgress(getWorkoutProgress(id));
+      showToast('Progresso do treino limpo com sucesso!', 'success');
     }
   };
 
@@ -122,6 +163,17 @@ export const WorkoutDetail = () => {
           </Link>
         </nav>
       </PageContainer>
+      
+      {(celebrationBadge || celebrationStreak) && (
+        <CelebrationModal
+          badge={celebrationBadge || undefined}
+          streak={celebrationStreak || undefined}
+          onClose={() => {
+            setCelebrationBadge(null);
+            setCelebrationStreak(null);
+          }}
+        />
+      )}
     </>
   );
 };

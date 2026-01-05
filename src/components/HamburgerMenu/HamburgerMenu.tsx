@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame } from 'lucide-react';
+import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
 import styles from './HamburgerMenu.module.css';
 
@@ -11,9 +11,12 @@ export const HamburgerMenu = () => {
   const menuItems = [
     { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos' },
     { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal' },
+    { path: '/stats', icon: TrendingUp, label: 'Estatísticas', ariaLabel: 'Ir para estatísticas' },
+    { path: '/diary', icon: BookOpen, label: 'Diário', ariaLabel: 'Ir para diário' },
     { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação' },
     { path: '/warmup', icon: Flame, label: 'Aquecimento', ariaLabel: 'Ir para rotinas de aquecimento' },
     { path: '/nutrition', icon: UtensilsCrossed, label: 'Alimentação', ariaLabel: 'Ir para plano alimentar' },
+    { path: '/recipes', icon: ChefHat, label: 'Receitas', ariaLabel: 'Ir para receitas' },
     { path: '/shopping', icon: ShoppingCart, label: 'Compras', ariaLabel: 'Ir para lista de compras' },
     { path: '/supplements', icon: Pill, label: 'Suplementos', ariaLabel: 'Ir para suplementação' },
     { path: '/stretches', icon: Activity, label: 'Alongamentos', ariaLabel: 'Ir para alongamentos' }

@@ -152,6 +152,30 @@
   margin: 0 0.25rem;
 }
 
+.cadence {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #f59e0b;
+}
+
+.cadenceIcon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.cadenceText {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 .notes {
   display: flex;
   align-items: flex-start;

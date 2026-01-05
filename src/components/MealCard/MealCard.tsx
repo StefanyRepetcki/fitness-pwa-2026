@@ -32,7 +32,14 @@ export const MealCard = ({ meal }: MealCardProps) => {
       >
         <div className={styles.headerContent}>
           <span className={styles.icon} aria-hidden="true">{meal.icon}</span>
-          <h3 className={styles.title}>{meal.name}</h3>
+          <div className={styles.titleContainer}>
+            <h3 className={styles.title}>{meal.name}</h3>
+            {meal.idealTime && (
+              <span className={styles.idealTime} aria-label={`Horário ideal: ${meal.idealTime}`}>
+                ⏰ {meal.idealTime}
+              </span>
+            )}
+          </div>
         </div>
         <span 
           className={`${styles.arrow} ${isExpanded ? styles.expanded : ''}`}
@@ -49,6 +56,29 @@ export const MealCard = ({ meal }: MealCardProps) => {
           role="region"
           aria-labelledby={`meal-title-${meal.id}`}
         >
+          {meal.macros && (
+            <div className={styles.macros}>
+              <h4 className={styles.macrosTitle}>Macronutrientes</h4>
+              <div className={styles.macrosGrid}>
+                <div className={styles.macroItem}>
+                  <span className={styles.macroLabel}>Calorias</span>
+                  <span className={styles.macroValue}>{meal.macros.calories} kcal</span>
+                </div>
+                <div className={styles.macroItem}>
+                  <span className={styles.macroLabel}>Proteína</span>
+                  <span className={styles.macroValue}>{meal.macros.protein}g</span>
+                </div>
+                <div className={styles.macroItem}>
+                  <span className={styles.macroLabel}>Carboidratos</span>
+                  <span className={styles.macroValue}>{meal.macros.carbs}g</span>
+                </div>
+                <div className={styles.macroItem}>
+                  <span className={styles.macroLabel}>Gorduras</span>
+                  <span className={styles.macroValue}>{meal.macros.fat}g</span>
+                </div>
+              </div>
+            </div>
+          )}
           <ul className={styles.foodsList}>
             {meal.foods.map((food) => (
               <li key={food.id} className={styles.foodItem}>

@@ -185,10 +185,12 @@ export const Routine = () => {
                 <button
                   className={styles.removeButton}
                   onClick={() => {
-                    // Remove o treino do dia selecionado
-                    const filtered = history.filter(h => h.date !== selectedDate);
-                    localStorage.setItem('ciclei-workout-history', JSON.stringify(filtered));
-                    setHistory(filtered);
+                    if (window.confirm('Remover este treino do dia?')) {
+                      // Remove o treino do dia selecionado
+                      const filtered = history.filter(h => h.date !== selectedDate);
+                      localStorage.setItem('ciclei-workout-history', JSON.stringify(filtered));
+                      setHistory(filtered);
+                    }
                   }}
                   aria-label="Remover treino deste dia"
                 >

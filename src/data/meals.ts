@@ -17,6 +17,13 @@ export interface Meal {
   id: string;
   name: string;
   icon: string;
+  idealTime?: string; // Horário ideal da refeição
+  macros?: {
+    calories: number;
+    protein: number; // em gramas
+    carbs: number; // em gramas
+    fat: number; // em gramas
+  };
   foods: FoodItem[];
   supplements?: Supplement[];
   notes?: string;
@@ -37,6 +44,13 @@ export const mealPlans: MealPlan[] = [
         id: 'breakfast',
         name: 'Café da Manhã',
         icon: '☕',
+        idealTime: '7h-8h',
+        macros: {
+          calories: 350,
+          protein: 25,
+          carbs: 40,
+          fat: 12
+        },
         foods: [
           {
             id: 'f1',
@@ -75,6 +89,13 @@ export const mealPlans: MealPlan[] = [
         id: 'lunch',
         name: 'Almoço',
         icon: '🍽️',
+        idealTime: '12h-13h',
+        macros: {
+          calories: 550,
+          protein: 45,
+          carbs: 60,
+          fat: 12
+        },
         foods: [
           {
             id: 'f4',
@@ -120,6 +141,13 @@ export const mealPlans: MealPlan[] = [
         id: 'snack',
         name: 'Lanche',
         icon: '🍓',
+        idealTime: '15h-16h',
+        macros: {
+          calories: 280,
+          protein: 5,
+          carbs: 55,
+          fat: 3
+        },
         foods: [
           {
             id: 'f8',
@@ -145,6 +173,13 @@ export const mealPlans: MealPlan[] = [
         id: 'pre-workout',
         name: 'Pré-Treino',
         icon: '🍳',
+        idealTime: '30-60min antes do treino',
+        macros: {
+          calories: 320,
+          protein: 18,
+          carbs: 25,
+          fat: 15
+        },
         foods: [
           {
             id: 'f11',
@@ -170,6 +205,13 @@ export const mealPlans: MealPlan[] = [
         id: 'dinner',
         name: 'Jantar',
         icon: '🌙',
+        idealTime: '19h-20h',
+        macros: {
+          calories: 420,
+          protein: 35,
+          carbs: 35,
+          fat: 12
+        },
         foods: [
           {
             id: 'f14',
