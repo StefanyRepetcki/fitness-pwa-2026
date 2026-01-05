@@ -224,6 +224,84 @@
   text-align: right;
 }
 
+/* Quick Links Section */
+.quickLinks {
+  margin-bottom: 3rem;
+}
+
+.quickLinksTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.quickLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.quickLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border-light);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  min-height: var(--touch-target-min);
+}
+
+.quickLink:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.quickLink:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+.quickLinkIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+}
+
+.quickLink:hover .quickLinkIcon {
+  transform: scale(1.1);
+}
+
+.quickLinkContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.quickLinkTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.quickLinkDescription {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
 @media (max-width: 480px) {
   .description {
     padding: 1.5rem;
@@ -237,5 +315,28 @@
   .backLink {
     padding: 0.875rem 1.5rem;
     font-size: 0.95rem;
+  }
+  
+  .quickLinksGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quickLink {
+    padding: 1.25rem;
+  }
+  
+  .quickLinksTitle {
+    font-size: 1.375rem;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 481px) and (max-width: 768px) {
+  .quickLinksGrid {
+    gap: 1.25rem;
+  }
+  
+  .quickLink {
+    padding: 1.75rem;
   }
 }

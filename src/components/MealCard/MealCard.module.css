@@ -115,6 +115,46 @@
   }
 }
 
+.macros {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.macrosTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.macrosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.macroItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.macroLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.macroValue {
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
 .foodsList {
   display: flex;
   flex-direction: column;
@@ -289,5 +329,16 @@
   
   .title {
     font-size: 1.25rem;
+  }
+  
+  .macrosGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 481px) and (max-width: 768px) {
+  .macrosGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

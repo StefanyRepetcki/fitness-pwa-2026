@@ -13,7 +13,21 @@ export const getStreakData = (): StreakData => {
   try {
     const stored = localStorage.getItem(STREAK_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      // Validação de dados
+      if (
+        typeof parsed === 'object' &&
+        parsed !== null &&
+        typeof parsed.currentStreak === 'number' &&
+        typeof parsed.longestStreak === 'number' &&
+        typeof parsed.totalWorkouts === 'number' &&
+        (parsed.lastWorkoutDate === null || typeof parsed.lastWorkoutDate === 'string') &&
+        parsed.currentStreak >= 0 &&
+        parsed.longestStreak >= 0 &&
+        parsed.totalWorkouts >= 0
+      ) {
+        return parsed;
+      }
     }
   } catch (error) {
     console.error('Erro ao ler streak:', error);

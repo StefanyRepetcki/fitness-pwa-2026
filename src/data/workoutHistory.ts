@@ -20,7 +20,20 @@ export const getWorkoutHistory = (): WorkoutHistoryEntry[] => {
   try {
     const stored = localStorage.getItem('ciclei-workout-history');
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      // Validação: verificar se é um array e validar cada entrada
+      if (Array.isArray(parsed)) {
+        return parsed.filter((entry: unknown) => 
+          entry &&
+          typeof entry === 'object' &&
+          'date' in entry &&
+          'workoutId' in entry &&
+          'workoutName' in entry &&
+          typeof (entry as WorkoutHistoryEntry).date === 'string' &&
+          typeof (entry as WorkoutHistoryEntry).workoutId === 'string' &&
+          typeof (entry as WorkoutHistoryEntry).workoutName === 'string'
+        ) as WorkoutHistoryEntry[];
+      }
     }
   } catch (error) {
     console.error('Erro ao ler histórico:', error);

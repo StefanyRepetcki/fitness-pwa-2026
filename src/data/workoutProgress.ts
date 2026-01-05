@@ -11,7 +11,17 @@ export const getWorkoutProgress = (workoutId: string): WorkoutProgress => {
   try {
     const stored = localStorage.getItem(`ciclei-workout-progress-${workoutId}`);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      // Validação de dados
+      if (
+        parsed &&
+        typeof parsed === 'object' &&
+        parsed.workoutId === workoutId &&
+        Array.isArray(parsed.completedExercises) &&
+        typeof parsed.lastUpdated === 'string'
+      ) {
+        return parsed;
+      }
     }
   } catch (error) {
     console.error('Erro ao ler progresso:', error);

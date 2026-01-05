@@ -114,11 +114,22 @@ export const getBadges = (): Badge[] => {
     const stored = localStorage.getItem(BADGES_KEY);
     if (stored) {
       const storedBadges = JSON.parse(stored);
-      // Merge com badges padrão para garantir que novos badges sejam adicionados
-      return ALL_BADGES.map(badge => {
-        const storedBadge = storedBadges.find((b: Badge) => b.id === badge.id);
-        return storedBadge || badge;
-      });
+      // Validação: verificar se é um array
+      if (Array.isArray(storedBadges)) {
+        // Merge com badges padrão para garantir que novos badges sejam adicionados
+        return ALL_BADGES.map(badge => {
+          const storedBadge = storedBadges.find((b: Badge) => 
+            b && typeof b === 'object' && b.id === badge.id
+          );
+          // Validar badge armazenado antes de usar
+          if (storedBadge && 
+              typeof storedBadge.unlocked === 'boolean' &&
+              typeof storedBadge.id === 'string') {
+            return storedBadge;
+          }
+          return badge;
+        });
+      }
     }
   } catch (error) {
     console.error('Erro ao ler badges:', error);

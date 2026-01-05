@@ -16,7 +16,7 @@ import { checkAndUnlockBadges, type Badge } from '../../data/badges';
 import { saveWorkoutHistory } from '../../data/workoutHistory';
 import { showWorkoutCompleteNotification, showStreakNotification } from '../../utils/notifications';
 import { useToast } from '../../contexts/ToastContext';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, Flame, StretchHorizontal } from 'lucide-react';
 import styles from './WorkoutDetail.module.css';
 
 export const WorkoutDetail = () => {
@@ -147,6 +147,27 @@ export const WorkoutDetail = () => {
             <span className={styles.progressPercentage}>{progressPercentage}%</span>
           </div>
         </div>
+
+        {/* Links rápidos para aquecimento e alongamento */}
+        <section className={styles.quickLinks} aria-label="Links rápidos">
+          <h2 className={styles.quickLinksTitle}>Preparação e Recuperação</h2>
+          <div className={styles.quickLinksGrid}>
+            <Link to="/warmup" className={styles.quickLink}>
+              <Flame className={styles.quickLinkIcon} size={24} strokeWidth={2} />
+              <div className={styles.quickLinkContent}>
+                <h3 className={styles.quickLinkTitle}>Aquecimento</h3>
+                <p className={styles.quickLinkDescription}>Prepare seu corpo antes do treino</p>
+              </div>
+            </Link>
+            <Link to="/stretches" className={styles.quickLink}>
+              <StretchHorizontal className={styles.quickLinkIcon} size={24} strokeWidth={2} />
+              <div className={styles.quickLinkContent}>
+                <h3 className={styles.quickLinkTitle}>Alongamento</h3>
+                <p className={styles.quickLinkDescription}>Recupere e relaxe após o treino</p>
+              </div>
+            </Link>
+          </div>
+        </section>
 
         <section className={styles.exercises} aria-labelledby="exercises-title">
           <h2 id="exercises-title" className={styles.sectionTitle}>Exercícios</h2>
