@@ -8,156 +8,495 @@
   padding: 0 1rem;
 }
 
-.routineGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-
-.dayCard {
-  background: var(--color-surface);
+/* Sugestão de treino */
+.suggestionCard {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border-light);
-  transition: all var(--transition-base);
-  position: relative;
-}
-
-.dayCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--color-primary); /* Cor sólida */
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.dayCard:hover {
+  margin-bottom: 3rem;
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-  border-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
 }
 
-.dayCard:hover::before {
-  opacity: 1;
-}
-
-.dayCard.rest {
-  background: var(--color-primary-light);
-  border-color: var(--color-primary);
-}
-
-.dayCard.restActive {
-  background: var(--color-secondary-light);
-  border-color: var(--color-primary);
-}
-
-.dayHeader {
+.suggestionHeader {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 2px solid var(--color-border-light);
-  position: relative;
+  margin-bottom: 1rem;
 }
 
-.dayHeader::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 50px;
-  height: 2px;
-  background: var(--color-primary); /* Cor sólida */
-  border-radius: 2px;
+.suggestionIcon {
+  font-size: 2rem;
 }
 
-.dayCard.rest .dayHeader {
-  border-bottom-color: var(--color-primary);
-}
-
-.icon {
-  font-size: 2.5rem;
-  transition: transform var(--transition-base);
-}
-
-.dayCard:hover .icon {
-  transform: scale(1.05);
-}
-
-.dayName {
+.suggestionTitle {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-text); /* Cor sólida para legibilidade */
+  color: var(--color-text);
   letter-spacing: -0.02em;
-  flex: 1;
 }
 
-.restContent {
-  text-align: center;
-  padding: 1rem 0;
+.suggestionText {
+  color: var(--color-text);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
-.restText {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-text); /* Cor sólida para legibilidade */
-  margin-bottom: 0.5rem;
-}
-
-.restSubtext {
-  color: var(--color-text-light);
-  font-size: 0.95rem;
+.suggestedWorkout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .workoutLink {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 1.5rem;
-  background: var(--color-primary-light);
+  padding: 1.5rem;
+  background: white;
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
-  margin-top: 0.75rem;
-  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
 }
 
 .workoutLink:hover {
-  background: var(--color-primary);
-  color: white;
-  transform: translateX(4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+  text-decoration: none;
+}
+
+.workoutInfo {
+  flex: 1;
+  min-width: 0;
 }
 
 .workoutName {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-primary-dark);
-  transition: color var(--transition-base);
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
-.workoutLink:hover .workoutName {
-  color: white;
+.workoutDescription {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
 }
 
 .arrow {
-  color: var(--color-primary-dark);
-  font-size: 1.25rem;
-  transition: all var(--transition-base);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+  margin-left: 1rem;
 }
 
 .workoutLink:hover .arrow {
-  color: white;
   transform: translateX(4px);
 }
 
+.markButton {
+  padding: 1rem 1.5rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.markButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.markButton:focus {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+
+/* Calendário */
+.calendarSection {
+  margin-bottom: 3rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.toggleButton {
+  padding: 0.5rem 1rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+  outline: none;
+}
+
+.toggleButton:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.toggleButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendarDay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border-light);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  min-height: 80px;
+  outline: none;
+}
+
+.calendarDay:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendarDay:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.calendarDay.today {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.calendarDay.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+
+.calendarDay.selected .dayLabel,
+.calendarDay.selected .dayNumber {
+  color: white;
+}
+
+.dayLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.dayNumber {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.workoutBadge {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.calendarDay.selected .workoutBadge {
+  background: white;
+  color: var(--color-primary);
+}
+
+/* Seletor de treino */
+.workoutSelector {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.selectorTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.completedWorkout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary);
+}
+
+.completedInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.checkIcon {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.completedName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.viewLink {
+  color: var(--color-primary-dark);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.viewLink:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.removeButton {
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.removeButton:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.removeButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.workoutOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.workoutOption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+  min-height: var(--touch-target-min);
+  outline: none;
+}
+
+.workoutOption:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.workoutOption:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.optionIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.optionInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.optionName {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.optionDescription {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  line-height: 1.4;
+}
+
+.optionArrow {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Histórico */
+.historySection {
+  margin-top: 3rem;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+}
+
+.historyItem:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.historyDate {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  min-width: 60px;
+  text-align: right;
+}
+
+.historyWorkout {
+  flex: 1;
+  color: var(--color-text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.historyWorkout:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .calendarDay {
+    padding: 0.75rem 0.25rem;
+    min-height: 70px;
+  }
+  
+  .dayNumber {
+    font-size: 1.125rem;
+  }
+  
+  .suggestionCard {
+    padding: 1.5rem;
+  }
+  
+  .workoutSelector {
+    padding: 1.5rem;
+  }
+}
+
 @media (min-width: 768px) {
-  .routineGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .calendar {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .suggestedWorkout {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .markButton {
+    flex-shrink: 0;
   }
 }
