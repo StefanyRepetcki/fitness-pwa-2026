@@ -109,11 +109,10 @@ src/
 
 **Stefany Repetcki** - Desenvolvedora Frontend
 
+- 📷 [Instagram](https://www.instagram.com/tefinha.zip/)
 - 💻 [GitHub](https://github.com/StefanyRepetcki)
-- 💼 [LinkedIn](https://www.linkedin.com/in/stefany-repetcki)
-- ✉️ Email: [Entre em contato](mailto:stefany.repetcki@example.com)
 
-Este projeto foi desenvolvido com muito cuidado e atenção aos detalhes. Se você gostou ou tem alguma sugestão, sinta-se à vontade para entrar em contato!
+Este projeto foi desenvolvido com atenção aos detalhes. Para dúvidas ou sugestões, entre em contato pelo Instagram.
 
 ## 📝 Licença
 

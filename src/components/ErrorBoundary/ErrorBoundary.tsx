@@ -43,8 +43,13 @@ export class ErrorBoundary extends Component<Props, State> {
             </button>
             <p className={styles.contact}>
               Se o problema persistir, entre em contato:{' '}
-              <a href="mailto:contato@stefanyrepetcki.dev" className={styles.link}>
-                contato@stefanyrepetcki.dev
+              <a 
+                href="https://www.instagram.com/tefinha.zip/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+              >
+                Instagram
               </a>
             </p>
             <p className={styles.developer}>

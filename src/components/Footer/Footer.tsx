@@ -25,42 +25,13 @@ export const Footer = () => {
             
             <div className={styles.contactLinks}>
               <a
-                href="https://github.com/StefanyRepetcki"
+                href="https://www.instagram.com/tefinha.zip/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.link}
-                aria-label="GitHub de Stefany Repetcki"
+                aria-label="Instagram de Stefany Repetcki"
               >
-                <span className={styles.icon}>GitHub</span>
-                <span>GitHub</span>
-              </a>
-              <a
-                href="mailto:contato@stefanyrepetcki.dev"
-                className={styles.link}
-                aria-label="Enviar email para Stefany Repetcki"
-              >
-                <span className={styles.icon}>Email</span>
-                <span>Email</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/stefany-repetcki"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-                aria-label="LinkedIn de Stefany Repetcki"
-              >
-                <span className={styles.icon}>LinkedIn</span>
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href="https://github.com/StefanyRepetcki/fitness-pwa-2026"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-                aria-label="Repositório do projeto no GitHub"
-              >
-                <span className={styles.icon}>Código</span>
-                <span>Repositório</span>
+                <span>Instagram</span>
               </a>
             </div>
 
