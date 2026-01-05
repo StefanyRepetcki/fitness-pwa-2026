@@ -109,7 +109,7 @@ export const Warmup = () => {
               <p className={styles.tipText}>
                 Nunca pule o aquecimento! Ele prepara seus músculos, articulações e sistema cardiovascular 
                 para o trabalho intenso, reduzindo o risco de lesões e melhorando sua performance. 
-                Dedique esses 5-7 minutos antes de cada treino.
+                Dedique esses <strong>5-7 minutos</strong> antes de cada treino.
               </p>
             </div>
           </div>
