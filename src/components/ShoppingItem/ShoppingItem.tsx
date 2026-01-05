@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import type { ShoppingItem as ShoppingItemType } from '../../data/shoppingList';
 import styles from './ShoppingItem.module.css';
 
@@ -8,24 +7,18 @@ interface ShoppingItemProps {
 }
 
 export const ShoppingItem = ({ item, onToggle }: ShoppingItemProps) => {
-  const [isChecked, setIsChecked] = useState(item.checked);
-
-  useEffect(() => {
-    setIsChecked(item.checked);
-  }, [item.checked]);
-
   const handleToggle = () => {
     onToggle(item.id);
   };
 
   return (
     <div
-      className={`${styles.item} ${isChecked ? styles.checked : ''}`}
+      className={`${styles.item} ${item.checked ? styles.checked : ''}`}
       onClick={handleToggle}
     >
       <div className={styles.checkboxContainer}>
-        <div className={`${styles.checkbox} ${isChecked ? styles.checked : ''}`}>
-          {isChecked && (
+        <div className={`${styles.checkbox} ${item.checked ? styles.checked : ''}`}>
+          {item.checked && (
             <span className={styles.checkmark}>✓</span>
           )}
         </div>
