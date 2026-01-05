@@ -53,6 +53,12 @@
   opacity: 0.9;
 }
 
+.dayCard.restActive {
+  background: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-primary-light) 100%);
+  border-color: var(--color-secondary);
+  opacity: 0.95;
+}
+
 .dayHeader {
   display: flex;
   align-items: center;

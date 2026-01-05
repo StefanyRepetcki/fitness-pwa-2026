@@ -17,7 +17,9 @@ export const ExerciseList = ({ exercises }: ExerciseListProps) => {
           <div className={styles.details}>
             <div className={styles.setsReps}>
               <span className={styles.label}>Séries:</span>
-              <span className={styles.value}>{exercise.sets}</span>
+              <span className={styles.value}>
+                {typeof exercise.sets === 'number' ? exercise.sets : exercise.sets}
+              </span>
               <span className={styles.separator}>•</span>
               <span className={styles.label}>Reps:</span>
               <span className={styles.value}>{exercise.reps}</span>

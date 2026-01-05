@@ -16,136 +16,149 @@ export interface Workout {
 export const workouts: Workout[] = [
   {
     id: 'treino-a',
-    name: 'Treino A - Superiores',
-    description: 'Foco em peito, ombros e tríceps',
+    name: 'Treino A - Quadríceps + Panturrilha',
+    description: 'Destaque e definição para a parte frontal da perna',
     exercises: [
       {
         id: 'ex1',
-        name: 'Supino Reto',
-        sets: 4,
-        reps: '8-10',
-        notes: 'Foco na execução controlada'
+        name: 'Leg Press 45º',
+        sets: 6,
+        reps: '2x30 leve + 1x8 (70%) + 3x 8-10',
+        notes: 'Aquecimento: 2x30 leve, depois 1x8 a 70%, seguido de 3x 8-10'
       },
       {
         id: 'ex2',
-        name: 'Desenvolvimento com Halteres',
+        name: 'Cadeira Extensora',
         sets: 3,
         reps: '10-12',
-        notes: 'Mantém o core contraído'
+        notes: 'Com isometria no topo'
       },
       {
         id: 'ex3',
-        name: 'Tríceps Pulley',
-        sets: 3,
-        reps: '12-15',
-        notes: 'Movimento completo'
+        name: 'Agachamento Hack ou Livre Guiado',
+        sets: 4,
+        reps: '8-10',
+        notes: 'Foco na técnica e amplitude'
       },
       {
         id: 'ex4',
-        name: 'Voador (Pec Deck)',
+        name: 'Adutora',
         sets: 3,
         reps: '12-15',
-        notes: 'Contração no final do movimento'
+        notes: 'Com isometria final'
       },
       {
         id: 'ex5',
-        name: 'Elevação Lateral',
-        sets: 3,
-        reps: '12-15',
-        notes: 'Peso moderado, execução perfeita'
+        name: 'Panturrilha no Leg ou em Pé',
+        sets: 4,
+        reps: '15-20',
+        notes: 'Tempo controlado'
       }
     ]
   },
   {
     id: 'treino-b',
-    name: 'Treino B - Inferiores',
-    description: 'Foco em pernas e glúteos',
+    name: 'Treino B - Costas, Peito e Ombro',
+    description: 'Densidade, postura e força no tronco',
     exercises: [
       {
         id: 'ex1',
-        name: 'Agachamento Livre',
-        sets: 4,
-        reps: '8-10',
-        notes: 'Profundidade completa, joelhos alinhados'
+        name: 'Pulley Frente',
+        sets: 6,
+        reps: '2x leve + 4x 10-12',
+        notes: 'Aquecimento: 2x leve, depois 4x 10-12 com drop-set final'
       },
       {
         id: 'ex2',
-        name: 'Leg Press',
-        sets: 4,
-        reps: '12-15',
-        notes: 'Amplitude máxima'
+        name: 'Remada Baixa Triângulo ou Unilateral',
+        sets: 3,
+        reps: '12',
+        notes: 'Foco na contração das costas'
       },
       {
         id: 'ex3',
-        name: 'Elevação Pélvica',
-        sets: 4,
-        reps: '12-15',
-        notes: 'Foco na contração dos glúteos'
+        name: 'Supino Reto com Halteres ou Máquina',
+        sets: 3,
+        reps: '10-12',
+        notes: 'Execução controlada'
       },
       {
         id: 'ex4',
-        name: 'Cadeira Extensora',
-        sets: 3,
+        name: 'Voador Peitoral',
+        sets: 2,
         reps: '12-15',
-        notes: 'Contração no topo'
+        notes: 'Amplitude completa'
       },
       {
         id: 'ex5',
-        name: 'Cadeira Flexora',
+        name: 'Desenvolvimento com Halteres ou Máquina',
         sets: 3,
-        reps: '12-15',
-        notes: 'Controle na descida'
+        reps: '10',
+        notes: 'Mantém o core contraído'
       },
       {
         id: 'ex6',
-        name: 'Panturrilha em Pé',
-        sets: 4,
-        reps: '15-20',
-        notes: 'Amplitude completa'
+        name: 'Crucifixo Invertido ou Elevação Lateral',
+        sets: 3,
+        reps: '12',
+        notes: 'Movimento controlado'
       }
     ]
   },
   {
     id: 'treino-c',
-    name: 'Treino C - Costas e Bíceps',
-    description: 'Foco em dorsais e bíceps',
+    name: 'Treino C - Posterior, Glúteos e Core',
+    description: 'O combo que dá forma e volume aos glúteos 🍑',
     exercises: [
       {
         id: 'ex1',
-        name: 'Puxada Frontal',
-        sets: 4,
-        reps: '8-10',
-        notes: 'Puxar com as costas, não com os braços'
+        name: 'Flexora Deitada',
+        sets: 5,
+        reps: '2x leve + 3x 10-12',
+        notes: 'Aquecimento: 2x leve, depois 3x 10-12 com cadência lenta'
       },
       {
         id: 'ex2',
-        name: 'Remada Curvada',
+        name: 'Stiff com Halteres ou Barra',
         sets: 4,
         reps: '8-10',
-        notes: 'Costas retas, contrair as escápulas'
+        notes: 'Mantém as costas retas'
       },
       {
         id: 'ex3',
-        name: 'Rosca Direta',
+        name: 'Extensão de Quadril no Cross',
         sets: 3,
-        reps: '10-12',
-        notes: 'Não balançar o corpo'
+        reps: '12 por perna',
+        notes: 'Cada perna separadamente'
       },
       {
         id: 'ex4',
-        name: 'Remada Unilateral',
-        sets: 3,
-        reps: '10-12',
-        notes: 'Cada lado separadamente'
+        name: 'Elevação Pélvica com Barra/Smith',
+        sets: 4,
+        reps: '10',
+        notes: 'Máxima contração dos glúteos'
       },
       {
         id: 'ex5',
-        name: 'Rosca Martelo',
+        name: 'Abdutora',
         sets: 3,
-        reps: '12-15',
-        notes: 'Controle na descida'
+        reps: '15',
+        notes: 'Com isometria no final'
+      },
+      {
+        id: 'ex6',
+        name: 'Panturrilha Sentada ou em Pé',
+        sets: 3,
+        reps: '20',
+        notes: 'Amplitude completa'
+      },
+      {
+        id: 'ex7',
+        name: 'Prancha + Abdominal Infra',
+        sets: 3,
+        reps: 'Séries',
+        notes: 'Core completo'
       }
     ]
   }
 ];
-

@@ -4,6 +4,7 @@ export interface RoutineDay {
   workoutId: string;
   workoutName: string;
   rest: boolean;
+  restActive?: boolean;
 }
 
 export const routine: RoutineDay[] = [
@@ -11,42 +12,43 @@ export const routine: RoutineDay[] = [
     id: 'mon',
     day: 'Segunda',
     workoutId: 'treino-a',
-    workoutName: 'Treino A - Superiores',
+    workoutName: 'Treino A - Quadríceps + Panturrilha',
     rest: false
   },
   {
     id: 'tue',
     day: 'Terça',
     workoutId: 'treino-b',
-    workoutName: 'Treino B - Inferiores',
+    workoutName: 'Treino B - Costas + Peito + Ombro',
     rest: false
   },
   {
     id: 'wed',
     day: 'Quarta',
     workoutId: 'treino-c',
-    workoutName: 'Treino C - Costas e Bíceps',
+    workoutName: 'Treino C - Posterior + Glúteos',
     rest: false
   },
   {
     id: 'thu',
     day: 'Quinta',
-    workoutId: 'treino-a',
-    workoutName: 'Treino A - Superiores',
-    rest: false
+    workoutId: '',
+    workoutName: 'Descanso Ativo',
+    rest: true,
+    restActive: true
   },
   {
     id: 'fri',
     day: 'Sexta',
-    workoutId: 'treino-b',
-    workoutName: 'Treino B - Inferiores',
+    workoutId: 'treino-a',
+    workoutName: 'Treino A - Foco Técnico ou Carga',
     rest: false
   },
   {
     id: 'sat',
     day: 'Sábado',
     workoutId: 'treino-c',
-    workoutName: 'Treino C - Costas e Bíceps',
+    workoutName: 'Glúteo Extra ou Leve',
     rest: false
   },
   {
@@ -57,4 +59,3 @@ export const routine: RoutineDay[] = [
     rest: true
   }
 ];
-
