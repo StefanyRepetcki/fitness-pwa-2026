@@ -1,0 +1,335 @@
+.intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+/* Seletor de treino */
+.workoutSelector {
+  margin-bottom: 2.5rem;
+}
+
+.selectorTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.workoutButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.workoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.workoutButton:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.workoutButton.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.workoutButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.buttonIcon {
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.buttonLabel {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.workoutButton.active .buttonIcon {
+  color: white;
+}
+
+/* Informações do treino */
+.workoutInfo {
+  margin-bottom: 2.5rem;
+}
+
+.workoutLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-primary);
+}
+
+.workoutLink:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.workoutLink:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.workoutLinkContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.workoutName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.workoutDescription {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.linkArrow {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  margin-left: 1rem;
+  transition: transform var(--transition-base);
+}
+
+.workoutLink:hover .linkArrow {
+  transform: translateX(4px);
+}
+
+/* Seção de alongamentos */
+.stretchesSection {
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.stretchesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stretchCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.stretchCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--color-primary-light);
+}
+
+.stretchHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.stretchNumber {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.stretchInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.stretchName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.stretchDescription {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.stretchDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  width: fit-content;
+}
+
+.durationIcon {
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+}
+
+.durationText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.instructions {
+  padding: 1rem;
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-primary);
+}
+
+.instructionsTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.instructionsText {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* Dica final */
+.tipCard {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-primary);
+  margin-top: 2rem;
+}
+
+.tipContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.tipIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  margin-top: 0.25rem;
+}
+
+.tipTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.tipText {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  .workoutButtons {
+    flex-direction: column;
+  }
+  
+  .workoutButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stretchCard {
+    padding: 1.5rem;
+  }
+  
+  .tipCard {
+    padding: 1.5rem;
+  }
+}
+

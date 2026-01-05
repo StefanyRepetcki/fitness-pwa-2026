@@ -4,6 +4,8 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
 import { Footer } from './components/Footer/Footer';
 import { SEO } from './components/SEO/SEO';
+import { SkipLink } from './components/SkipLink/SkipLink';
+import { MenuProvider } from './contexts/MenuContext';
 import './styles/global.css';
 
 // Lazy loading de páginas para melhor performance
@@ -15,6 +17,9 @@ const Routine = lazy(() => import('./pages/Routine/Routine').then(m => ({ defaul
 const Nutrition = lazy(() => import('./pages/Nutrition/Nutrition').then(m => ({ default: m.Nutrition })));
 const ShoppingList = lazy(() => import('./pages/ShoppingList/ShoppingList').then(m => ({ default: m.ShoppingList })));
 const Supplements = lazy(() => import('./pages/Supplements/Supplements').then(m => ({ default: m.Supplements })));
+const Tips = lazy(() => import('./pages/Tips/Tips').then(m => ({ default: m.Tips })));
+const Stretches = lazy(() => import('./pages/Stretches/Stretches').then(m => ({ default: m.Stretches })));
+const Warmup = lazy(() => import('./pages/Warmup/Warmup').then(m => ({ default: m.Warmup })));
 
 // Loading component melhorado
 const PageLoader = () => (
@@ -40,10 +45,12 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <SEO />
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <Suspense fallback={<PageLoader />}>
-          <Routes>
+        <MenuProvider>
+          <SkipLink />
+          <SEO />
+          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Suspense fallback={<PageLoader />}>
+            <Routes>
             <Route 
               path="/" 
               element={
@@ -146,11 +153,51 @@ function App() {
                 </>
               } 
             />
-          </Routes>
-        </Suspense>
-          <BottomNavigation />
-          <Footer />
-        </div>
+            <Route 
+              path="/tips" 
+              element={
+                <>
+                  <SEO 
+                    title="Dicas & Motivação - Ciclei"
+                    description="Dicas de treino, alimentação, suplementação e motivação. Playlist do Spotify para seus treinos."
+                    keywords="ciclei, dicas treino, motivação, playlist spotify, dicas alimentação, dicas suplementação"
+                  />
+                  <Tips />
+                </>
+              } 
+            />
+            <Route 
+              path="/stretches" 
+              element={
+                <>
+                  <SEO 
+                    title="Alongamentos - Ciclei"
+                    description="Alongamentos específicos para cada treino. Aprenda os melhores alongamentos para Treino A, B e C."
+                    keywords="ciclei, alongamentos, flexibilidade, treino A, treino B, treino C, recuperação muscular"
+                  />
+                  <Stretches />
+                </>
+              } 
+            />
+            <Route 
+              path="/warmup" 
+              element={
+                <>
+                  <SEO 
+                    title="Aquecimento - Ciclei"
+                    description="Rotinas de aquecimento específicas para cada treino. Prepare seu corpo antes do treino com exercícios de mobilidade e ativação."
+                    keywords="ciclei, aquecimento, mobilidade, ativação muscular, preparação para treino, prevenção de lesões"
+                  />
+                  <Warmup />
+                </>
+              } 
+            />
+            </Routes>
+          </Suspense>
+            <BottomNavigation />
+            <Footer />
+          </div>
+        </MenuProvider>
       </BrowserRouter>
     </ErrorBoundary>
   );

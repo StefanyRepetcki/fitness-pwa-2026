@@ -15,6 +15,7 @@
   background: #eb3157;
   padding: 1.25rem 1rem;
   padding-top: calc(1.25rem + env(safe-area-inset-top));
+  padding-right: calc(1rem + 4rem); /* Espaço para o botão hamburger */
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
@@ -23,7 +24,12 @@
   -webkit-backdrop-filter: blur(10px);
   /* Suporte para safe area */
   padding-left: max(1rem, env(safe-area-inset-left));
-  padding-right: max(1rem, env(safe-area-inset-right));
+  transform: translateY(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.hidden {
+  transform: translateY(-100%);
 }
 
 .logoContainer {

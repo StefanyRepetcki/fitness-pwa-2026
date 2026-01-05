@@ -1,3 +1,4 @@
+import { useScrollHide } from '../../hooks/useScrollHide';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -6,8 +7,11 @@ interface HeaderProps {
 }
 
 export const Header = ({ title, showLogo = false }: HeaderProps) => {
+  const isScrollingDown = useScrollHide(50);
+  const shouldHide = isScrollingDown;
+  
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${shouldHide ? styles.hidden : ''}`}>
       {showLogo && (
         <div className={styles.logoContainer}>
           {/* Logo completa com texto e pêssego */}

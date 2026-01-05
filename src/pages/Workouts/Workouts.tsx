@@ -10,7 +10,7 @@ export const Workouts = () => {
       <Header title="Treinos" />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Escolha seu treino do ciclo e comece a suar! 💪</p>
+          <p>Escolha seu treino do ciclo e comece a suar!</p>
         </div>
         {workouts.length === 0 ? (
           <div className={styles.emptyState}>

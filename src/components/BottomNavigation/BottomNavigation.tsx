@@ -1,33 +1,51 @@
 import { Link, useLocation } from 'react-router-dom';
+import { Dumbbell, Calendar, Sparkles } from 'lucide-react';
+import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
+import { useMenu } from '../../contexts/MenuContext';
+import { useScrollHide } from '../../hooks/useScrollHide';
 import styles from './BottomNavigation.module.css';
 
 export const BottomNavigation = () => {
   const location = useLocation();
+  const { isMenuOpen } = useMenu();
+  const isScrollingDown = useScrollHide(50);
+  
+  // Esconde se estiver scrollando para baixo OU se o menu hambúrguer estiver aberto
+  const shouldHide = isScrollingDown || isMenuOpen;
 
+  // Apenas 4 itens principais no bottom nav
   const navItems = [
-    { path: '/', icon: '🏋️', label: 'Treinos', ariaLabel: 'Ir para treinos' },
-    { path: '/nutrition', icon: '🍽️', label: 'Alimentação', ariaLabel: 'Ir para plano alimentar' },
-    { path: '/shopping', icon: '🛒', label: 'Compras', ariaLabel: 'Ir para lista de compras' },
-    { path: '/supplements', icon: '💊', label: 'Suplementos', ariaLabel: 'Ir para suplementação' },
-    { path: '/routine', icon: '📅', label: 'Rotina', ariaLabel: 'Ir para rotina semanal' }
+    { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos' },
+    { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal' },
+    { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação' }
   ];
 
   return (
-    <nav className={styles.nav} aria-label="Navegação principal">
-      {navItems.map((item) => (
-        <Link
-          key={item.path}
-          to={item.path}
-          className={`${styles.navItem} ${
-            location.pathname === item.path ? styles.active : ''
-          }`}
-          aria-label={item.ariaLabel}
-          aria-current={location.pathname === item.path ? 'page' : undefined}
-        >
-          <span className={styles.icon} aria-hidden="true">{item.icon}</span>
-          <span className={styles.label}>{item.label}</span>
-        </Link>
-      ))}
-    </nav>
+    <>
+      <HamburgerMenu />
+      <nav className={`${styles.nav} ${shouldHide ? styles.hidden : ''}`} aria-label="Navegação principal">
+        {navItems.map((item) => {
+          const IconComponent = item.icon;
+          const isActive = location.pathname === item.path;
+          
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`${styles.navItem} ${isActive ? styles.active : ''}`}
+              aria-label={item.ariaLabel}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              <IconComponent 
+                className={styles.icon}
+                size={24}
+                strokeWidth={isActive ? 2.5 : 2}
+              />
+              <span className={styles.label}>{item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    </>
   );
 };

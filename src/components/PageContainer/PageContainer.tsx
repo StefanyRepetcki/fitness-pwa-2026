@@ -6,6 +6,10 @@ interface PageContainerProps {
 }
 
 export const PageContainer = ({ children }: PageContainerProps) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <main id="main-content" className={styles.container} role="main">
+      {children}
+    </main>
+  );
 };
 

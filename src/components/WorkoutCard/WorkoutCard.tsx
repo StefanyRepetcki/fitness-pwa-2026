@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Dumbbell, ArrowRight } from 'lucide-react';
 import type { Workout } from '../../data/workouts';
 import styles from './WorkoutCard.module.css';
 
@@ -15,14 +16,14 @@ export const WorkoutCard = ({ workout }: WorkoutCardProps) => {
     >
       <div className={styles.header}>
         <h3 className={styles.title}>{workout.name}</h3>
-        <span className={styles.icon} aria-hidden="true">🏋️</span>
+        <Dumbbell className={styles.icon} size={32} strokeWidth={2} aria-hidden="true" />
       </div>
       <p className={styles.description}>{workout.description}</p>
       <div className={styles.footer}>
         <span className={styles.exerciseCount}>
           {workout.exercises.length} {workout.exercises.length === 1 ? 'exercício' : 'exercícios'}
         </span>
-        <span className={styles.arrow} aria-hidden="true">→</span>
+        <ArrowRight className={styles.arrow} size={20} strokeWidth={2.5} aria-hidden="true" />
       </div>
     </Link>
   );

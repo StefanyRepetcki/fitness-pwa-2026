@@ -15,6 +15,25 @@
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
   position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.exercise.completed {
+  opacity: 0.7;
+  background: var(--color-primary-light);
+  border-left-color: var(--color-primary-dark);
+}
+
+.exercise.completed .name {
+  text-decoration: line-through;
+  color: var(--color-text-light);
+}
+
+.exercise.completed .setsReps,
+.exercise.completed .notes {
+  opacity: 0.8;
 }
 
 .exercise:hover {
@@ -22,6 +41,46 @@
   box-shadow: var(--shadow-md);
   background: var(--color-surface-soft);
   border-left-color: var(--color-primary-dark);
+}
+
+.checkboxButton {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  outline: none;
+  border-radius: 50%;
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  margin-top: 0.25rem;
+}
+
+.checkboxButton:hover {
+  transform: scale(1.1);
+}
+
+.checkboxButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.checkIcon {
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.exercise.completed .checkIcon {
+  color: var(--color-primary-dark);
+}
+
+.exerciseContent {
+  flex: 1;
+  min-width: 0;
 }
 
 .exerciseHeader {

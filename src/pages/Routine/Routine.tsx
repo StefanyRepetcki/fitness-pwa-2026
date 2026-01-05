@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Lightbulb, Dumbbell, Check, X, Calendar as CalendarIcon } from 'lucide-react';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { workouts } from '../../data/workouts';
@@ -75,14 +76,14 @@ export const Routine = () => {
       <Header title="Meus Treinos" />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Organize seus treinos de forma flexível 💪</p>
+          <p>Organize seus treinos de forma flexível</p>
         </div>
 
         {/* Sugestão de treino do dia */}
         {suggestedWorkout && (
           <div className={styles.suggestionCard}>
             <div className={styles.suggestionHeader}>
-              <span className={styles.suggestionIcon}>💡</span>
+              <Lightbulb className={styles.suggestionIcon} size={28} strokeWidth={2} />
               <h2 className={styles.suggestionTitle}>Sugestão de Hoje</h2>
             </div>
             <p className={styles.suggestionText}>
@@ -106,7 +107,8 @@ export const Routine = () => {
                 onClick={() => handleMarkToday(suggestedWorkout.id)}
                 aria-label={`Marcar ${suggestedWorkout.name} como feito hoje`}
               >
-                ✓ Marcar como feito
+                <Check size={18} strokeWidth={2.5} />
+                <span>Marcar como feito</span>
               </button>
             </div>
           </div>
@@ -121,7 +123,8 @@ export const Routine = () => {
               onClick={() => setShowCalendar(!showCalendar)}
               aria-expanded={showCalendar}
             >
-              {showCalendar ? 'Ocultar' : 'Ver calendário'}
+              <CalendarIcon size={18} strokeWidth={2} />
+              <span>{showCalendar ? 'Ocultar' : 'Ver calendário'}</span>
             </button>
           </div>
 
@@ -148,7 +151,7 @@ export const Routine = () => {
                     <div className={styles.dayNumber}>{day.dayNumber}</div>
                     {day.workout && (
                       <div className={styles.workoutBadge} title={day.workout.workoutName}>
-                        ✓
+                        <Check size={14} strokeWidth={3} />
                       </div>
                     )}
                   </div>
@@ -168,7 +171,7 @@ export const Routine = () => {
             {todayWorkout ? (
               <div className={styles.completedWorkout}>
                 <div className={styles.completedInfo}>
-                  <span className={styles.checkIcon}>✓</span>
+                  <Check className={styles.checkIcon} size={24} strokeWidth={2.5} />
                   <div>
                     <p className={styles.completedName}>{todayWorkout.workoutName}</p>
                     <Link 
@@ -189,7 +192,7 @@ export const Routine = () => {
                   }}
                   aria-label="Remover treino deste dia"
                 >
-                  ✕
+                  <X size={18} strokeWidth={2.5} />
                 </button>
               </div>
             ) : (
@@ -200,7 +203,7 @@ export const Routine = () => {
                     className={styles.workoutOption}
                     onClick={() => handleMarkWorkout(workout.id)}
                   >
-                    <span className={styles.optionIcon}>💪</span>
+                    <Dumbbell className={styles.optionIcon} size={24} strokeWidth={2} />
                     <div className={styles.optionInfo}>
                       <span className={styles.optionName}>{workout.name}</span>
                       <span className={styles.optionDescription}>{workout.description}</span>

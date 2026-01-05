@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ciclei.app/sitemap.xml
+Sitemap: https://ciclei-2026.netlify.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
