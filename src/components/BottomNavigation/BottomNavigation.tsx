@@ -6,8 +6,9 @@ export const BottomNavigation = () => {
 
   const navItems = [
     { path: '/', icon: '🏋️', label: 'Treinos' },
-    { path: '/diet', icon: '🥗', label: 'Dieta' },
-    { path: '/videos', icon: '🎥', label: 'Vídeos' },
+    { path: '/nutrition', icon: '🍽️', label: 'Alimentação' },
+    { path: '/shopping', icon: '🛒', label: 'Compras' },
+    { path: '/supplements', icon: '💊', label: 'Suplementos' },
     { path: '/routine', icon: '📅', label: 'Rotina' }
   ];
 

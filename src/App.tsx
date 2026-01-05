@@ -5,6 +5,9 @@ import { WorkoutDetail } from './pages/WorkoutDetail/WorkoutDetail';
 import { Diet } from './pages/Diet/Diet';
 import { Videos } from './pages/Videos/Videos';
 import { Routine } from './pages/Routine/Routine';
+import { Nutrition } from './pages/Nutrition/Nutrition';
+import { ShoppingList } from './pages/ShoppingList/ShoppingList';
+import { Supplements } from './pages/Supplements/Supplements';
 import './styles/global.css';
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
           <Route path="/diet" element={<Diet />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/routine" element={<Routine />} />
+          <Route path="/nutrition" element={<Nutrition />} />
+          <Route path="/shopping" element={<ShoppingList />} />
+          <Route path="/supplements" element={<Supplements />} />
         </Routes>
         <BottomNavigation />
       </div>
