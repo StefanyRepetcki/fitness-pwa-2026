@@ -3,7 +3,7 @@
   margin-bottom: 3rem;
   color: var(--color-text-light);
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   padding: 0 1rem;
 }
@@ -16,6 +16,7 @@
   padding-bottom: 0.75rem;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
+  scrollbar-color: var(--color-primary) var(--color-surface);
 }
 
 .dayButton {
@@ -31,6 +32,9 @@
   flex-shrink: 0;
   box-shadow: var(--shadow-sm);
   letter-spacing: 0.01em;
+  min-height: var(--touch-target-min);
+  outline: none;
+  cursor: pointer;
 }
 
 .dayButton:hover {
@@ -40,8 +44,14 @@
   box-shadow: var(--shadow-md);
 }
 
+.dayButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
 .dayButton.active {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   color: white;
   border-color: transparent;
   box-shadow: var(--shadow-md);
@@ -60,5 +70,17 @@
 .meals {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
+@media (max-width: 480px) {
+  .dayButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .dayTitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}

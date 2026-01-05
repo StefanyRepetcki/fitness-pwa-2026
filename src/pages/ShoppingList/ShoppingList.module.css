@@ -3,7 +3,7 @@
   margin-bottom: 3rem;
   color: var(--color-text-light);
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   padding: 0 1rem;
 }
@@ -33,15 +33,35 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   border: none;
   cursor: pointer;
   transition: all var(--transition-base);
   text-align: left;
+  min-height: var(--touch-target-min);
+  outline: none;
 }
 
 .categoryHeader:hover {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
+  color: white;
+}
+
+.categoryHeader:hover .categoryName,
+.categoryHeader:hover .categoryCount {
+  color: white;
+}
+
+.categoryHeader:focus {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: -2px;
+  background: var(--color-primary);
+  color: white;
+}
+
+.categoryHeader:focus .categoryName,
+.categoryHeader:focus .categoryCount {
+  color: white;
 }
 
 .categoryHeaderContent {
@@ -49,11 +69,12 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
+  min-width: 0;
 }
 
 .categoryIcon {
   font-size: 2rem;
-  filter: drop-shadow(0 2px 4px rgba(244, 182, 194, 0.2));
+  flex-shrink: 0;
 }
 
 .categoryName {
@@ -62,6 +83,8 @@
   color: var(--color-text);
   letter-spacing: -0.01em;
   flex: 1;
+  min-width: 0;
+  text-align: left;
 }
 
 .categoryCount {
@@ -72,6 +95,14 @@
   font-size: 0.875rem;
   font-weight: 600;
   box-shadow: var(--shadow-soft);
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.categoryHeader:hover .categoryCount,
+.categoryHeader:focus .categoryCount {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 .categoryArrow {
@@ -79,9 +110,40 @@
   font-size: 0.875rem;
   transition: transform var(--transition-base);
   opacity: 0.7;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.categoryHeader:hover .categoryArrow,
+.categoryHeader:focus .categoryArrow {
+  color: white;
+  opacity: 1;
 }
 
 .items {
   padding: 1.5rem 2rem;
 }
 
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--color-text-light);
+}
+
+.emptyState p {
+  font-size: 1.125rem;
+}
+
+@media (max-width: 480px) {
+  .categoryHeader {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .items {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .categoryName {
+    font-size: 1.25rem;
+  }
+}

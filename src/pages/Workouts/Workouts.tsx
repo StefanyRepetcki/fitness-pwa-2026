@@ -7,18 +7,23 @@ import styles from './Workouts.module.css';
 export const Workouts = () => {
   return (
     <>
-      <Header title="Treinos" />
+      <Header title="Treinos" showLogo={true} />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Escolha seu treino do dia e comece a suar! 💪</p>
+          <p>Escolha seu treino do ciclo e comece a suar! 💪</p>
         </div>
-        <div className={styles.workoutsList}>
-          {workouts.map((workout) => (
-            <WorkoutCard key={workout.id} workout={workout} />
-          ))}
-        </div>
+        {workouts.length === 0 ? (
+          <div className={styles.emptyState}>
+            <p>Nenhum treino disponível no momento.</p>
+          </div>
+        ) : (
+          <div className={styles.workoutsList} role="list">
+            {workouts.map((workout) => (
+              <WorkoutCard key={workout.id} workout={workout} />
+            ))}
+          </div>
+        )}
       </PageContainer>
     </>
   );
 };
-

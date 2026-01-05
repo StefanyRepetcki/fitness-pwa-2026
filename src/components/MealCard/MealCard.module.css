@@ -24,9 +24,21 @@
   cursor: pointer;
   transition: all var(--transition-base);
   text-align: left;
+  min-height: var(--touch-target-min);
+  outline: none;
 }
 
 .header:hover {
+  background: var(--color-primary-light);
+}
+
+.header:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  background: var(--color-primary-light);
+}
+
+.header:active {
   background: var(--color-primary-light);
 }
 
@@ -35,16 +47,17 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
+  min-width: 0;
 }
 
 .icon {
   font-size: 2rem;
-  filter: drop-shadow(0 2px 4px rgba(244, 182, 194, 0.2));
   transition: transform var(--transition-base);
+  flex-shrink: 0;
 }
 
 .header:hover .icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.05);
 }
 
 .title {
@@ -52,6 +65,8 @@
   font-weight: 600;
   color: var(--color-text);
   letter-spacing: -0.01em;
+  flex: 1;
+  text-align: left;
 }
 
 .arrow {
@@ -59,6 +74,8 @@
   font-size: 1rem;
   transition: transform var(--transition-base);
   opacity: 0.7;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 
 .arrow.expanded {
@@ -87,11 +104,14 @@
   flex-direction: column;
   gap: 1.25rem;
   margin-bottom: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
 }
 
 .foodItem {
   padding: 1.25rem;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
 }
@@ -109,6 +129,8 @@
   color: var(--color-text);
   font-size: 1rem;
   flex: 1;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .foodQuantity {
@@ -116,6 +138,7 @@
   font-weight: 500;
   font-size: 0.9rem;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .foodNotes {
@@ -140,12 +163,14 @@
   color: var(--color-text-light);
   font-size: 0.8rem;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .alternativesList {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .alternative {
@@ -156,6 +181,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid var(--color-primary-light);
+  white-space: nowrap;
 }
 
 .mealNotes {
@@ -166,6 +192,7 @@
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
+  margin-top: 1rem;
 }
 
 .notesIcon {
@@ -174,7 +201,7 @@
 }
 
 .notesText {
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: 0.9rem;
   line-height: 1.7;
   flex: 1;
@@ -184,7 +211,7 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-primary-light) 100%);
+  background: var(--color-secondary-light);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
 }
@@ -201,6 +228,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .supplementItem {
@@ -232,3 +262,16 @@
   margin-top: 0.25rem;
 }
 
+@media (max-width: 480px) {
+  .header {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+}

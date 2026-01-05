@@ -16,17 +16,21 @@ const Nutrition = lazy(() => import('./pages/Nutrition/Nutrition').then(m => ({ 
 const ShoppingList = lazy(() => import('./pages/ShoppingList/ShoppingList').then(m => ({ default: m.ShoppingList })));
 const Supplements = lazy(() => import('./pages/Supplements/Supplements').then(m => ({ default: m.Supplements })));
 
-// Loading component
+// Loading component melhorado
 const PageLoader = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '50vh',
-    color: 'var(--color-primary)'
-  }}>
+  <div 
+    style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      minHeight: '50vh',
+      color: 'var(--color-primary)'
+    }}
+    role="status"
+    aria-label="Carregando página"
+  >
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>💪</div>
+      <div style={{ fontSize: '2rem', marginBottom: '1rem' }} aria-hidden="true">💪</div>
       <div>Carregando...</div>
     </div>
   </div>
@@ -45,9 +49,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Treinos - Fitness PWA"
-                    description="Organize seus treinos físicos com nosso app. Treino ABC avançado foco feminino com exercícios detalhados."
-                    keywords="treino, exercícios, treino ABC, treino feminino, fitness"
+                    title="Treinos - Ciclei"
+                    description="Organize seu ciclo de treinos! Treino ABC avançado foco feminino com exercícios detalhados."
+                    keywords="ciclei, treino, exercícios, treino ABC, treino feminino, ciclo de treinos"
                   />
                   <Workouts />
                 </>
@@ -58,7 +62,7 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Detalhes do Treino - Fitness PWA"
+                    title="Detalhes do Treino - Ciclei"
                     description="Veja os detalhes completos do seu treino com séries, repetições e observações."
                   />
                   <WorkoutDetail />
@@ -70,9 +74,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Dieta - Fitness PWA"
+                    title="Dieta - Ciclei"
                     description="Plano alimentar equilibrado para seus objetivos. Organize suas refeições diárias."
-                    keywords="dieta, alimentação, plano alimentar, nutrição"
+                    keywords="ciclei, dieta, alimentação, plano alimentar, nutrição, ciclo alimentar"
                   />
                   <Diet />
                 </>
@@ -83,9 +87,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Vídeos e Dúvidas - Fitness PWA"
+                    title="Vídeos e Dúvidas - Ciclei"
                     description="Aprenda a execução correta dos exercícios com nossos vídeos de apoio."
-                    keywords="vídeos exercícios, como fazer exercícios, técnica de exercícios"
+                    keywords="ciclei, vídeos exercícios, como fazer exercícios, técnica de exercícios"
                   />
                   <Videos />
                 </>
@@ -96,8 +100,8 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Rotina Semanal - Fitness PWA"
-                    description="Visualize sua semana de treinos e organize sua rotina fitness."
+                    title="Rotina Semanal - Ciclei"
+                    description="Visualize seu ciclo semanal de treinos e organize sua rotina fitness."
                   />
                   <Routine />
                 </>
@@ -108,9 +112,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Plano Alimentar - Fitness PWA"
-                    description="Plano alimentar completo de 2100 calorias. Organize suas refeições de forma eficiente."
-                    keywords="plano alimentar, nutrição, refeições, dieta 2100 calorias"
+                    title="Plano Alimentar - Ciclei"
+                    description="Plano alimentar completo de 2100 calorias. Organize seu ciclo de refeições de forma eficiente."
+                    keywords="ciclei, plano alimentar, nutrição, refeições, dieta 2100 calorias, ciclo alimentar"
                   />
                   <Nutrition />
                 </>
@@ -121,9 +125,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Lista de Compras - Fitness PWA"
-                    description="Organize suas compras por categoria. Lista completa de alimentos para sua dieta."
-                    keywords="lista de compras, compras, alimentos, supermercado"
+                    title="Lista de Compras - Ciclei"
+                    description="Organize suas compras por categoria. Lista completa de alimentos para seu ciclo alimentar."
+                    keywords="ciclei, lista de compras, compras, alimentos, supermercado"
                   />
                   <ShoppingList />
                 </>
@@ -134,9 +138,9 @@ function App() {
               element={
                 <>
                   <SEO 
-                    title="Suplementação - Fitness PWA"
-                    description="Organize seus suplementos ao longo do dia. Horários e dosagens corretas."
-                    keywords="suplementos, suplementação, whey, creatina, vitaminas"
+                    title="Suplementação - Ciclei"
+                    description="Organize seu ciclo de suplementos ao longo do dia. Horários e dosagens corretas."
+                    keywords="ciclei, suplementos, suplementação, whey, creatina, vitaminas, ciclo de suplementos"
                   />
                   <Supplements />
                 </>

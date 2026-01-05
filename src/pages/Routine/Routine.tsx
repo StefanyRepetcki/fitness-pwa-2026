@@ -16,18 +16,20 @@ export const Routine = () => {
       <Header title="Rotina Semanal" />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Visualize sua semana de treinos 📅</p>
+          <p>Visualize seu ciclo semanal de treinos 📅</p>
         </div>
-        <div className={styles.routineGrid}>
+        <div className={styles.routineGrid} role="list">
           {routine.map((day) => (
-            <div
+            <article
               key={day.id}
               className={`${styles.dayCard} ${
                 day.rest ? (day.restActive ? styles.restActive : styles.rest) : ''
               }`}
             >
               <div className={styles.dayHeader}>
-                <span className={styles.icon}>{getDayIcon(day.rest, day.restActive)}</span>
+                <span className={styles.icon} aria-hidden="true">
+                  {getDayIcon(day.rest, day.restActive)}
+                </span>
                 <h3 className={styles.dayName}>{day.day}</h3>
               </div>
               {day.rest ? (
@@ -45,16 +47,16 @@ export const Routine = () => {
                 <Link
                   to={`/workout/${day.workoutId}`}
                   className={styles.workoutLink}
+                  aria-label={`Ver detalhes do ${day.workoutName}`}
                 >
                   <p className={styles.workoutName}>{day.workoutName}</p>
-                  <span className={styles.arrow}>→</span>
+                  <span className={styles.arrow} aria-hidden="true">→</span>
                 </Link>
               )}
-            </div>
+            </article>
           ))}
         </div>
       </PageContainer>
     </>
   );
 };
-

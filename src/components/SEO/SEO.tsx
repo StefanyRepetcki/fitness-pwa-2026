@@ -10,18 +10,24 @@ interface SEOProps {
 }
 
 export const SEO = ({
-  title = 'Fitness PWA - Treinos e Dieta',
-  description = 'Organize seus treinos, dieta e estudos de exercícios. App completo para sua rotina fitness com visual elegante e feminino.',
-  keywords = 'fitness, treino, dieta, alimentação, exercícios, PWA, app fitness, treino feminino',
+  title = 'Ciclei - Seu ciclo completo de treinos e suplementos',
+  description = 'Ciclei - Seu ciclo completo de treinos, suplementos e alimentação! Organize sua rotina fitness de forma divertida e eficiente.',
+  keywords = 'ciclei, ciclo, treino, suplementos, vitaminas, dieta, alimentação, exercícios, PWA, app fitness, treino feminino, plano alimentar',
   ogImage = '/pwa-512x512.png',
   ogType = 'website',
   canonical
 }: SEOProps) => {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const baseUrl = window.location.origin;
+    const currentUrl = canonical || window.location.href;
+    const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+
     // Atualizar título
     document.title = title;
 
-    // Atualizar ou criar meta tags
+    // Função helper para atualizar/criar meta tags
     const updateMetaTag = (name: string, content: string, attribute: string = 'name') => {
       let element = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
       if (!element) {
@@ -35,23 +41,25 @@ export const SEO = ({
     // Meta tags básicas
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
-    updateMetaTag('theme-color', '#F4B6C2');
+    updateMetaTag('theme-color', '#eb3157');
+    updateMetaTag('robots', 'index, follow');
 
     // Open Graph
     updateMetaTag('og:title', title, 'property');
     updateMetaTag('og:description', description, 'property');
-    updateMetaTag('og:image', ogImage, 'property');
+    updateMetaTag('og:image', fullOgImage, 'property');
+    updateMetaTag('og:image:url', fullOgImage, 'property');
+    updateMetaTag('og:image:secure_url', fullOgImage, 'property');
     updateMetaTag('og:type', ogType, 'property');
-    const canonicalUrl = canonical || (typeof window !== 'undefined' ? window.location.href : '');
-    updateMetaTag('og:url', canonicalUrl, 'property');
-    updateMetaTag('og:site_name', 'Fitness PWA', 'property');
+    updateMetaTag('og:url', currentUrl, 'property');
+    updateMetaTag('og:site_name', 'Ciclei', 'property');
     updateMetaTag('og:locale', 'pt_BR', 'property');
 
     // Twitter Cards
     updateMetaTag('twitter:card', 'summary_large_image');
     updateMetaTag('twitter:title', title);
     updateMetaTag('twitter:description', description);
-    updateMetaTag('twitter:image', ogImage);
+    updateMetaTag('twitter:image', fullOgImage);
 
     // Canonical URL
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -60,7 +68,7 @@ export const SEO = ({
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', canonicalUrl);
+    canonicalLink.setAttribute('href', currentUrl);
 
     // Structured Data (JSON-LD)
     let structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -73,9 +81,9 @@ export const SEO = ({
     const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: 'Fitness PWA',
+      name: 'Ciclei',
       description: description,
-      url: typeof window !== 'undefined' ? window.location.origin : '',
+      url: baseUrl,
       applicationCategory: 'HealthApplication',
       operatingSystem: 'Any',
       offers: {
@@ -87,7 +95,13 @@ export const SEO = ({
         '@type': 'AggregateRating',
         ratingValue: '5',
         ratingCount: '1'
-      }
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Stefany Repetcki'
+      },
+      inLanguage: 'pt-BR',
+      isAccessibleForFree: true
     };
 
     structuredData.textContent = JSON.stringify(jsonLd);
@@ -95,4 +109,3 @@ export const SEO = ({
 
   return null;
 };
-

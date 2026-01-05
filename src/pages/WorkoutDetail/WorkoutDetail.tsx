@@ -14,10 +14,11 @@ export const WorkoutDetail = () => {
       <>
         <Header title="Treino não encontrado" />
         <PageContainer>
-          <div className={styles.notFound}>
-            <p>Treino não encontrado.</p>
+          <div className={styles.notFound} role="alert">
+            <h2>Treino não encontrado</h2>
+            <p>O treino que você está procurando não existe ou foi removido.</p>
             <Link to="/" className={styles.backLink}>
-              ← Voltar para treinos
+              <span>←</span> Voltar para treinos
             </Link>
           </div>
         </PageContainer>
@@ -32,15 +33,16 @@ export const WorkoutDetail = () => {
         <div className={styles.description}>
           <p>{workout.description}</p>
         </div>
-        <div className={styles.exercises}>
-          <h2 className={styles.sectionTitle}>Exercícios</h2>
+        <section className={styles.exercises} aria-labelledby="exercises-title">
+          <h2 id="exercises-title" className={styles.sectionTitle}>Exercícios</h2>
           <ExerciseList exercises={workout.exercises} />
-        </div>
-        <Link to="/" className={styles.backLink}>
-          ← Voltar para treinos
-        </Link>
+        </section>
+        <nav aria-label="Navegação">
+          <Link to="/" className={styles.backLink}>
+            <span>←</span> Voltar para treinos
+          </Link>
+        </nav>
       </PageContainer>
     </>
   );
 };
-

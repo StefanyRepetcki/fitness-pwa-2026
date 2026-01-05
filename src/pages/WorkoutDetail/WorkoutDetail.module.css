@@ -1,5 +1,5 @@
 .description {
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   padding: 2rem;
   border-radius: var(--radius-lg);
   margin-bottom: 3rem;
@@ -7,7 +7,7 @@
   color: var(--color-text);
   font-size: 1.1rem;
   line-height: 1.8;
-  font-weight: 300;
+  font-weight: 400;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--color-border-light);
 }
@@ -34,7 +34,7 @@
   left: 0;
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   border-radius: 2px;
 }
 
@@ -45,19 +45,39 @@
   color: var(--color-primary);
   font-weight: 500;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
   margin-top: 3rem;
   box-shadow: var(--shadow-sm);
   letter-spacing: 0.01em;
+  text-decoration: none;
+  min-height: var(--touch-target-min);
+  outline: none;
 }
 
 .backLink:hover {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   color: white;
-  transform: translateX(-6px);
+  transform: translateX(-4px);
   box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.backLink:focus {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+  background: var(--color-primary);
+  color: white;
+}
+
+.backLink span {
+  transition: transform var(--transition-base);
+  display: inline-block;
+}
+
+.backLink:hover span {
+  transform: translateX(-4px);
 }
 
 .notFound {
@@ -66,8 +86,30 @@
   color: var(--color-text-light);
 }
 
-.notFound p {
-  font-size: 1.125rem;
-  margin-bottom: 1.5rem;
+.notFound h2 {
+  font-size: 1.75rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
 }
 
+.notFound p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+  .description {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .backLink {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

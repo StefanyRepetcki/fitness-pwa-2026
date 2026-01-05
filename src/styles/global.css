@@ -1,61 +1,76 @@
 :root {
-  /* Paleta de cores elegante e feminina */
-  --color-primary: #F4B6C2; /* Rosa claro / Rosé */
-  --color-primary-light: #F9E5EA;
-  --color-primary-dark: #E8A0B0;
-  --color-secondary: #C6B7E2; /* Lilás suave */
-  --color-secondary-light: #E8E0F2;
-  --color-accent: #F4B6C2;
+  /* Paleta Ciclei - Elegante e clean */
+  --color-primary: #eb3157; /* Rosa vibrante - cor principal da logo */
+  --color-primary-light: #ffdbe2; /* Rosa claro - cor secundária da logo */
+  --color-primary-dark: #d01e44;
+  --color-secondary: #ffdbe2; /* Rosa claro */
+  --color-secondary-light: #fff0f3;
+  --color-accent: #ffdbe2; /* Rosa claro */
+  --color-accent-light: #fff5f7;
   
-  /* Neutros */
-  --color-background: #FAFAFA; /* Branco off */
+  /* Neutros elegantes */
+  --color-background: #FFFFFF; /* Branco puro para clean */
   --color-surface: #FFFFFF;
-  --color-surface-soft: #FDFBFB;
-  --color-beige: #F5F0EB;
-  --color-gray-warm: #E8E4E0;
+  --color-surface-soft: #FFFBFD;
+  --color-beige: #F8F4F0;
+  --color-gray-warm: #F5F5F5;
   
-  /* Texto */
-  --color-text: #5A5A5A; /* Cinza quente */
-  --color-text-light: #9A9A9A;
-  --color-text-lighter: #CACACA;
+  /* Texto - contraste garantido */
+  --color-text: #2C2C2C; /* Cinza muito escuro para legibilidade */
+  --color-text-light: #6B6B6B; /* Cinza médio */
+  --color-text-lighter: #9A9A9A; /* Cinza claro */
   
   /* Bordas */
-  --color-border: #F0EBE8;
-  --color-border-light: #F8F5F3;
+  --color-border: #E8E8E8;
+  --color-border-light: #F0F0F0;
   
-  /* Sombras suaves */
-  --shadow-sm: 0 2px 12px rgba(244, 182, 194, 0.08);
-  --shadow-md: 0 4px 20px rgba(244, 182, 194, 0.12);
-  --shadow-lg: 0 8px 32px rgba(244, 182, 194, 0.16);
-  --shadow-soft: 0 2px 8px rgba(198, 183, 226, 0.1);
+  /* Sombras suaves e elegantes */
+  --shadow-sm: 0 2px 8px rgba(235, 49, 87, 0.08);
+  --shadow-md: 0 4px 16px rgba(235, 49, 87, 0.12);
+  --shadow-lg: 0 8px 24px rgba(235, 49, 87, 0.16);
+  --shadow-soft: 0 2px 6px rgba(235, 49, 87, 0.06);
   
-  /* Bordas arredondadas */
+  /* Bordas arredondadas - elegantes */
   --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
   
-  /* Transições suaves */
+  /* Transições suaves e discretas */
   --transition-fast: 0.2s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.4s ease;
+  
+  /* Touch targets - mínimo 44x44px para acessibilidade */
+  --touch-target-min: 44px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Suporte para safe areas (notch, home indicator) */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
   font-family: 'Poppins', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-background);
+  background: var(--color-background);
   color: var(--color-text);
   line-height: 1.7;
   font-weight: 400;
   letter-spacing: -0.01em;
+  /* Prevenir zoom em double tap no iOS */
+  touch-action: manipulation;
+  /* Melhorar performance de scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -63,19 +78,35 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  color: var(--color-text); /* Cor sólida para legibilidade */
 }
 
 h1 {
   font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: clamp(1.375rem, 3.5vw, 1.75rem);
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--color-text);
 }
 
 p {
   line-height: 1.8;
   letter-spacing: 0.01em;
+  color: var(--color-text);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 #root {
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* iOS Safari fix */
   display: flex;
   flex-direction: column;
 }
@@ -83,6 +114,10 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+  /* Touch target mínimo */
+  min-height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
 }
 
 button {
@@ -90,35 +125,42 @@ button {
   background: none;
   cursor: pointer;
   font-family: inherit;
+  /* Touch target mínimo */
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ul {
   list-style: none;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - elegante e discreto */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--color-surface);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary-dark);
 }
 
-/* Animações suaves */
+/* Animações suaves e discretas */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -126,22 +168,75 @@ ul {
   }
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 .fade-in {
   animation: fadeIn var(--transition-base);
 }
 
-.slide-in {
-  animation: slideIn var(--transition-base);
+/* Responsividade - Breakpoints */
+/* Mobile: < 480px (default) */
+/* Tablet: 480px - 768px */
+/* Desktop: > 768px */
+
+/* Melhorias para telas muito pequenas */
+@media (max-width: 360px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.375rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+  }
 }
 
+/* Melhorias para tablets */
+@media (min-width: 480px) and (max-width: 767px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Desktop e telas grandes */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Telas muito grandes */
+@media (min-width: 1200px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Ajustes para landscape em mobile */
+  #root {
+    min-height: auto;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support (opcional, para futuro) */
+@media (prefers-color-scheme: dark) {
+  /* Manter light mode por enquanto, mas preparado para dark mode */
+}

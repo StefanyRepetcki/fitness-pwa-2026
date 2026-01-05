@@ -3,44 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/pwa-192x192.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Organize seus treinos, dieta e estudos de exercícios. App completo para sua rotina fitness com visual elegante e feminino." />
-    <meta name="keywords" content="fitness, treino, dieta, alimentação, exercícios, PWA, app fitness, treino feminino, plano alimentar, suplementos" />
-    <meta name="author" content="Fitness PWA" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#F4B6C2" />
+    
+    <!-- Viewport otimizado para PWA -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover, user-scalable=yes" />
+    
+    <!-- SEO Básico -->
+    <meta name="description" content="Ciclei - Seu ciclo completo de treinos, suplementos e alimentação! Organize sua rotina fitness de forma divertida e eficiente. PWA instalável." />
+    <meta name="keywords" content="ciclei, ciclo, treino, suplementos, vitaminas, dieta, alimentação, exercícios, PWA, app fitness, treino feminino, plano alimentar, fitness app, progressive web app" />
+    <meta name="author" content="Stefany Repetcki" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Portuguese" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#eb3157" />
+    <meta name="msapplication-TileColor" content="#eb3157" />
+    <meta name="msapplication-navbutton-color" content="#eb3157" />
+    
+    <!-- PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Fitness PWA" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ciclei" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Ciclei" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://fitness-pwa.netlify.app/" />
-    <meta property="og:title" content="Fitness PWA - Treinos e Dieta" />
-    <meta property="og:description" content="Organize seus treinos, dieta e estudos de exercícios. App completo para sua rotina fitness." />
-    <meta property="og:image" content="/pwa-512x512.png" />
-    <meta property="og:site_name" content="Fitness PWA" />
+    <meta property="og:url" content="https://ciclei.app/" />
+    <meta property="og:title" content="Ciclei - Seu ciclo completo de treinos e suplementos" />
+    <meta property="og:description" content="Organize seu ciclo de treinos, suplementos e alimentação de forma divertida e eficiente! PWA instalável para iOS e Android." />
+    <meta property="og:image" content="https://ciclei.app/pwa-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Logo do Ciclei - App de treinos e suplementos" />
+    <meta property="og:site_name" content="Ciclei" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="pt_PT" />
     
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Fitness PWA - Treinos e Dieta" />
-    <meta name="twitter:description" content="Organize seus treinos, dieta e estudos de exercícios. App completo para sua rotina fitness." />
-    <meta name="twitter:image" content="/pwa-512x512.png" />
+    <meta name="twitter:title" content="Ciclei - Seu ciclo completo de treinos e suplementos" />
+    <meta name="twitter:description" content="Organize seu ciclo de treinos, suplementos e alimentação de forma divertida e eficiente!" />
+    <meta name="twitter:image" content="https://ciclei.app/pwa-512x512.png" />
+    <meta name="twitter:image:alt" content="Logo do Ciclei" />
+    <meta name="twitter:creator" content="@ciclei" />
     
+    <!-- Icons -->
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/pwa-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/pwa-512x512.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="canonical" href="https://fitness-pwa.netlify.app/" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ciclei.app/" />
     
     <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     
     <!-- Fontes com display=swap para melhor performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    <title>Fitness PWA - Treinos e Dieta</title>
+    <!-- Security -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <title>Ciclei - Seu ciclo completo de treinos e suplementos</title>
   </head>
   <body>
     <div id="root"></div>

@@ -11,15 +11,27 @@ export const ShoppingItem = ({ item, onToggle }: ShoppingItemProps) => {
     onToggle(item.id);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggle();
+    }
+  };
+
   return (
     <div
       className={`${styles.item} ${item.checked ? styles.checked : ''}`}
       onClick={handleToggle}
+      onKeyDown={handleKeyDown}
+      role="checkbox"
+      aria-checked={item.checked}
+      aria-label={`${item.checked ? 'Desmarcar' : 'Marcar'} ${item.name}`}
+      tabIndex={0}
     >
       <div className={styles.checkboxContainer}>
         <div className={`${styles.checkbox} ${item.checked ? styles.checked : ''}`}>
           {item.checked && (
-            <span className={styles.checkmark}>✓</span>
+            <span className={styles.checkmark} aria-hidden="true">✓</span>
           )}
         </div>
       </div>
@@ -30,4 +42,3 @@ export const ShoppingItem = ({ item, onToggle }: ShoppingItemProps) => {
     </div>
   );
 };
-

@@ -9,24 +9,46 @@ interface MealCardProps {
 export const MealCard = ({ meal }: MealCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggle();
+    }
+  };
+
   return (
     <div className={styles.card}>
       <button
         className={styles.header}
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
         aria-expanded={isExpanded}
+        aria-controls={`meal-content-${meal.id}`}
+        aria-label={`${isExpanded ? 'Fechar' : 'Abrir'} detalhes de ${meal.name}`}
       >
         <div className={styles.headerContent}>
-          <span className={styles.icon}>{meal.icon}</span>
+          <span className={styles.icon} aria-hidden="true">{meal.icon}</span>
           <h3 className={styles.title}>{meal.name}</h3>
         </div>
-        <span className={`${styles.arrow} ${isExpanded ? styles.expanded : ''}`}>
+        <span 
+          className={`${styles.arrow} ${isExpanded ? styles.expanded : ''}`}
+          aria-hidden="true"
+        >
           ▼
         </span>
       </button>
       
       {isExpanded && (
-        <div className={styles.content}>
+        <div 
+          id={`meal-content-${meal.id}`}
+          className={styles.content}
+          role="region"
+          aria-labelledby={`meal-title-${meal.id}`}
+        >
           <ul className={styles.foodsList}>
             {meal.foods.map((food) => (
               <li key={food.id} className={styles.foodItem}>
@@ -70,7 +92,7 @@ export const MealCard = ({ meal }: MealCardProps) => {
           )}
           {meal.notes && (
             <div className={styles.mealNotes}>
-              <span className={styles.notesIcon}>💡</span>
+              <span className={styles.notesIcon} aria-hidden="true">💡</span>
               <span className={styles.notesText}>{meal.notes}</span>
             </div>
           )}
@@ -79,4 +101,3 @@ export const MealCard = ({ meal }: MealCardProps) => {
     </div>
   );
 };
-

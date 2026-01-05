@@ -12,13 +12,18 @@ export const Videos = () => {
         <div className={styles.intro}>
           <p>Tire suas dúvidas sobre execução de exercícios 🎥</p>
         </div>
-        <div className={styles.videosList}>
-          {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-        </div>
+        {videos.length === 0 ? (
+          <div className={styles.emptyState}>
+            <p>Nenhum vídeo disponível no momento.</p>
+          </div>
+        ) : (
+          <div className={styles.videosList} role="list">
+            {videos.map((video) => (
+              <VideoCard key={video.id} video={video} />
+            ))}
+          </div>
+        )}
       </PageContainer>
     </>
   );
 };
-

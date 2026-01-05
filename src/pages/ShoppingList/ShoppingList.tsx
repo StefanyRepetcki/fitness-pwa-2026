@@ -43,47 +43,61 @@ export const ShoppingList = () => {
     return { checked, total: category.items.length };
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent, categoryId: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggleCategory(categoryId);
+    }
+  };
+
   return (
     <>
       <Header title="Lista de Compras" />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Organize suas compras por categoria 🛒</p>
+          <p>Organize suas compras para manter seu ciclo completo 🛒</p>
         </div>
 
-        <div className={styles.categories}>
-          {categories.map((category) => {
-            const { checked, total } = getCategoryProgress(category);
-            return (
-              <div key={category.id} className={styles.category}>
-                <button
-                  className={styles.categoryHeader}
-                  onClick={() => handleToggleCategory(category.id)}
-                >
-                  <div className={styles.categoryHeaderContent}>
-                    <span className={styles.categoryIcon}>{category.icon}</span>
-                    <h3 className={styles.categoryName}>{category.name}</h3>
-                    <span className={styles.categoryCount}>
-                      {checked}/{total}
-                    </span>
+        {categories.length === 0 ? (
+          <div className={styles.emptyState}>
+            <p>Nenhum item na lista de compras.</p>
+          </div>
+        ) : (
+          <div className={styles.categories}>
+            {categories.map((category) => {
+              const { checked, total } = getCategoryProgress(category);
+              return (
+                <div key={category.id} className={styles.category}>
+                  <button
+                    className={styles.categoryHeader}
+                    onClick={() => handleToggleCategory(category.id)}
+                    onKeyDown={(e) => handleKeyDown(e, category.id)}
+                    aria-label={`${checked === total ? 'Desmarcar' : 'Marcar'} todos os itens de ${category.name}`}
+                  >
+                    <div className={styles.categoryHeaderContent}>
+                      <span className={styles.categoryIcon} aria-hidden="true">{category.icon}</span>
+                      <h3 className={styles.categoryName}>{category.name}</h3>
+                      <span className={styles.categoryCount} aria-label={`${checked} de ${total} itens marcados`}>
+                        {checked}/{total}
+                      </span>
+                    </div>
+                    <span className={styles.categoryArrow} aria-hidden="true">▼</span>
+                  </button>
+                  <div className={styles.items} role="list">
+                    {category.items.map((item) => (
+                      <ShoppingItem
+                        key={item.id}
+                        item={item}
+                        onToggle={handleToggleItem}
+                      />
+                    ))}
                   </div>
-                  <span className={styles.categoryArrow}>▼</span>
-                </button>
-                <div className={styles.items}>
-                  {category.items.map((item) => (
-                    <ShoppingItem
-                      key={item.id}
-                      item={item}
-                      onToggle={handleToggleItem}
-                    />
-                  ))}
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </PageContainer>
     </>
   );
 };
-

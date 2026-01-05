@@ -3,7 +3,7 @@
   margin-bottom: 3rem;
   color: var(--color-text-light);
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   padding: 0 1rem;
 }
@@ -22,7 +22,6 @@
   border: 1px solid var(--color-border-light);
   transition: all var(--transition-base);
   position: relative;
-  overflow: hidden;
 }
 
 .dayCard::before {
@@ -31,15 +30,15 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  height: 3px;
+  background: var(--color-primary); /* Cor sólida */
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .dayCard:hover {
   box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: var(--color-primary-light);
 }
 
@@ -48,15 +47,13 @@
 }
 
 .dayCard.rest {
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   border-color: var(--color-primary);
-  opacity: 0.9;
 }
 
 .dayCard.restActive {
-  background: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-primary-light) 100%);
-  border-color: var(--color-secondary);
-  opacity: 0.95;
+  background: var(--color-secondary-light);
+  border-color: var(--color-primary);
 }
 
 .dayHeader {
@@ -76,7 +73,7 @@
   left: 0;
   width: 50px;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary); /* Cor sólida */
   border-radius: 2px;
 }
 
@@ -86,19 +83,19 @@
 
 .icon {
   font-size: 2.5rem;
-  filter: drop-shadow(0 2px 4px rgba(244, 182, 194, 0.2));
   transition: transform var(--transition-base);
 }
 
 .dayCard:hover .icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.05);
 }
 
 .dayName {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-text);
-  letter-spacing: -0.01em;
+  color: var(--color-text); /* Cor sólida para legibilidade */
+  letter-spacing: -0.02em;
+  flex: 1;
 }
 
 .restContent {
@@ -109,13 +106,13 @@
 .restText {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--color-primary-dark);
+  color: var(--color-text); /* Cor sólida para legibilidade */
   margin-bottom: 0.5rem;
 }
 
 .restSubtext {
   color: var(--color-text-light);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .workoutLink {
@@ -123,7 +120,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+  background: var(--color-primary-light);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   margin-top: 0.75rem;
@@ -131,16 +128,17 @@
 }
 
 .workoutLink:hover {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  transform: translateX(6px);
+  background: var(--color-primary);
+  color: white;
+  transform: translateX(4px);
   box-shadow: var(--shadow-md);
 }
 
 .workoutName {
-  font-weight: 500;
-  color: var(--color-text);
-  flex: 1;
-  font-size: 0.95rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  transition: color var(--transition-base);
 }
 
 .workoutLink:hover .workoutName {
@@ -148,9 +146,9 @@
 }
 
 .arrow {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   font-size: 1.25rem;
-  transition: transform 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .workoutLink:hover .arrow {
@@ -163,10 +161,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (min-width: 1024px) {
-  .routineGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-

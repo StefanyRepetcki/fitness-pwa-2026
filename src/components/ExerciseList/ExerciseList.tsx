@@ -6,12 +6,22 @@ interface ExerciseListProps {
 }
 
 export const ExerciseList = ({ exercises }: ExerciseListProps) => {
+  if (exercises.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <p>Nenhum exercício cadastrado neste treino.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.list}>
+    <ol className={styles.list}>
       {exercises.map((exercise, index) => (
-        <div key={exercise.id} className={styles.exercise}>
+        <li key={exercise.id} className={styles.exercise}>
           <div className={styles.exerciseHeader}>
-            <span className={styles.number}>{index + 1}</span>
+            <span className={styles.number} aria-label={`Exercício ${index + 1}`}>
+              {index + 1}
+            </span>
             <h4 className={styles.name}>{exercise.name}</h4>
           </div>
           <div className={styles.details}>
@@ -20,20 +30,19 @@ export const ExerciseList = ({ exercises }: ExerciseListProps) => {
               <span className={styles.value}>
                 {typeof exercise.sets === 'number' ? exercise.sets : exercise.sets}
               </span>
-              <span className={styles.separator}>•</span>
+              <span className={styles.separator} aria-hidden="true">•</span>
               <span className={styles.label}>Reps:</span>
               <span className={styles.value}>{exercise.reps}</span>
             </div>
             {exercise.notes && (
-              <div className={styles.notes}>
-                <span className={styles.notesIcon}>💡</span>
+              <div className={styles.notes} role="note">
+                <span className={styles.notesIcon} aria-hidden="true">💡</span>
                 <span className={styles.notesText}>{exercise.notes}</span>
               </div>
             )}
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ol>
   );
 };
-
