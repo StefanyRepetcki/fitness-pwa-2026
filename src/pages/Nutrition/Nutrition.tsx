@@ -12,7 +12,7 @@ export const Nutrition = () => {
       <Header title="Plano Alimentar" />
       <PageContainer>
         <div className={styles.intro}>
-          <p>Organize suas refeições com cuidado e carinho 🍽️</p>
+          <p>Organize suas refeições de forma prática e eficiente 🍽️</p>
         </div>
 
         <div className={styles.meals}>

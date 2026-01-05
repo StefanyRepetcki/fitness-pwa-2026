@@ -109,7 +109,7 @@ function App() {
                 <>
                   <SEO 
                     title="Plano Alimentar - Fitness PWA"
-                    description="Plano alimentar completo de 2100 calorias. Organize suas refeições com cuidado."
+                    description="Plano alimentar completo de 2100 calorias. Organize suas refeições de forma eficiente."
                     keywords="plano alimentar, nutrição, refeições, dieta 2100 calorias"
                   />
                   <Nutrition />

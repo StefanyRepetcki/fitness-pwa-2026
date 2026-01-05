@@ -47,6 +47,9 @@ export class ErrorBoundary extends Component<Props, State> {
                 contato@stefanyrepetcki.dev
               </a>
             </p>
+            <p className={styles.developer}>
+              Desenvolvido por <strong>Stefany Repetcki</strong>
+            </p>
           </div>
         </div>
       );

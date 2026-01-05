@@ -74,3 +74,16 @@
   text-decoration: underline;
 }
 
+.developer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+}
+
+.developer strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+

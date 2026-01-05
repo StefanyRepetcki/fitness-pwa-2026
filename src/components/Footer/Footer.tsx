@@ -10,10 +10,9 @@ export const Footer = () => {
         <button
           className={styles.creditsButton}
           onClick={() => setShowContact(!showContact)}
-          aria-label="Ver informações do desenvolvedor"
+          aria-label="Informações do desenvolvedor"
         >
-          <span className={styles.heart}>💜</span>
-          <span className={styles.text}>Desenvolvido com carinho</span>
+          <span className={styles.text}>Desenvolvido por Stefany Repetcki</span>
           <span className={`${styles.arrow} ${showContact ? styles.expanded : ''}`}>▼</span>
         </button>
 
@@ -32,7 +31,7 @@ export const Footer = () => {
                 className={styles.link}
                 aria-label="GitHub de Stefany Repetcki"
               >
-                <span className={styles.icon}>💻</span>
+                <span className={styles.icon}>GitHub</span>
                 <span>GitHub</span>
               </a>
               <a
@@ -40,18 +39,8 @@ export const Footer = () => {
                 className={styles.link}
                 aria-label="Enviar email para Stefany Repetcki"
               >
-                <span className={styles.icon}>✉️</span>
+                <span className={styles.icon}>Email</span>
                 <span>Email</span>
-              </a>
-              <a
-                href="https://github.com/StefanyRepetcki/fitness-pwa-2026"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-                aria-label="Repositório do projeto no GitHub"
-              >
-                <span className={styles.icon}>📦</span>
-                <span>Repositório</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/stefany-repetcki"
@@ -60,14 +49,24 @@ export const Footer = () => {
                 className={styles.link}
                 aria-label="LinkedIn de Stefany Repetcki"
               >
-                <span className={styles.icon}>💼</span>
+                <span className={styles.icon}>LinkedIn</span>
                 <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/StefanyRepetcki/fitness-pwa-2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+                aria-label="Repositório do projeto no GitHub"
+              >
+                <span className={styles.icon}>Código</span>
+                <span>Repositório</span>
               </a>
             </div>
 
             <p className={styles.note}>
-              Este projeto foi desenvolvido com React, TypeScript e muito cuidado. 
-              Se você gostou ou tem alguma sugestão, entre em contato! 🚀
+              Projeto desenvolvido com React, TypeScript e Vite. 
+              Para dúvidas ou sugestões, entre em contato.
             </p>
           </div>
         )}
@@ -75,4 +74,3 @@ export const Footer = () => {
     </footer>
   );
 };
-
