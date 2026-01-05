@@ -52,6 +52,22 @@ export const MealCard = ({ meal }: MealCardProps) => {
               </li>
             ))}
           </ul>
+          {meal.supplements && meal.supplements.length > 0 && (
+            <div className={styles.supplements}>
+              <h4 className={styles.supplementsTitle}>💊 Suplementos</h4>
+              <ul className={styles.supplementsList}>
+                {meal.supplements.map((supplement) => (
+                  <li key={supplement.id} className={styles.supplementItem}>
+                    <span className={styles.supplementName}>{supplement.name}</span>
+                    <span className={styles.supplementDosage}>{supplement.dosage}</span>
+                    {supplement.notes && (
+                      <span className={styles.supplementNotes}>{supplement.notes}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {meal.notes && (
             <div className={styles.mealNotes}>
               <span className={styles.notesIcon}>💡</span>

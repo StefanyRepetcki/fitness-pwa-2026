@@ -6,11 +6,19 @@ export interface FoodItem {
   alternatives?: string[];
 }
 
+export interface Supplement {
+  id: string;
+  name: string;
+  dosage: string;
+  notes?: string;
+}
+
 export interface Meal {
   id: string;
   name: string;
   icon: string;
   foods: FoodItem[];
+  supplements?: Supplement[];
   notes?: string;
 }
 
@@ -23,290 +31,174 @@ export interface MealPlan {
 export const mealPlans: MealPlan[] = [
   {
     id: 'day1',
-    day: 'Segunda-feira',
+    day: 'Plano Alimentar - 2100 calorias',
     meals: [
       {
-        id: 'breakfast-1',
+        id: 'breakfast',
         name: 'Café da Manhã',
         icon: '☕',
         foods: [
           {
             id: 'f1',
-            name: 'Aveia',
-            quantity: '40g',
-            notes: 'Farelo de aveia'
+            name: 'Ovos inteiros',
+            quantity: '3 unidades',
+            notes: 'Preparados como preferir'
           },
           {
             id: 'f2',
-            name: 'Banana',
-            quantity: '1 unidade média',
-            alternatives: ['Maçã', 'Mamão']
+            name: 'Torradas ou Pão integral',
+            quantity: '3 torradas ou 2 fatias',
+            alternatives: ['3 torradas', '2 fatias de pão integral']
           },
           {
             id: 'f3',
-            name: 'Whey Protein',
-            quantity: '30g',
-            notes: 'Sabor baunilha'
-          },
-          {
-            id: 'f4',
-            name: 'Chia',
-            quantity: '1 colher de sopa',
-            notes: 'Hidratada'
+            name: 'Geléia de morango',
+            quantity: '20g',
+            notes: 'Para passar no pão'
           }
         ],
-        notes: 'Bater tudo no liquidificador com água gelada'
+        supplements: [
+          {
+            id: 's1',
+            name: 'Picolinato de cromo',
+            dosage: '200mcg'
+          },
+          {
+            id: 's2',
+            name: 'Vitamina C',
+            dosage: '500mg'
+          }
+        ],
+        notes: '3,5 litros de água ao longo do dia | 35g whey | 5g creatina'
       },
       {
-        id: 'lunch-1',
+        id: 'lunch',
         name: 'Almoço',
         icon: '🍽️',
         foods: [
           {
+            id: 'f4',
+            name: 'Arroz branco ou Batata',
+            quantity: '180g arroz OU 250g batata',
+            alternatives: ['180g arroz branco', '250g batata inglesa', '250g batata doce']
+          },
+          {
             id: 'f5',
-            name: 'Peito de frango grelhado',
-            quantity: '150g',
-            notes: 'Temperado com alho e limão'
+            name: 'Proteína',
+            quantity: '170g',
+            alternatives: ['170g frango', '170g carne moída', '170g tilápia']
           },
           {
             id: 'f6',
-            name: 'Arroz integral',
-            quantity: '100g',
-            alternatives: ['Batata doce assada (150g)', 'Quinoa (100g)']
+            name: 'Salada e legumes',
+            quantity: 'À vontade',
+            notes: 'Variedade de folhas e legumes'
           },
           {
             id: 'f7',
-            name: 'Salada verde',
-            quantity: 'À vontade',
-            notes: 'Alface, rúcula, tomate. Somente vinagre de maçã'
+            name: 'Azeite de oliva',
+            quantity: '1 colher',
+            notes: 'Para temperar'
+          }
+        ],
+        supplements: [
+          {
+            id: 's3',
+            name: 'Extrato de laranja',
+            dosage: 'Antes do almoço',
+            notes: 'Tomar antes da refeição'
           },
           {
-            id: 'f8',
-            name: 'Azeite extra virgem',
-            quantity: '1 colher de chá',
-            notes: 'Sobre a salada'
+            id: 's4',
+            name: 'DHA',
+            dosage: 'Pós almoço',
+            notes: 'Tomar após a refeição'
           }
         ]
       },
       {
-        id: 'snack-1',
+        id: 'snack',
         name: 'Lanche',
         icon: '🍓',
         foods: [
           {
+            id: 'f8',
+            name: 'Frutas',
+            quantity: '200g',
+            alternatives: ['Mamão', 'Melão', 'Abacaxi', 'Morango', 'Maçã'],
+            notes: 'Escolher entre as opções'
+          },
+          {
             id: 'f9',
-            name: 'Iogurte grego',
-            quantity: '1 pote (170g)',
-            notes: 'Sem açúcar'
+            name: 'Mel',
+            quantity: '30g'
           },
           {
             id: 'f10',
-            name: 'Frutas vermelhas',
-            quantity: '50g',
-            alternatives: ['Morango', 'Mirtilo', 'Amora']
-          },
-          {
-            id: 'f11',
-            name: 'Amêndoas',
-            quantity: '10 unidades',
-            notes: 'Sem sal'
+            name: 'Aveia',
+            quantity: '30g',
+            notes: 'Pode misturar com as frutas'
           }
         ]
       },
       {
-        id: 'pre-workout-1',
-        name: 'Pré-treino',
+        id: 'pre-workout',
+        name: 'Pré-Treino',
         icon: '🍳',
         foods: [
           {
+            id: 'f11',
+            name: 'Tapioca',
+            quantity: '30g',
+            notes: 'Pode fazer tapioca simples'
+          },
+          {
             id: 'f12',
-            name: 'Banana',
-            quantity: '1 unidade média',
-            notes: '30-40min antes do treino'
+            name: 'Ovos inteiros',
+            quantity: '2 unidades',
+            notes: 'Preparados como preferir'
           },
           {
             id: 'f13',
-            name: 'Café preto',
-            quantity: '1 xícara',
-            notes: 'Sem açúcar'
+            name: 'Pasta de amendoim ou Castanhas',
+            quantity: '20g pasta OU 3 castanhas',
+            alternatives: ['20g pasta de amendoim', '3 castanhas do Pará']
           }
         ]
       },
       {
-        id: 'dinner-1',
+        id: 'dinner',
         name: 'Jantar',
         icon: '🌙',
         foods: [
           {
             id: 'f14',
-            name: 'Salmão grelhado',
-            quantity: '150g',
-            alternatives: ['Peito de peru (150g)', 'Atum (150g)']
+            name: 'Batata inglesa',
+            quantity: '100g',
+            notes: 'Sugestão: bolinho de carne e batatas na Airfryer'
           },
           {
             id: 'f15',
-            name: 'Batata doce',
-            quantity: '150g',
-            notes: 'Assada ou cozida'
+            name: 'Proteína',
+            quantity: '170g',
+            alternatives: ['170g frango', '170g carne moída de primeira', '170g tilápia']
           },
           {
             id: 'f16',
-            name: 'Brócolis no vapor',
+            name: 'Salada',
             quantity: 'À vontade',
-            notes: 'Temperado com limão'
-          },
-          {
-            id: 'f17',
-            name: 'Abacate',
-            quantity: '1/4 unidade',
-            notes: 'Fonte de gordura boa'
+            notes: 'Somente vinagre para temperar'
           }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'day2',
-    day: 'Terça-feira',
-    meals: [
-      {
-        id: 'breakfast-2',
-        name: 'Café da Manhã',
-        icon: '☕',
-        foods: [
+        ],
+        supplements: [
           {
-            id: 'f18',
-            name: 'Ovos mexidos',
-            quantity: '2 unidades inteiras',
-            notes: 'Com 1 colher de azeite'
-          },
-          {
-            id: 'f19',
-            name: 'Pão integral',
-            quantity: '1 fatia',
-            alternatives: ['Tapioca', 'Aveia']
-          },
-          {
-            id: 'f20',
-            name: 'Abacate',
-            quantity: '1/4 unidade',
-            notes: 'Amassado no pão'
-          },
-          {
-            id: 'f21',
-            name: 'Café com leite desnatado',
-            quantity: '1 xícara',
-            notes: 'Sem açúcar'
-          }
-        ]
-      },
-      {
-        id: 'lunch-2',
-        name: 'Almoço',
-        icon: '🍽️',
-        foods: [
-          {
-            id: 'f22',
-            name: 'Carne magra grelhada',
-            quantity: '150g',
-            notes: 'Alcatra ou patinho'
-          },
-          {
-            id: 'f23',
-            name: 'Quinoa',
-            quantity: '100g',
-            alternatives: ['Arroz integral (100g)', 'Batata doce (150g)']
-          },
-          {
-            id: 'f24',
-            name: 'Abobrinha grelhada',
-            quantity: 'À vontade',
-            notes: 'Com alho e azeite'
-          },
-          {
-            id: 'f25',
-            name: 'Salada colorida',
-            quantity: 'À vontade',
-            notes: 'Tomate, pepino, cebola roxa'
-          }
-        ]
-      },
-      {
-        id: 'snack-2',
-        name: 'Lanche',
-        icon: '🍓',
-        foods: [
-          {
-            id: 'f26',
-            name: 'Maçã',
-            quantity: '1 unidade média',
-            alternatives: ['Pera', 'Kiwi']
-          },
-          {
-            id: 'f27',
-            name: 'Castanhas do Pará',
-            quantity: '3 unidades',
-            notes: 'Fonte de selênio'
-          },
-          {
-            id: 'f28',
-            name: 'Chá verde',
-            quantity: '1 xícara',
-            notes: 'Sem açúcar'
-          }
-        ]
-      },
-      {
-        id: 'pre-workout-2',
-        name: 'Pré-treino',
-        icon: '🍳',
-        foods: [
-          {
-            id: 'f29',
-            name: 'Tapioca com mel',
-            quantity: '1 unidade pequena',
-            notes: '30min antes do treino'
-          },
-          {
-            id: 'f30',
-            name: 'Café preto',
-            quantity: '1 xícara',
-            notes: 'Sem açúcar'
-          }
-        ]
-      },
-      {
-        id: 'dinner-2',
-        name: 'Jantar',
-        icon: '🌙',
-        foods: [
-          {
-            id: 'f31',
-            name: 'Omelete',
-            quantity: '3 claras + 1 gema',
-            notes: 'Recheada com espinafre'
-          },
-          {
-            id: 'f32',
-            name: 'Espinafre refogado',
-            quantity: 'À vontade',
-            notes: 'Com alho'
-          },
-          {
-            id: 'f33',
-            name: 'Tomate cereja',
-            quantity: 'À vontade',
-            notes: 'Assado ou fresco'
-          },
-          {
-            id: 'f34',
-            name: 'Queijo branco',
-            quantity: '1 fatia pequena',
-            notes: 'Light'
+            id: 's5',
+            name: 'Multivitamínico',
+            dosage: '1 dose',
+            notes: 'Tomar com a refeição'
           }
         ]
       }
     ]
   }
 ];
-
