@@ -63,10 +63,6 @@ export const Footer = () => {
               </a>
             </div>
 
-            <p className={styles.note}>
-              Projeto desenvolvido com React, TypeScript e Vite. 
-              Para dúvidas ou sugestões, entre em contato.
-            </p>
           </div>
         )}
       </div>

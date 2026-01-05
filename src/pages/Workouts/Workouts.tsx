@@ -7,7 +7,7 @@ import styles from './Workouts.module.css';
 export const Workouts = () => {
   return (
     <>
-      <Header title="Treinos" showLogo={true} />
+      <Header title="Treinos" />
       <PageContainer>
         <div className={styles.intro}>
           <p>Escolha seu treino do ciclo e comece a suar! 💪</p>
