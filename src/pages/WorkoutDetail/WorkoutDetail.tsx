@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { ExerciseList } from '../../components/ExerciseList/ExerciseList';
@@ -24,6 +24,7 @@ import styles from './WorkoutDetail.module.css';
 
 export const WorkoutDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { profileType } = useProfile();
   const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
   const workout = currentWorkouts.find((w) => w.id === id);
@@ -31,12 +32,16 @@ export const WorkoutDetail = () => {
   const [celebrationBadge, setCelebrationBadge] = useState<Badge | null>(null);
   const [celebrationStreak, setCelebrationStreak] = useState<number | null>(null);
   const { showToast } = useToast();
+  
+  const handleBackToWorkouts = () => {
+    navigate('/', { state: { explicitNavigation: true } });
+  };
 
   useEffect(() => {
     if (id) {
       setProgress(getWorkoutProgress(id));
-      // Salvar como último treino aberto
-      saveLastWorkout(id);
+      // Salvar como último treino aberto com o caminho completo
+      saveLastWorkout(id, true);
     }
   }, [id]);
 
@@ -48,9 +53,9 @@ export const WorkoutDetail = () => {
           <div className={styles.notFound} role="alert">
             <h2>Treino não encontrado</h2>
             <p>O treino que você está procurando não existe ou foi removido.</p>
-            <Link to="/" className={styles.backLink}>
+            <button onClick={handleBackToWorkouts} className={styles.backLink}>
               <span>←</span> Voltar para treinos
-            </Link>
+            </button>
           </div>
         </PageContainer>
       </>
@@ -115,8 +120,9 @@ export const WorkoutDetail = () => {
         title={workout.name}
         showBackButton={true}
         backPath="/"
+        backState={{ explicitNavigation: true }}
         breadcrumbs={[
-          { label: 'Treinos', path: '/' },
+          { label: 'Treinos', path: '/', state: { explicitNavigation: true } },
           { label: workout.name }
         ]}
       />
@@ -194,9 +200,9 @@ export const WorkoutDetail = () => {
           />
         </section>
         <nav aria-label="Navegação">
-          <Link to="/" className={styles.backLink}>
+          <button onClick={handleBackToWorkouts} className={styles.backLink}>
             <span>←</span> Voltar para treinos
-          </Link>
+          </button>
         </nav>
       </PageContainer>
       

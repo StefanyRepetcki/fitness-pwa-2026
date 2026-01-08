@@ -3,6 +3,7 @@ import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { Play, Pause, Square, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
+import { getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './RestTimer.module.css';
 
 // Tempos pré-definidos baseados em recomendações científicas
@@ -27,12 +28,18 @@ export const RestTimer = () => {
   const [showCustomInput, setShowCustomInput] = useState<boolean>(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const { showToast } = useToast();
+  
+  // Obter o caminho do último treino para voltar corretamente
+  const lastWorkoutPath = getLastWorkoutPath();
+  // Se não houver último treino, volta para a lista de treinos
+  const backPath = lastWorkoutPath || '/';
 
   // Criar elemento de áudio para o beep
   useEffect(() => {
     // Criar um beep usando Web Audio API
     const createBeep = () => {
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const audioContext = new AudioContextClass();
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
 
@@ -167,9 +174,22 @@ export const RestTimer = () => {
     return 'var(--color-primary)';
   };
 
+  // Determinar breadcrumbs baseado no último treino
+  const breadcrumbs = lastWorkoutPath 
+    ? [
+        { label: 'Treinos', path: '/' },
+        { label: 'Timer de Descanso' }
+      ]
+    : undefined;
+
   return (
     <>
-      <Header title="Timer de Descanso" />
+      <Header 
+        title="Timer de Descanso" 
+        showBackButton={true}
+        backPath={backPath}
+        breadcrumbs={breadcrumbs}
+      />
       <PageContainer>
         <div className={styles.intro}>
           <p>Controle seu tempo de descanso entre séries para maximizar seus resultados</p>

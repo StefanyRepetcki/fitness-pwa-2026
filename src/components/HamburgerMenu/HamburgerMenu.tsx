@@ -1,13 +1,15 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { ProfileToggle } from '../ProfileToggle/ProfileToggle';
+import { getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './HamburgerMenu.module.css';
 
 export const HamburgerMenu = () => {
   const { isMenuOpen: isOpen, setIsMenuOpen: setIsOpen } = useMenu();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Menu organizado por categorias lógicas
   interface MenuItem {
@@ -51,6 +53,21 @@ export const HamburgerMenu = () => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       closeMenu();
+    }
+  };
+
+  const handleMenuItemClick = (item: MenuItem, e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+    
+    // Se for "Treinos", ir direto para o último treino (se houver)
+    if (item.path === '/') {
+      e.preventDefault();
+      const lastWorkoutPath = getLastWorkoutPath();
+      if (lastWorkoutPath) {
+        navigate(lastWorkoutPath);
+      } else {
+        navigate('/');
+      }
     }
   };
 
@@ -115,7 +132,7 @@ export const HamburgerMenu = () => {
                       <Link
                         to={item.path}
                         className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-                        onClick={closeMenu}
+                        onClick={(e) => handleMenuItemClick(item, e)}
                         aria-label={item.ariaLabel}
                         aria-current={isActive ? 'page' : undefined}
                       >
@@ -145,7 +162,7 @@ export const HamburgerMenu = () => {
                       <Link
                         to={item.path}
                         className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-                        onClick={closeMenu}
+                        onClick={(e) => handleMenuItemClick(item, e)}
                         aria-label={item.ariaLabel}
                         aria-current={isActive ? 'page' : undefined}
                       >
@@ -175,7 +192,7 @@ export const HamburgerMenu = () => {
                       <Link
                         to={item.path}
                         className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-                        onClick={closeMenu}
+                        onClick={(e) => handleMenuItemClick(item, e)}
                         aria-label={item.ariaLabel}
                         aria-current={isActive ? 'page' : undefined}
                       >

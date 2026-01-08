@@ -1,12 +1,14 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Dumbbell, Timer, Calendar, User } from 'lucide-react';
 import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
 import { useMenu } from '../../contexts/MenuContext';
 import { useScrollHide } from '../../hooks/useScrollHide';
+import { getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './BottomNavigation.module.css';
 
 export const BottomNavigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isMenuOpen } = useMenu();
   const isScrollingDown = useScrollHide(50);
   
@@ -20,6 +22,19 @@ export const BottomNavigation = () => {
     { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal' },
     { path: '/profile', icon: User, label: 'Perfil', ariaLabel: 'Ir para perfil' }
   ];
+  
+  const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Se for para a lista de treinos, ir direto para o último treino (se houver)
+    if (path === '/') {
+      e.preventDefault();
+      const lastWorkoutPath = getLastWorkoutPath();
+      if (lastWorkoutPath) {
+        navigate(lastWorkoutPath);
+      } else {
+        navigate('/');
+      }
+    }
+  };
 
   return (
     <>
@@ -36,6 +51,7 @@ export const BottomNavigation = () => {
               className={`${styles.navItem} ${isActive ? styles.active : ''}`}
               aria-label={item.ariaLabel}
               aria-current={isActive ? 'page' : undefined}
+              onClick={(e) => handleNavClick(item.path, e)}
             >
               <IconComponent 
                 className={styles.icon}

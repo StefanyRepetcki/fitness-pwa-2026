@@ -6,7 +6,7 @@ import { WorkoutCard } from '../../components/WorkoutCard/WorkoutCard';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
 import { useProfile } from '../../contexts/ProfileContext';
-import { getLastWorkout } from '../../utils/lastWorkout';
+import { getLastWorkout, getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './Workouts.module.css';
 
 export const Workouts = () => {
@@ -23,7 +23,16 @@ export const Workouts = () => {
       return;
     }
 
+    // Se a navegação foi explícita (clique no botão voltar ou breadcrumb), não redirecionar
+    const isExplicitNavigation = location.state?.explicitNavigation === true;
+    if (isExplicitNavigation) {
+      // Apenas mostrar o último treino como destacado, mas não redirecionar
+      setLastWorkoutId(getLastWorkout());
+      return;
+    }
+
     const lastWorkout = getLastWorkout();
+    const lastWorkoutPath = getLastWorkoutPath();
     setLastWorkoutId(lastWorkout);
     
     // Se houver um último treino, redirecionar automaticamente
@@ -32,16 +41,18 @@ export const Workouts = () => {
       const workoutExists = currentWorkouts.some(w => w.id === lastWorkout);
       if (workoutExists && !hasAutoRedirected.current) {
         hasAutoRedirected.current = true;
+        // Usar o caminho salvo se disponível, senão construir
+        const targetPath = lastWorkoutPath || `/workout/${lastWorkout}`;
         // Pequeno delay para melhor UX
         setTimeout(() => {
-          navigate(`/workout/${lastWorkout}`, { replace: false });
+          navigate(targetPath, { replace: false });
         }, 300);
       }
     } else {
       // Se não houver último treino, resetar o flag
       hasAutoRedirected.current = false;
     }
-  }, [location.pathname, currentWorkouts, navigate]);
+  }, [location.pathname, location.state, currentWorkouts, navigate]);
 
   return (
     <>

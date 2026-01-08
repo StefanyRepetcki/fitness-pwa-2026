@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { useScrollHide } from '../../hooks/useScrollHide';
 import { StreakBadge } from '../StreakBadge/StreakBadge';
+import { getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './Header.module.css';
 
 interface BreadcrumbItem {
   label: string;
   path?: string;
+  state?: Record<string, unknown>;
 }
 
 interface HeaderProps {
@@ -15,6 +17,7 @@ interface HeaderProps {
   showStreak?: boolean;
   showBackButton?: boolean;
   backPath?: string;
+  backState?: Record<string, unknown>;
   breadcrumbs?: BreadcrumbItem[];
 }
 
@@ -24,6 +27,7 @@ export const Header = ({
   showStreak = true,
   showBackButton = false,
   backPath,
+  backState,
   breadcrumbs
 }: HeaderProps) => {
   const navigate = useNavigate();
@@ -32,10 +36,29 @@ export const Header = ({
   
   const handleBack = () => {
     if (backPath) {
-      navigate(backPath);
+      navigate(backPath, { state: backState });
     } else {
       navigate(-1);
     }
+  };
+  
+  // Função para navegar considerando o último treino quando for para "Treinos"
+  const handleBreadcrumbClick = (path: string, state?: Record<string, unknown>) => {
+    // Se houver estado explícito (breadcrumb ou botão voltar), ir para a lista sem redirecionar
+    if (state?.explicitNavigation === true) {
+      navigate(path, { state });
+      return;
+    }
+    
+    // Se for para a lista de treinos SEM estado explícito, ir direto para o último treino (se houver)
+    if (path === '/') {
+      const lastWorkoutPath = getLastWorkoutPath();
+      if (lastWorkoutPath) {
+        navigate(lastWorkoutPath);
+        return;
+      }
+    }
+    navigate(path, { state });
   };
   
   return (
@@ -61,7 +84,7 @@ export const Header = ({
                       className={styles.breadcrumbLink}
                       onClick={(e) => {
                         e.preventDefault();
-                        navigate(item.path!);
+                        handleBreadcrumbClick(item.path!, item.state);
                       }}
                     >
                       {item.label}

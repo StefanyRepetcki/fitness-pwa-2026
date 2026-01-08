@@ -12,7 +12,8 @@ interface WorkoutCardProps {
 
 export const WorkoutCard = React.memo(({ workout, isLastOpened = false }: WorkoutCardProps) => {
   const handleClick = () => {
-    saveLastWorkout(workout.id);
+    // Salvar com o caminho completo para navegação correta
+    saveLastWorkout(workout.id, true);
   };
 
   return (
