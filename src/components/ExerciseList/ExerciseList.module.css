@@ -16,8 +16,8 @@
   box-shadow: var(--shadow-sm);
   position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0;
 }
 
 .exercise.completed {
@@ -43,6 +43,15 @@
   border-left-color: var(--color-primary-dark);
 }
 
+.exerciseTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
 .checkboxButton {
   flex-shrink: 0;
   background: none;
@@ -57,7 +66,6 @@
   border-radius: 50%;
   min-height: var(--touch-target-min);
   min-width: var(--touch-target-min);
-  margin-top: 0.25rem;
 }
 
 .checkboxButton:hover {
@@ -85,8 +93,7 @@
 
 .exerciseHeader {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  align-items: flex-start;
   margin-bottom: 1rem;
 }
 
@@ -106,6 +113,10 @@
   flex-shrink: 0;
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-base);
+}
+
+.exerciseTopBar .number {
+  margin: 0;
 }
 
 .exercise:hover .number {
@@ -158,9 +169,9 @@
   gap: 0.5rem;
   margin-top: 0.75rem;
   padding: 0.75rem;
-  background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+  background: var(--color-surface-soft);
   border-radius: var(--radius-sm);
-  border-left: 3px solid #f59e0b;
+  border-left: 3px solid var(--color-warning);
 }
 
 .cadenceIcon {
@@ -197,6 +208,59 @@
   font-size: 0.875rem;
   line-height: 1.6;
   flex: 1;
+}
+
+/* Campo de Carga/Peso */
+.weightInputContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary);
+  flex-wrap: wrap;
+}
+
+.weightIcon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.weightLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.weightInput {
+  flex: 1;
+  min-width: 80px;
+  max-width: 120px;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--color-text);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  outline: none;
+  background: var(--color-surface);
+}
+
+.weightInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.weightUnit {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .emptyState {

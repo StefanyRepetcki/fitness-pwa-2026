@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--color-primary);
   color: white;
   flex-shrink: 0;
   box-shadow: var(--shadow-sm);
@@ -155,10 +156,10 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-primary) 0%, #ff6b9d 100%);
+  background: var(--color-primary);
   border-radius: var(--radius-full);
   transition: width var(--transition-base);
-  box-shadow: 0 2px 4px rgba(235, 49, 87, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .badgesGrid {
@@ -292,4 +293,5 @@
     grid-template-columns: 1fr;
   }
 }
+
 

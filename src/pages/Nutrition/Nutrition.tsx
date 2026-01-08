@@ -2,10 +2,14 @@ import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { MealCard } from '../../components/MealCard/MealCard';
 import { mealPlans } from '../../data/meals';
+import { mealPlansMale } from '../../data/mealsMale';
+import { useProfile } from '../../contexts/ProfileContext';
 import styles from './Nutrition.module.css';
 
 export const Nutrition = () => {
-  const selectedPlan = mealPlans[0];
+  const { profileType } = useProfile();
+  const currentMealPlans = profileType === 'male' ? mealPlansMale : mealPlans;
+  const selectedPlan = currentMealPlans[0];
 
   return (
     <>

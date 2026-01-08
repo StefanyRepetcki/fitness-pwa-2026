@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Dumbbell, Calendar, Sparkles } from 'lucide-react';
+import { Dumbbell, Timer, Calendar, User } from 'lucide-react';
 import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
 import { useMenu } from '../../contexts/MenuContext';
 import { useScrollHide } from '../../hooks/useScrollHide';
@@ -13,11 +13,12 @@ export const BottomNavigation = () => {
   // Esconde se estiver scrollando para baixo OU se o menu hambúrguer estiver aberto
   const shouldHide = isScrollingDown || isMenuOpen;
 
-  // Apenas 4 itens principais no bottom nav
+  // Apenas itens essenciais para treinar no bottom nav
   const navItems = [
     { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos' },
+    { path: '/rest-timer', icon: Timer, label: 'Timer', ariaLabel: 'Ir para timer de descanso' },
     { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal' },
-    { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação' }
+    { path: '/profile', icon: User, label: 'Perfil', ariaLabel: 'Ir para perfil' }
   ];
 
   return (

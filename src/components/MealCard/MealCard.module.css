@@ -65,6 +65,7 @@
   flex-direction: column;
   gap: 0.5rem;
   flex: 1;
+  min-width: 0;
 }
 
 .title {
@@ -120,7 +121,7 @@
   padding: 1.25rem;
   background: var(--color-primary-light);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-primary);
 }
 
 .macrosTitle {
@@ -151,7 +152,7 @@
 
 .macroValue {
   font-size: 1rem;
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
   font-weight: 600;
 }
 
@@ -169,7 +170,7 @@
   padding: 1.25rem;
   background: var(--color-primary-light);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-primary);
 }
 
 .foodMain {
@@ -230,7 +231,7 @@
 }
 
 .alternative {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-primary-dark);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-sm);
@@ -244,7 +245,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  background: white;
+  background: var(--color-surface);
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
@@ -294,7 +295,7 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.75rem 1rem;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border-light);
 }
@@ -319,20 +320,166 @@
 }
 
 @media (max-width: 480px) {
+  .card {
+    margin-bottom: 1.25rem;
+  }
+
   .header {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.25rem;
+    min-height: auto;
+  }
+
+  .headerContent {
+    gap: 0.75rem;
   }
   
   .content {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0 1.25rem 1.25rem 1.25rem;
   }
   
+  .icon {
+    font-size: 1.75rem;
+  }
+
+  .titleContainer {
+    gap: 0.375rem;
+  }
+
   .title {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.4;
   }
-  
+
+  .idealTime {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .arrow {
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+  }
+
+  .macros {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .macrosTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
   .macrosGrid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .macroLabel {
+    font-size: 0.75rem;
+  }
+
+  .macroValue {
+    font-size: 0.95rem;
+  }
+
+  .foodsList {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .foodItem {
+    padding: 1rem;
+  }
+
+  .foodMain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .foodName {
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  .foodQuantity {
+    font-size: 0.85rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .foodNotes {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .alternatives {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .alternativesLabel {
+    font-size: 0.75rem;
+  }
+
+  .alternativesList {
+    width: 100%;
+    gap: 0.375rem;
+  }
+
+  .alternative {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .supplements {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .supplementsTitle {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .supplementItem {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .supplementName {
+    font-size: 0.9rem;
+  }
+
+  .supplementDosage {
+    font-size: 0.8rem;
+  }
+
+  .supplementNotes {
+    font-size: 0.75rem;
+  }
+
+  .mealNotes {
+    padding: 0.875rem 1rem;
+    margin-top: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .notesIcon {
+    font-size: 1.125rem;
+  }
+
+  .notesText {
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 }
 

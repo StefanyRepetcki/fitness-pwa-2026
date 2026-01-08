@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { Music2, Lightbulb, RefreshCw, Dumbbell, UtensilsCrossed, Pill, Moon, Sparkles } from 'lucide-react';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
-import { tips, quotes, spotifyPlaylist } from '../../data/tips';
+import { tips, quotes, spotifyPlaylistFemale, spotifyPlaylistMale } from '../../data/tips';
+import { useProfile } from '../../contexts/ProfileContext';
 import styles from './Tips.module.css';
 
 export const Tips = () => {
+  const { profileType } = useProfile();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentQuote, setCurrentQuote] = useState(quotes[0]);
+  
+  const spotifyPlaylist = profileType === 'male' ? spotifyPlaylistMale : spotifyPlaylistFemale;
 
   const categories = [
     { id: 'all', label: 'Todas', icon: Sparkles },

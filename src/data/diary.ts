@@ -54,3 +54,4 @@ export const getRecentEntries = (limit: number = 7): DiaryEntry[] => {
   return entries.slice(0, limit);
 };
 
+

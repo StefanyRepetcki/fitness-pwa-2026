@@ -23,7 +23,42 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('ErrorBoundary capturou um erro:', error, errorInfo);
+    
+    // Log estruturado do erro
+    const errorLog = {
+      message: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
+    
+    console.error('Error details:', errorLog);
+    
+    // Aqui você pode enviar para um serviço de logging (Sentry, LogRocket, etc.)
+    // Exemplo:
+    // if (window.Sentry) {
+    //   window.Sentry.captureException(error, { contexts: { react: errorInfo } });
+    // }
+    
+    // Salvar erro no localStorage para debug (apenas em desenvolvimento)
+    if (import.meta.env.DEV) {
+      try {
+        const errors = JSON.parse(localStorage.getItem('ciclei-errors') || '[]');
+        errors.push(errorLog);
+        // Manter apenas os últimos 10 erros
+        const recentErrors = errors.slice(-10);
+        localStorage.setItem('ciclei-errors', JSON.stringify(recentErrors));
+      } catch (e) {
+        // Ignorar erros ao salvar log
+      }
+    }
   }
+  
+  private handleReset = () => {
+    this.setState({ hasError: false, error: undefined });
+  };
 
   render() {
     if (this.state.hasError) {
@@ -35,12 +70,30 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className={styles.message}>
               Desculpe pelo inconveniente. Por favor, recarregue a página.
             </p>
-            <button
-              className={styles.button}
-              onClick={() => window.location.reload()}
-            >
-              Recarregar Página
-            </button>
+            <div className={styles.actions}>
+              <button
+                className={styles.button}
+                onClick={this.handleReset}
+              >
+                Tentar Novamente
+              </button>
+              <button
+                className={`${styles.button} ${styles.secondary}`}
+                onClick={() => window.location.reload()}
+              >
+                Recarregar Página
+              </button>
+            </div>
+            {import.meta.env.DEV && this.state.error && (
+              <details className={styles.errorDetails}>
+                <summary>Detalhes do erro (desenvolvimento)</summary>
+                <pre className={styles.errorStack}>
+                  {this.state.error.toString()}
+                  {'\n\n'}
+                  {this.state.error.stack}
+                </pre>
+              </details>
+            )}
             <p className={styles.contact}>
               Se o problema persistir, entre em contato:{' '}
               <a 

@@ -1,5 +1,7 @@
-import { CheckCircle2, Circle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { CheckCircle2, Circle, Weight } from 'lucide-react';
 import type { Exercise } from '../../data/workouts';
+import { getExerciseWeight, saveExerciseWeight } from '../../data/exerciseWeights';
 import styles from './ExerciseList.module.css';
 
 interface ExerciseListProps {
@@ -15,6 +17,23 @@ export const ExerciseList = ({
   completedExercises = [],
   onToggleExercise 
 }: ExerciseListProps) => {
+  const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (workoutId) {
+      const weights: Record<string, string> = {};
+      exercises.forEach(exercise => {
+        const savedWeight = getExerciseWeight(workoutId, exercise.id);
+        if (savedWeight !== null) {
+          weights[exercise.id] = savedWeight.toString();
+        } else {
+          weights[exercise.id] = '';
+        }
+      });
+      setExerciseWeights(weights);
+    }
+  }, [workoutId, exercises]);
+
   if (exercises.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -29,6 +48,33 @@ export const ExerciseList = ({
     }
   };
 
+  const handleWeightChange = (exerciseId: string, value: string) => {
+    setExerciseWeights(prev => ({
+      ...prev,
+      [exerciseId]: value
+    }));
+  };
+
+  const handleWeightBlur = (exerciseId: string) => {
+    if (!workoutId) return;
+    
+    const value = exerciseWeights[exerciseId]?.replace(',', '.') || '';
+    const weight = parseFloat(value);
+    
+    if (value === '' || isNaN(weight)) {
+      // Se estiver vazio, não salva
+      return;
+    }
+    
+    if (weight > 0 && weight <= 1000) {
+      saveExerciseWeight(workoutId, exerciseId, weight);
+      setExerciseWeights(prev => ({
+        ...prev,
+        [exerciseId]: weight.toString()
+      }));
+    }
+  };
+
   return (
     <ol className={styles.list}>
       {exercises.map((exercise, index) => {
@@ -39,25 +85,27 @@ export const ExerciseList = ({
             key={exercise.id} 
             className={`${styles.exercise} ${isCompleted ? styles.completed : ''}`}
           >
-            {workoutId && onToggleExercise && (
-              <button
-                className={styles.checkboxButton}
-                onClick={() => handleToggle(exercise.id)}
-                aria-label={isCompleted ? `Marcar ${exercise.name} como não feito` : `Marcar ${exercise.name} como feito`}
-                aria-pressed={isCompleted}
-              >
-                {isCompleted ? (
-                  <CheckCircle2 className={styles.checkIcon} size={24} strokeWidth={2.5} />
-                ) : (
-                  <Circle className={styles.checkIcon} size={24} strokeWidth={2} />
-                )}
-              </button>
-            )}
             <div className={styles.exerciseContent}>
-              <div className={styles.exerciseHeader}>
+              <div className={styles.exerciseTopBar}>
                 <span className={styles.number} aria-label={`Exercício ${index + 1}`}>
                   {index + 1}
                 </span>
+                {workoutId && onToggleExercise && (
+                  <button
+                    className={styles.checkboxButton}
+                    onClick={() => handleToggle(exercise.id)}
+                    aria-label={isCompleted ? `Marcar ${exercise.name} como não feito` : `Marcar ${exercise.name} como feito`}
+                    aria-pressed={isCompleted}
+                  >
+                    {isCompleted ? (
+                      <CheckCircle2 className={styles.checkIcon} size={24} strokeWidth={2.5} />
+                    ) : (
+                      <Circle className={styles.checkIcon} size={24} strokeWidth={2} />
+                    )}
+                  </button>
+                )}
+              </div>
+              <div className={styles.exerciseHeader}>
                 <h4 className={styles.name}>{exercise.name}</h4>
               </div>
               <div className={styles.details}>
@@ -94,6 +142,29 @@ export const ExerciseList = ({
                   <div className={styles.notes} role="note">
                     <span className={styles.notesIcon} aria-hidden="true">💡</span>
                     <span className={styles.notesText}>{exercise.notes}</span>
+                  </div>
+                )}
+                {/* Campo de Carga/Peso */}
+                {workoutId && (
+                  <div className={styles.weightInputContainer}>
+                    <Weight className={styles.weightIcon} size={16} strokeWidth={2} />
+                    <label htmlFor={`weight-${exercise.id}`} className={styles.weightLabel}>
+                      Carga:
+                    </label>
+                    <input
+                      id={`weight-${exercise.id}`}
+                      type="number"
+                      step="0.5"
+                      min="0"
+                      max="1000"
+                      placeholder="Ex: 35"
+                      value={exerciseWeights[exercise.id] || ''}
+                      onChange={(e) => handleWeightChange(exercise.id, e.target.value)}
+                      onBlur={() => handleWeightBlur(exercise.id)}
+                      className={styles.weightInput}
+                      aria-label={`Carga usada em ${exercise.name}`}
+                    />
+                    <span className={styles.weightUnit}>kg</span>
                   </div>
                 )}
               </div>

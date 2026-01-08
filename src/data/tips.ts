@@ -113,11 +113,30 @@ export const quotes: Quote[] = [
   }
 ];
 
-export const spotifyPlaylist = {
-  id: 'playlist-1',
+export interface SpotifyPlaylist {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+}
+
+export const spotifyPlaylistFemale: SpotifyPlaylist = {
+  id: 'playlist-female',
   title: 'Funk academia Stefany Repetcki',
   description: 'Músicas energéticas para te motivar durante os treinos',
   url: 'https://open.spotify.com/playlist/4V39Uzit9y5xkPheyie6p2',
   image: '🎵'
 };
+
+export const spotifyPlaylistMale: SpotifyPlaylist = {
+  id: 'playlist-male',
+  title: 'ROCK INTERNACIONAL PARA TREINO',
+  description: 'Músicas para treinar pesado, Rock para treinar, rock os melhores old rock',
+  url: 'https://open.spotify.com/playlist/0sRvy4sqNYgy26V2ki9w2k?si=Ow2-72p3Q9yPNn6SxqSlxg',
+  image: '🎸'
+};
+
+// Mantido para compatibilidade (usa o feminino por padrão)
+export const spotifyPlaylist = spotifyPlaylistFemale;
 

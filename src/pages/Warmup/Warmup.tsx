@@ -4,14 +4,21 @@ import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { Link } from 'react-router-dom';
 import { warmupRoutines } from '../../data/warmups';
+import { warmupRoutinesMale } from '../../data/warmupsMale';
 import { workouts } from '../../data/workouts';
+import { workoutsMale } from '../../data/workoutsMale';
+import { useProfile } from '../../contexts/ProfileContext';
 import styles from './Warmup.module.css';
 
 export const Warmup = () => {
-  const [selectedWorkout, setSelectedWorkout] = useState<string>('treino-a');
+  const { profileType } = useProfile();
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
+  const currentWarmups = profileType === 'male' ? warmupRoutinesMale : warmupRoutines;
+  const defaultWorkoutId = profileType === 'male' ? 'push-male' : 'treino-a';
+  const [selectedWorkout, setSelectedWorkout] = useState<string>(defaultWorkoutId);
 
-  const selectedWarmup = warmupRoutines.find(w => w.workoutId === selectedWorkout);
-  const selectedWorkoutData = workouts.find(w => w.id === selectedWorkout);
+  const selectedWarmup = currentWarmups.find(w => w.workoutId === selectedWorkout);
+  const selectedWorkoutData = currentWorkouts.find(w => w.id === selectedWorkout);
 
   return (
     <>
@@ -25,7 +32,7 @@ export const Warmup = () => {
         <div className={styles.workoutSelector}>
           <h2 className={styles.selectorTitle}>Escolha o Treino</h2>
           <div className={styles.workoutButtons}>
-            {workouts.map((workout) => (
+            {currentWorkouts.map((workout) => (
               <button
                 key={workout.id}
                 className={`${styles.workoutButton} ${
@@ -39,7 +46,11 @@ export const Warmup = () => {
                   size={20}
                   strokeWidth={selectedWorkout === workout.id ? 2.5 : 2}
                 />
-                <span className={styles.buttonLabel}>{workout.name.split(' - ')[0]}</span>
+                <span className={styles.buttonLabel}>
+                  {profileType === 'male' 
+                    ? workout.name.split(' - ')[0] 
+                    : workout.name.split(' - ')[0]}
+                </span>
               </button>
             ))}
           </div>

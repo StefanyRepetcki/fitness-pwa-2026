@@ -14,6 +14,10 @@
   --color-surface-soft: #FFFBFD;
   --color-beige: #F8F4F0;
   --color-gray-warm: #F5F5F5;
+  --color-surface-alpha: rgba(255, 255, 255, 0.2); /* Superfície semi-transparente */
+  --color-surface-alpha-hover: rgba(255, 255, 255, 0.3); /* Superfície semi-transparente hover */
+  --color-overlay-dark: rgba(0, 0, 0, 0.5); /* Overlay escuro para modais */
+  --color-overlay-darker: rgba(0, 0, 0, 0.7); /* Overlay mais escuro */
   
   /* Texto - contraste garantido */
   --color-text: #1A1A1A; /* Preto suave para máxima legibilidade */
@@ -23,6 +27,14 @@
   /* Bordas */
   --color-border: #E8E8E8;
   --color-border-light: #F0F0F0;
+  
+  /* Cores de status */
+  --color-success: #4caf50;
+  --color-success-dark: #2e7d32;
+  --color-error: #f44336;
+  --color-error-dark: #c62828;
+  --color-warning: #ff9800;
+  --color-warning-dark: #e65100;
   
   /* Sombras suaves e elegantes */
   --shadow-sm: 0 2px 8px rgba(235, 49, 87, 0.08);
@@ -261,7 +273,107 @@ ul {
   }
 }
 
-/* Dark mode support (opcional, para futuro) */
-@media (prefers-color-scheme: dark) {
-  /* Manter light mode por enquanto, mas preparado para dark mode */
+/* Perfil Masculino - Tema Verde */
+[data-profile='male'],
+.profile-male {
+  --color-primary: #4caf50; /* Verde principal */
+  --color-primary-light: #c8e6c9; /* Verde muito claro para backgrounds */
+  --color-primary-dark: #388e3c; /* Verde escuro */
+  --color-secondary: #1b5e20; /* Verde muito escuro */
+  --color-secondary-light: #a5d6a7; /* Verde claro para backgrounds */
+  --color-accent: #66bb6a;
+  --color-accent-light: #c8e6c9;
+  
+  /* Ajustar sombras para verde */
+  --shadow-sm: 0 2px 8px rgba(76, 175, 80, 0.08);
+  --shadow-md: 0 4px 16px rgba(76, 175, 80, 0.12);
+  --shadow-lg: 0 8px 24px rgba(76, 175, 80, 0.16);
+  --shadow-soft: 0 2px 6px rgba(76, 175, 80, 0.06);
+}
+
+/* Dark Mode Support - Perfil Feminino */
+[data-theme='dark']:not([data-profile='male']),
+.dark:not(.profile-male) {
+  /* Cores principais - ajustadas para dark mode */
+  --color-primary: #ff6b9d; /* Rosa mais claro para contraste */
+  --color-primary-light: #4a1a2a; /* Rosa escuro para backgrounds */
+  --color-primary-dark: #ff4d7a;
+  --color-secondary: #2a1a1f;
+  --color-secondary-light: #1a0f14;
+  --color-accent: #3a2a2f;
+  --color-accent-light: #2a1a1f;
+  
+  /* Backgrounds */
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-surface-soft: #1a1a1a;
+  --color-beige: #2a2a2a;
+  --color-gray-warm: #252525;
+  
+  /* Texto */
+  --color-text: #e0e0e0;
+  --color-text-light: #b0b0b0;
+  --color-text-lighter: #808080;
+  
+  /* Bordas */
+  --color-border: #333333;
+  --color-border-light: #2a2a2a;
+  
+  /* Cores de status - ajustadas para dark mode */
+  --color-success: #66bb6a;
+  --color-success-dark: #4caf50;
+  --color-error: #ef5350;
+  --color-error-dark: #e57373;
+  --color-warning: #ffa726;
+  --color-warning-dark: #ff9800;
+  
+  /* Sombras - mais sutis no dark mode */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode + Perfil Masculino */
+[data-theme='dark'][data-profile='male'],
+.dark.profile-male {
+  --color-primary: #66bb6a; /* Verde mais claro para dark mode */
+  --color-primary-light: #1b5e20; /* Verde escuro para backgrounds */
+  --color-primary-dark: #81c784; /* Verde claro para textos */
+  --color-secondary: #1b5e20;
+  --color-secondary-light: #2e7d32;
+  --color-accent: #81c784;
+  --color-accent-light: #4caf50;
+  
+  /* Backgrounds - mesmos do dark mode feminino */
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-surface-soft: #1a1a1a;
+  --color-beige: #2a2a2a;
+  --color-gray-warm: #252525;
+  
+  /* Texto */
+  --color-text: #e0e0e0;
+  --color-text-light: #b0b0b0;
+  --color-text-lighter: #808080;
+  
+  /* Bordas */
+  --color-border: #333333;
+  --color-border-light: #2a2a2a;
+  
+  /* Sombras - mais sutis no dark mode */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Transição suave entre temas */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Manter transições rápidas para interações */
+button, a, input, select, textarea {
+  transition: all var(--transition-base);
 }

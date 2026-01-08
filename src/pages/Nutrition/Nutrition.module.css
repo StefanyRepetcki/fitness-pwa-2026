@@ -15,6 +15,7 @@
   margin-bottom: 2.5rem;
   text-align: center;
   letter-spacing: -0.02em;
+  word-break: break-word;
 }
 
 .meals {
@@ -24,8 +25,31 @@
 }
 
 @media (max-width: 480px) {
-  .dayTitle {
-    font-size: 1.5rem;
+  .intro {
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 2rem;
+    padding: 0 0.75rem;
+  }
+
+  .dayTitle {
+    font-size: 1.375rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .meals {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .intro {
+    font-size: 0.95rem;
+  }
+
+  .dayTitle {
+    font-size: 1.25rem;
   }
 }

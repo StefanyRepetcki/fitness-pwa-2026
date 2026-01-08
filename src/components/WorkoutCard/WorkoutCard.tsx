@@ -1,18 +1,26 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Dumbbell, ArrowRight } from 'lucide-react';
 import type { Workout } from '../../data/workouts';
+import { saveLastWorkout } from '../../utils/lastWorkout';
 import styles from './WorkoutCard.module.css';
 
 interface WorkoutCardProps {
   workout: Workout;
+  isLastOpened?: boolean;
 }
 
-export const WorkoutCard = ({ workout }: WorkoutCardProps) => {
+export const WorkoutCard = React.memo(({ workout, isLastOpened = false }: WorkoutCardProps) => {
+  const handleClick = () => {
+    saveLastWorkout(workout.id);
+  };
+
   return (
     <Link 
       to={`/workout/${workout.id}`} 
-      className={styles.card}
+      className={`${styles.card} ${isLastOpened ? styles.lastOpened : ''}`}
       aria-label={`Ver detalhes do ${workout.name}`}
+      onClick={handleClick}
     >
       <div className={styles.header}>
         <h3 className={styles.title}>{workout.name}</h3>
@@ -27,4 +35,7 @@ export const WorkoutCard = ({ workout }: WorkoutCardProps) => {
       </div>
     </Link>
   );
-};
+}, (prevProps, nextProps) => {
+  // Comparação customizada: só re-renderiza se o ID do workout mudar
+  return prevProps.workout.id === nextProps.workout.id;
+});

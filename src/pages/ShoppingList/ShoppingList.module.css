@@ -88,7 +88,7 @@
 }
 
 .categoryCount {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-primary-dark);
   padding: 0.375rem 0.875rem;
   border-radius: var(--radius-md);
@@ -101,7 +101,7 @@
 
 .categoryHeader:hover .categoryCount,
 .categoryHeader:focus .categoryCount {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-surface-alpha);
   color: white;
 }
 

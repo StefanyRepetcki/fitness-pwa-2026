@@ -1,25 +1,43 @@
 import { Link, useLocation } from 'react-router-dom';
-import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat } from 'lucide-react';
+import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
+import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
+import { ProfileToggle } from '../ProfileToggle/ProfileToggle';
 import styles from './HamburgerMenu.module.css';
 
 export const HamburgerMenu = () => {
   const { isMenuOpen: isOpen, setIsMenuOpen: setIsOpen } = useMenu();
   const location = useLocation();
 
-  // TODAS as opções, incluindo as do bottom nav
-  const menuItems = [
-    { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos' },
-    { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal' },
-    { path: '/stats', icon: TrendingUp, label: 'Estatísticas', ariaLabel: 'Ir para estatísticas' },
-    { path: '/diary', icon: BookOpen, label: 'Diário', ariaLabel: 'Ir para diário' },
-    { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação' },
-    { path: '/warmup', icon: Flame, label: 'Aquecimento', ariaLabel: 'Ir para rotinas de aquecimento' },
-    { path: '/nutrition', icon: UtensilsCrossed, label: 'Alimentação', ariaLabel: 'Ir para plano alimentar' },
-    { path: '/recipes', icon: ChefHat, label: 'Receitas', ariaLabel: 'Ir para receitas' },
-    { path: '/shopping', icon: ShoppingCart, label: 'Compras', ariaLabel: 'Ir para lista de compras' },
-    { path: '/supplements', icon: Pill, label: 'Suplementos', ariaLabel: 'Ir para suplementação' },
-    { path: '/stretches', icon: Activity, label: 'Alongamentos', ariaLabel: 'Ir para alongamentos' }
+  // Menu organizado por categorias lógicas
+  interface MenuItem {
+    path: string;
+    icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+    label: string;
+    ariaLabel: string;
+    category: 'treino' | 'nutricao' | 'outros';
+  }
+
+  const menuItems: MenuItem[] = [
+    // === TREINO ===
+    { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos', category: 'treino' },
+    { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal', category: 'treino' },
+    { path: '/rest-timer', icon: Timer, label: 'Timer de Descanso', ariaLabel: 'Ir para timer de descanso', category: 'treino' },
+    { path: '/warmup', icon: Flame, label: 'Aquecimento', ariaLabel: 'Ir para rotinas de aquecimento', category: 'treino' },
+    { path: '/stretches', icon: Activity, label: 'Alongamentos', ariaLabel: 'Ir para alongamentos', category: 'treino' },
+    { path: '/stats', icon: TrendingUp, label: 'Estatísticas', ariaLabel: 'Ir para estatísticas', category: 'treino' },
+    { path: '/diary', icon: BookOpen, label: 'Diário', ariaLabel: 'Ir para diário', category: 'treino' },
+    
+    // === NUTRIÇÃO ===
+    { path: '/nutrition', icon: UtensilsCrossed, label: 'Alimentação', ariaLabel: 'Ir para plano alimentar', category: 'nutricao' },
+    { path: '/macros', icon: BarChart3, label: 'Macros', ariaLabel: 'Ir para controle de macros', category: 'nutricao' },
+    { path: '/recipes', icon: ChefHat, label: 'Receitas', ariaLabel: 'Ir para receitas', category: 'nutricao' },
+    { path: '/supplements', icon: Pill, label: 'Suplementos', ariaLabel: 'Ir para suplementação', category: 'nutricao' },
+    { path: '/shopping', icon: ShoppingCart, label: 'Compras', ariaLabel: 'Ir para lista de compras', category: 'nutricao' },
+    
+    // === PERFIL E OUTROS ===
+    { path: '/profile', icon: User, label: 'Perfil', ariaLabel: 'Ir para perfil', category: 'outros' },
+    { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação', category: 'outros' }
   ];
 
   const toggleMenu = () => {
@@ -69,38 +87,108 @@ export const HamburgerMenu = () => {
           >
             <div className={styles.menuHeader}>
               <h2 className={styles.menuTitle}>Menu</h2>
-              <button
-                className={styles.closeButton}
-                onClick={closeMenu}
-                aria-label="Fechar menu"
-              >
-                <X size={24} strokeWidth={2} />
-              </button>
+              <div className={styles.headerActions}>
+                <ProfileToggle />
+                <ThemeToggle />
+                <button
+                  className={styles.closeButton}
+                  onClick={closeMenu}
+                  aria-label="Fechar menu"
+                >
+                  <X size={24} strokeWidth={2} />
+                </button>
+              </div>
             </div>
             <ul className={styles.menuList}>
-              {menuItems.map((item) => {
-                const IconComponent = item.icon;
-                const isActive = location.pathname === item.path;
-                
-                return (
-                  <li key={item.path}>
-                    <Link
-                      to={item.path}
-                      className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-                      onClick={closeMenu}
-                      aria-label={item.ariaLabel}
-                      aria-current={isActive ? 'page' : undefined}
-                    >
-                      <IconComponent 
-                        className={styles.menuIcon}
-                        size={22}
-                        strokeWidth={isActive ? 2.5 : 2}
-                      />
-                      <span className={styles.menuLabel}>{item.label}</span>
-                    </Link>
-                  </li>
-                );
-              })}
+              {/* Seção: TREINO */}
+              <li className={styles.menuSection}>
+                <h3 className={styles.sectionTitle}>💪 Treino</h3>
+              </li>
+              {menuItems
+                .filter(item => item.category === 'treino')
+                .map((item) => {
+                  const IconComponent = item.icon;
+                  const isActive = location.pathname === item.path;
+                  
+                  return (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
+                        onClick={closeMenu}
+                        aria-label={item.ariaLabel}
+                        aria-current={isActive ? 'page' : undefined}
+                      >
+                        <IconComponent 
+                          className={styles.menuIcon}
+                          size={22}
+                          strokeWidth={isActive ? 2.5 : 2}
+                        />
+                        <span className={styles.menuLabel}>{item.label}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              
+              {/* Seção: NUTRIÇÃO */}
+              <li className={styles.menuSection}>
+                <h3 className={styles.sectionTitle}>🍎 Nutrição</h3>
+              </li>
+              {menuItems
+                .filter(item => item.category === 'nutricao')
+                .map((item) => {
+                  const IconComponent = item.icon;
+                  const isActive = location.pathname === item.path;
+                  
+                  return (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
+                        onClick={closeMenu}
+                        aria-label={item.ariaLabel}
+                        aria-current={isActive ? 'page' : undefined}
+                      >
+                        <IconComponent 
+                          className={styles.menuIcon}
+                          size={22}
+                          strokeWidth={isActive ? 2.5 : 2}
+                        />
+                        <span className={styles.menuLabel}>{item.label}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              
+              {/* Seção: PERFIL E OUTROS */}
+              <li className={styles.menuSection}>
+                <h3 className={styles.sectionTitle}>⚙️ Outros</h3>
+              </li>
+              {menuItems
+                .filter(item => item.category === 'outros')
+                .map((item) => {
+                  const IconComponent = item.icon;
+                  const isActive = location.pathname === item.path;
+                  
+                  return (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
+                        onClick={closeMenu}
+                        aria-label={item.ariaLabel}
+                        aria-current={isActive ? 'page' : undefined}
+                      >
+                        <IconComponent 
+                          className={styles.menuIcon}
+                          size={22}
+                          strokeWidth={isActive ? 2.5 : 2}
+                        />
+                        <span className={styles.menuLabel}>{item.label}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           </nav>
         </>

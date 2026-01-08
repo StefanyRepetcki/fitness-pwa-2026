@@ -5,6 +5,9 @@ import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { ExerciseList } from '../../components/ExerciseList/ExerciseList';
 import { CelebrationModal } from '../../components/CelebrationModal/CelebrationModal';
 import { workouts } from '../../data/workouts';
+import { workoutsMale } from '../../data/workoutsMale';
+import { useProfile } from '../../contexts/ProfileContext';
+import { saveLastWorkout } from '../../utils/lastWorkout';
 import { 
   getWorkoutProgress, 
   toggleExercise, 
@@ -21,7 +24,9 @@ import styles from './WorkoutDetail.module.css';
 
 export const WorkoutDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const workout = workouts.find((w) => w.id === id);
+  const { profileType } = useProfile();
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
+  const workout = currentWorkouts.find((w) => w.id === id);
   const [progress, setProgress] = useState<WorkoutProgress | null>(null);
   const [celebrationBadge, setCelebrationBadge] = useState<Badge | null>(null);
   const [celebrationStreak, setCelebrationStreak] = useState<number | null>(null);
@@ -30,6 +35,8 @@ export const WorkoutDetail = () => {
   useEffect(() => {
     if (id) {
       setProgress(getWorkoutProgress(id));
+      // Salvar como último treino aberto
+      saveLastWorkout(id);
     }
   }, [id]);
 
@@ -104,7 +111,15 @@ export const WorkoutDetail = () => {
 
   return (
     <>
-      <Header title={workout.name} />
+      <Header 
+        title={workout.name}
+        showBackButton={true}
+        backPath="/"
+        breadcrumbs={[
+          { label: 'Treinos', path: '/' },
+          { label: workout.name }
+        ]}
+      />
       <PageContainer>
         <div className={styles.description}>
           <p>{workout.description}</p>

@@ -1,0 +1,462 @@
+.intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+/* Timer Principal */
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.timerCircle {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.timerSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timerBackground {
+  stroke: var(--color-border-light);
+}
+
+.timerProgress {
+  transition: stroke 0.3s ease;
+}
+
+.timerDisplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.timerTime {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.timerTotal {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.finishedMessage {
+  text-align: center;
+  padding: 2rem;
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  color: white;
+  animation: pulse 1s ease-in-out infinite;
+  box-shadow: var(--shadow-lg);
+}
+
+.finishedMessage h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.finishedMessage p {
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.startPrompt {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.controlButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+  min-width: 120px;
+  justify-content: center;
+}
+
+.pauseButton {
+  background: var(--color-warning);
+  color: white;
+}
+
+.pauseButton:hover {
+  background: var(--color-warning-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.resumeButton {
+  background: var(--color-success);
+  color: white;
+}
+
+.resumeButton:hover {
+  background: var(--color-success-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.resetButton {
+  background: var(--color-primary);
+  color: white;
+}
+
+.resetButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stopButton {
+  background: var(--color-error);
+  color: white;
+}
+
+.stopButton:hover {
+  background: var(--color-error-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tempos Pré-definidos */
+.presetsSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.presetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.presetButton {
+  padding: 1.5rem 1rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: center;
+  min-height: var(--touch-target-min);
+}
+
+.presetButton:hover:not(:disabled) {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.presetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.presetButton.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+  color: white;
+}
+
+.presetLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.25rem;
+}
+
+.presetButton.active .presetLabel {
+  color: white;
+}
+
+.presetDescription {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.presetButton.active .presetDescription {
+  color: var(--color-text-on-primary-light);
+}
+
+/* Timer Customizado */
+.customSection {
+  margin-bottom: 2rem;
+}
+
+.customToggle {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-primary-light);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+}
+
+.customToggle:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary-dark);
+}
+
+.customForm {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.customInputs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.customInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.customInputGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.customInput {
+  padding: 0.875rem;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  font-size: 1.25rem;
+  font-family: inherit;
+  color: var(--color-text);
+  text-align: center;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.customInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.customInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.customStartButton {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+}
+
+.customStartButton:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.customStartButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Configurações */
+.settingsSection {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+}
+
+.settingsButton:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+/* Informações */
+.infoSection {
+  background: var(--color-primary-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--color-border-light);
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.infoList li {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.infoList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.infoList li strong {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .timerCircle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .timerTime {
+    font-size: 3rem;
+  }
+
+  .presetsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .customInputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .timerCircle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .timerTime {
+    font-size: 2.5rem;
+  }
+
+  .presetsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .controlButton {
+    flex: 1;
+    min-width: auto;
+  }
+}
+

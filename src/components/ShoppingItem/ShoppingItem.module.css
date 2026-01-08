@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--color-surface);
   transition: all var(--transition-base);
   position: relative;
 }

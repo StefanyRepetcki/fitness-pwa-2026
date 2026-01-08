@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
@@ -7,6 +7,9 @@ import { SEO } from './components/SEO/SEO';
 import { SkipLink } from './components/SkipLink/SkipLink';
 import { MenuProvider } from './contexts/MenuContext';
 import { ToastProvider } from './contexts/ToastContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ProfileProvider } from './contexts/ProfileContext';
+import { initializeNotifications } from './utils/notificationService';
 import { SkeletonLoader } from './components/SkeletonLoader/SkeletonLoader';
 import { SafetyDisclaimer } from './components/SafetyDisclaimer/SafetyDisclaimer';
 import './styles/global.css';
@@ -26,6 +29,9 @@ const Warmup = lazy(() => import('./pages/Warmup/Warmup').then(m => ({ default: 
 const Stats = lazy(() => import('./pages/Stats/Stats').then(m => ({ default: m.Stats })));
 const Diary = lazy(() => import('./pages/Diary/Diary').then(m => ({ default: m.Diary })));
 const Recipes = lazy(() => import('./pages/Recipes/Recipes').then(m => ({ default: m.Recipes })));
+const Profile = lazy(() => import('./pages/Profile/Profile').then(m => ({ default: m.Profile })));
+const Macros = lazy(() => import('./pages/Macros/Macros').then(m => ({ default: m.Macros })));
+const RestTimer = lazy(() => import('./pages/RestTimer/RestTimer').then(m => ({ default: m.RestTimer })));
 
 // Loading component melhorado com Skeleton Loader
 const PageLoader = () => (
@@ -41,11 +47,18 @@ const PageLoader = () => (
 );
 
 function App() {
+  // Inicializar notificações quando o app carrega
+  useEffect(() => {
+    initializeNotifications().catch(console.error);
+  }, []);
+
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <MenuProvider>
-          <ToastProvider>
+        <ThemeProvider>
+          <ProfileProvider>
+            <MenuProvider>
+              <ToastProvider>
             <SafetyDisclaimer />
             <SkipLink />
             <SEO />
@@ -232,6 +245,45 @@ function App() {
                 </>
               } 
             />
+            <Route 
+              path="/profile" 
+              element={
+                <>
+                  <SEO 
+                    title="Meu Perfil - Ciclei"
+                    description="Acompanhe sua evolução e controle seu peso. Visualize gráficos de progresso e gerencie seu perfil fitness."
+                    keywords="ciclei, perfil, peso, controle de peso, evolução, gráfico de peso, perfil fitness"
+                  />
+                  <Profile />
+                </>
+              } 
+            />
+            <Route 
+              path="/macros" 
+              element={
+                <>
+                  <SEO 
+                    title="Controle de Macros - Ciclei"
+                    description="Gerencie seus macronutrientes diários. Acompanhe proteínas, carboidratos, gorduras e calorias de forma simples e eficiente."
+                    keywords="ciclei, macros, macronutrientes, proteína, carboidrato, gordura, controle nutricional, dieta flexível"
+                  />
+                  <Macros />
+                </>
+              } 
+            />
+            <Route 
+              path="/rest-timer" 
+              element={
+                <>
+                  <SEO 
+                    title="Timer de Descanso - Ciclei"
+                    description="Controle seu tempo de descanso entre séries. Timer com tempos recomendados para hipertrofia e força máxima."
+                    keywords="ciclei, timer, descanso, intervalo, treino, hipertrofia, força, cronômetro"
+                  />
+                  <RestTimer />
+                </>
+              } 
+            />
             </Routes>
           </Suspense>
             <BottomNavigation />
@@ -239,9 +291,11 @@ function App() {
           </div>
           </ToastProvider>
         </MenuProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  );
-}
+        </ProfileProvider>
+        </ThemeProvider>
+        </BrowserRouter>
+      </ErrorBoundary>
+    );
+  }
 
 export default App;

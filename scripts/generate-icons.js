@@ -18,3 +18,4 @@ Para gerar os ícones PWA, você pode:
 Os ícones devem ter fundo rosa (#F8BBD9) ou transparente com um ícone de fitness.
 `);
 
+

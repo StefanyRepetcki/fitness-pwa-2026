@@ -37,6 +37,14 @@
   margin-bottom: 2rem;
 }
 
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
 .button {
   padding: 1rem 2rem;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
@@ -47,13 +55,53 @@
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
-  margin-bottom: 1.5rem;
   font-family: inherit;
+  min-width: 140px;
 }
 
 .button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.button.secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.button.secondary:hover {
+  background: var(--color-primary-light);
+}
+
+.errorDetails {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--color-gray-warm);
+  border-radius: var(--radius-md);
+  text-align: left;
+  border: 1px solid var(--color-border-light);
+}
+
+.errorDetails summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.errorStack {
+  background: var(--color-background);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--color-error);
+  border: 1px solid var(--color-border);
 }
 
 .contact {

@@ -12,7 +12,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 
 .header {
-  background: #eb3157;
+  background: var(--color-primary);
   padding: 1.25rem 1rem;
   padding-top: calc(1.25rem + env(safe-area-inset-top));
   padding-right: calc(1rem + 4rem); /* Espaço para o botão hamburger */
@@ -25,7 +25,116 @@
   /* Suporte para safe area */
   padding-left: max(1rem, env(safe-area-inset-left));
   transform: translateY(0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.navigationBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  min-height: 36px;
+  flex-wrap: wrap;
+}
+
+.backButton {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  height: 32px;
+  width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  outline: none;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(-2px);
+}
+
+.backButton:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  line-height: 1.5;
+  height: 32px;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.breadcrumbLink {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  padding: 0.375rem 0.5rem;
+  border-radius: var(--radius-sm);
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
+  height: 100%;
+}
+
+.breadcrumbLink:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: underline;
+}
+
+.breadcrumbCurrent {
+  color: white;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
+  height: 100%;
+  padding: 0.375rem 0.5rem;
+}
+
+.breadcrumbSeparator {
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+  margin: 0 0.125rem;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .streakContainer {
@@ -139,6 +248,16 @@
 
   .brandName {
     font-size: 1.5rem;
+  }
+  
+  .breadcrumbLink {
+    max-width: 200px;
+    font-size: 0.9375rem;
+  }
+  
+  .breadcrumbCurrent {
+    max-width: 250px;
+    font-size: 0.9375rem;
   }
 }
 

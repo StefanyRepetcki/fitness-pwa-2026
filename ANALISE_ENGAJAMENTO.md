@@ -353,3 +353,4 @@ Depois, quando tiver backend:
 
 **O app tem potencial para ser o melhor app de treino feminino do Brasil!** Só precisa adicionar essas camadas de engajamento. 💪🌸
 
+

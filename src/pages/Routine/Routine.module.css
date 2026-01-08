@@ -55,7 +55,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   text-decoration: none;
@@ -194,7 +194,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem 0.5rem;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   border: 2px solid var(--color-border-light);
   cursor: pointer;
@@ -260,7 +260,7 @@
 }
 
 .calendarDay.selected .workoutBadge {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-primary);
 }
 
@@ -362,7 +362,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
   cursor: pointer;

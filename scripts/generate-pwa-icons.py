@@ -63,3 +63,4 @@ except ImportError:
     print('   - Faça upload de logo-ciclei.png e gere os ícones 192x192 e 512x512')
     sys.exit(1)
 
+

@@ -103,3 +103,4 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
   );
 };
 
+
