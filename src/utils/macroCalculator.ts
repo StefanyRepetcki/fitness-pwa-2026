@@ -161,3 +161,4 @@ export const getGoalDescription = (goal: UserProfile['goal']): string => {
   return descriptions[goal];
 };
 
+

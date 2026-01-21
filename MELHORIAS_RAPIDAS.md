@@ -474,3 +474,4 @@ useEffect(() => {
 - Testes devem ser adicionados conforme as melhorias são implementadas
 - Documentação deve ser atualizada
 
+

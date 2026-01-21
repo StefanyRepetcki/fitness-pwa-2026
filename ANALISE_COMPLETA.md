@@ -174,3 +174,4 @@ O projeto está **muito bem estruturado** do ponto de vista técnico e de design
 O app tem potencial para ser uma ferramenta completa e profissional para mulheres que buscam um ciclo completo de treino, alimentação e suplementação.
 
 
+

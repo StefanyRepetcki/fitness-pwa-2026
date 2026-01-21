@@ -4,6 +4,8 @@ import { Lightbulb, Dumbbell, Check, X, Calendar as CalendarIcon } from 'lucide-
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { workouts } from '../../data/workouts';
+import { workoutsABCDEF } from '../../data/workoutsABCDEF';
+import { useProfile } from '../../contexts/ProfileContext';
 import { 
   getWorkoutHistory, 
   saveWorkoutHistory, 
@@ -15,22 +17,27 @@ import {
 import styles from './Routine.module.css';
 
 export const Routine = () => {
+  const { profileType, routineType } = useProfile();
   const [history, setHistory] = useState<WorkoutHistoryEntry[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [showCalendar, setShowCalendar] = useState(false);
+  
+  const currentWorkouts = profileType === 'male' 
+    ? workouts 
+    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
 
   useEffect(() => {
     setHistory(getWorkoutHistory());
   }, []);
 
-  const workoutIds = workouts.map(w => w.id);
+  const workoutIds = currentWorkouts.map(w => w.id);
   const suggestedWorkoutId = suggestNextWorkout(workoutIds);
-  const suggestedWorkout = workouts.find(w => w.id === suggestedWorkoutId);
+  const suggestedWorkout = currentWorkouts.find(w => w.id === suggestedWorkoutId);
   const lastWorkout = getLastWorkout();
   const todayWorkout = getWorkoutByDate(selectedDate);
 
   const handleMarkWorkout = (workoutId: string) => {
-    const workout = workouts.find(w => w.id === workoutId);
+    const workout = currentWorkouts.find(w => w.id === workoutId);
     if (workout) {
       saveWorkoutHistory({
         date: selectedDate,
@@ -199,7 +206,7 @@ export const Routine = () => {
               </div>
             ) : (
               <div className={styles.workoutOptions}>
-                {workouts.map((workout) => (
+                {currentWorkouts.map((workout) => (
                   <button
                     key={workout.id}
                     className={styles.workoutOption}

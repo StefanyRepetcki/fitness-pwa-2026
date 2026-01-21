@@ -150,3 +150,4 @@ export const getWeightHistory = (days: number = 30): WeightEntry[] => {
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
+

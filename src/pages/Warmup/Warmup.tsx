@@ -7,14 +7,19 @@ import { warmupRoutines } from '../../data/warmups';
 import { warmupRoutinesMale } from '../../data/warmupsMale';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
+import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { useProfile } from '../../contexts/ProfileContext';
 import styles from './Warmup.module.css';
 
 export const Warmup = () => {
-  const { profileType } = useProfile();
-  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
+  const { profileType, routineType } = useProfile();
+  const currentWorkouts = profileType === 'male' 
+    ? workoutsMale 
+    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
   const currentWarmups = profileType === 'male' ? warmupRoutinesMale : warmupRoutines;
-  const defaultWorkoutId = profileType === 'male' ? 'push-male' : 'treino-a';
+  const defaultWorkoutId = profileType === 'male' 
+    ? 'push-male' 
+    : (routineType === 'abcdef' ? 'treino-a-abcdef' : 'treino-a');
   const [selectedWorkout, setSelectedWorkout] = useState<string>(defaultWorkoutId);
 
   const selectedWarmup = currentWarmups.find(w => w.workoutId === selectedWorkout);

@@ -169,3 +169,4 @@
 
 Todos os treinos e dietas estão **corretos e adequados** do ponto de vista profissional. As correções necessárias (aquecimento e alongamento masculinos) foram implementadas. O sistema está completo e funcional para ambos os perfis.
 
+

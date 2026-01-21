@@ -3,6 +3,7 @@ import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, A
 import { useMenu } from '../../contexts/MenuContext';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { ProfileToggle } from '../ProfileToggle/ProfileToggle';
+import { RoutineToggle } from '../RoutineToggle/RoutineToggle';
 import { getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './HamburgerMenu.module.css';
 
@@ -104,17 +105,22 @@ export const HamburgerMenu = () => {
             aria-label="Menu de navegação"
           >
             <div className={styles.menuHeader}>
-              <h2 className={styles.menuTitle}>Menu</h2>
-              <div className={styles.headerActions}>
-                <ProfileToggle />
-                <ThemeToggle />
-                <button
-                  className={styles.closeButton}
-                  onClick={closeMenu}
-                  aria-label="Fechar menu"
-                >
-                  <X size={24} strokeWidth={2} />
-                </button>
+              <div className={styles.headerTop}>
+                <h2 className={styles.menuTitle}>Menu</h2>
+                <div className={styles.headerActions}>
+                  <ProfileToggle />
+                  <ThemeToggle />
+                  <button
+                    className={styles.closeButton}
+                    onClick={closeMenu}
+                    aria-label="Fechar menu"
+                  >
+                    <X size={24} strokeWidth={2} />
+                  </button>
+                </div>
+              </div>
+              <div className={styles.routineToggleWrapper}>
+                <RoutineToggle />
               </div>
             </div>
             <ul className={styles.menuList}>

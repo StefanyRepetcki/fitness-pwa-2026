@@ -753,3 +753,4 @@ As melhorias críticas devem ser priorizadas para maximizar o valor entregue aos
 4. Adicionar testes básicos
 5. Melhorar feedback visual
 
+

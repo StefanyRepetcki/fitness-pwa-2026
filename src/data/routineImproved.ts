@@ -1,17 +1,16 @@
-export interface RoutineDay {
-  id: string;
-  day: string;
-  workoutId: string;
-  workoutName: string;
-  rest: boolean;
-  restActive?: boolean;
-}
+/**
+ * Rotina Melhorada - Baseada em "Além da Genética 2.0"
+ * Frequência: 3x/semana (Segunda, Quarta, Sexta)
+ * 48h de descanso entre treinos para recuperação adequada
+ */
 
-export const routine: RoutineDay[] = [
+import type { RoutineDay } from './routine';
+
+export const routineImproved: RoutineDay[] = [
   {
     id: 'mon',
     day: 'Segunda',
-    workoutId: 'treino-a',
+    workoutId: 'treino-a-improved',
     workoutName: 'Treino A - Quadríceps + Panturrilha',
     rest: false
   },
@@ -25,7 +24,7 @@ export const routine: RoutineDay[] = [
   {
     id: 'wed',
     day: 'Quarta',
-    workoutId: 'treino-b',
+    workoutId: 'treino-b-improved',
     workoutName: 'Treino B - Costas, Peito, Ombros e Tríceps',
     rest: false
   },
@@ -39,7 +38,7 @@ export const routine: RoutineDay[] = [
   {
     id: 'fri',
     day: 'Sexta',
-    workoutId: 'treino-c',
+    workoutId: 'treino-c-improved',
     workoutName: 'Treino C - Posterior + Glúteos',
     rest: false
   },
@@ -58,3 +57,4 @@ export const routine: RoutineDay[] = [
     rest: true
   }
 ];
+

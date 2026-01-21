@@ -3,17 +3,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { WorkoutCard } from '../../components/WorkoutCard/WorkoutCard';
+import { TechniquesGuide } from '../../components/TechniquesGuide/TechniquesGuide';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
+import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { useProfile } from '../../contexts/ProfileContext';
 import { getLastWorkout, getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './Workouts.module.css';
 
 export const Workouts = () => {
-  const { profileType } = useProfile();
+  const { profileType, routineType } = useProfile();
   const location = useLocation();
   const navigate = useNavigate();
-  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
+  const currentWorkouts = profileType === 'male' 
+    ? workoutsMale 
+    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
   const [lastWorkoutId, setLastWorkoutId] = useState<string | null>(null);
   const hasAutoRedirected = useRef(false);
 
@@ -65,6 +69,9 @@ export const Workouts = () => {
               : 'Escolha seu treino do ciclo e comece a suar!'}
           </p>
         </div>
+        
+        {profileType === 'female' && <TechniquesGuide />}
+        
         {currentWorkouts.length === 0 ? (
           <div className={styles.emptyState}>
             <p>Nenhum treino disponível no momento.</p>

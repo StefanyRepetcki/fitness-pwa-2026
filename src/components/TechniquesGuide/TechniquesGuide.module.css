@@ -1,0 +1,297 @@
+.container {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.toggleButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-primary-light);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: var(--color-primary-dark);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  outline: none;
+  min-height: var(--touch-target-min);
+}
+
+.toggleButton:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.toggleButton:hover .infoIcon,
+.toggleButton:hover .chevron {
+  color: white;
+}
+
+.toggleButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: color var(--transition-base);
+}
+
+.toggleButton:hover .infoIcon {
+  color: white;
+}
+
+.toggleText {
+  flex: 1;
+  text-align: left;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.chevron.expanded {
+  transform: rotate(180deg);
+}
+
+.content {
+  padding: 1.5rem;
+  background: var(--color-surface);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-primary-light);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.techniquesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.techniqueCard {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  transition: all var(--transition-base);
+}
+
+.techniqueCard:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.techniqueHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.techniqueIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.techniqueName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+.techniqueDescription {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+.techniqueSection {
+  margin-bottom: 1.25rem;
+}
+
+.techniqueSection:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.howToList {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style: decimal;
+  color: var(--color-text);
+}
+
+.howToItem {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.howToItem:last-child {
+  margin-bottom: 0;
+}
+
+.example {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0.75rem;
+  background: var(--color-primary-light);
+  border-radius: 6px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.benefitsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefitItem {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.benefitItem:last-child {
+  margin-bottom: 0;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--color-border-light);
+}
+
+.footerText {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin: 0;
+  text-align: center;
+}
+
+.footerText strong {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .toggleButton {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .content {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .techniqueCard {
+    padding: 1rem;
+  }
+
+  .techniqueName {
+    font-size: 1.1rem;
+  }
+
+  .techniqueDescription {
+    font-size: 0.95rem;
+  }
+
+  .howToItem,
+  .example,
+  .benefitItem {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .toggleButton {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .toggleText {
+    font-size: 0.9rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
+
