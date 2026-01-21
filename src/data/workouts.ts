@@ -81,7 +81,7 @@ export const workouts: Workout[] = [
   {
     id: 'treino-b',
     name: 'Treino B - Costas, Peito, Ombros e Tríceps',
-    description: 'Treino de alta densidade com pico de contração e técnicas avançadas. Intervalos curtos para máxima intensidade.',
+    description: 'Treino otimizado para Wellness com volume aumentado de costas, peito e ombros. Alta densidade com pico de contração e técnicas avançadas.',
     exercises: [
       {
         id: 'ex1',
@@ -111,6 +111,24 @@ export const workouts: Workout[] = [
         notes: 'Pico de contração de 2 segundos. Foco em puxar o cotovelo para trás, não apenas o braço. Máxima contração das costas médias.'
       },
       {
+        id: 'ex3b',
+        name: 'Puxada Frente Supinada',
+        sets: 3,
+        reps: '3x10-15 com 2s pico',
+        restTime: '45s',
+        rpe: 8,
+        notes: 'Pegada supinada trabalha bíceps e costas de forma diferente. Pico de contração de 2 segundos no final. Foco em largura e espessura das costas.'
+      },
+      {
+        id: 'ex3c',
+        name: 'Remada Curvada com Halteres',
+        sets: 3,
+        reps: '3x8-12 com 2s pico',
+        restTime: '60s',
+        rpe: 8,
+        notes: 'Exercício composto para espessura das costas. Pico de contração de 2 segundos. Manter coluna neutra, não arredondar. Intervalo maior para recuperação adequada.'
+      },
+      {
         id: 'ex4',
         name: 'Supino Inclinado com Halteres',
         sets: 4,
@@ -118,6 +136,24 @@ export const workouts: Workout[] = [
         restTime: '45s',
         rpe: 8,
         notes: 'Intervalo curto mantém alta densidade do treino. Controle na descida (2s), explosão na subida. Foco em peitoral superior.'
+      },
+      {
+        id: 'ex4b',
+        name: 'Supino Reto com Halteres',
+        sets: 3,
+        reps: '3x8-12',
+        restTime: '60s',
+        rpe: 8,
+        notes: 'Exercício fundamental para peitoral completo. Controle na descida (2s), explosão na subida. Amplitude completa do movimento. Intervalo maior para recuperação.'
+      },
+      {
+        id: 'ex4c',
+        name: 'Crucifixo Inclinado com Halteres',
+        sets: 3,
+        reps: '3x10-15 com 2s pico',
+        restTime: '45s',
+        rpe: 7,
+        notes: 'Isolamento do peitoral superior. Pico de contração de 2 segundos no ponto máximo. Controle total do movimento, evitar balanço. Foco em alongamento e contração.'
       },
       {
         id: 'ex5',
@@ -136,6 +172,24 @@ export const workouts: Workout[] = [
         restTime: '45s',
         rpe: 8,
         notes: 'Após falha completa, fazer 10 repetições parciais (meio movimento). Aumenta tempo sob tensão do deltoide médio. Sentado para melhor isolamento.'
+      },
+      {
+        id: 'ex6b',
+        name: 'Desenvolvimento com Halteres',
+        sets: 3,
+        reps: '3x8-12',
+        restTime: '60s',
+        rpe: 8,
+        notes: 'Exercício composto para desenvolvimento completo dos ombros. Controle na descida (2s), explosão na subida. Não travar os cotovelos no topo. Intervalo maior para recuperação.'
+      },
+      {
+        id: 'ex6c',
+        name: 'Elevação Lateral Inclinada com Halteres',
+        sets: 3,
+        reps: '3x10-15 com 2s pico',
+        restTime: '45s',
+        rpe: 7,
+        notes: 'Inclinação trabalha deltoide médio e posterior de forma diferente. Pico de contração de 2 segundos. Inclinar tronco levemente para frente, manter coluna neutra.'
       },
       {
         id: 'ex7',
