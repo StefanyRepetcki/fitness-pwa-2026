@@ -1,0 +1,387 @@
+.intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-text-light);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+
+.intro strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Card de Progresso */
+.progressCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.progressInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.waterIcon {
+  width: 4rem;
+  height: 4rem;
+  background: var(--color-primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.goal {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin: 0.25rem 0 0 0;
+  font-weight: 500;
+}
+
+.resetButton {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+.resetButton:hover {
+  background: var(--color-gray-warm);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+/* Barra de Progresso */
+.progressBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 1.5rem;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease, background-color 0.3s ease;
+  min-width: 0;
+}
+
+.progressStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.percentage {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.remaining {
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.complete {
+  color: var(--color-success);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Seção de Adicionar Água Rápida */
+.quickAddSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.waterSizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+}
+
+.waterButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+}
+
+.waterButton:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.waterButton:active {
+  transform: translateY(0);
+}
+
+.waterIcon {
+  font-size: 1.75rem;
+}
+
+.waterLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Seção Customizada */
+.customSection {
+  margin-bottom: 2rem;
+}
+
+.customInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+}
+
+.customInputField {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  outline: none;
+  text-align: center;
+  min-width: 0;
+}
+
+.customInputField::placeholder {
+  color: var(--color-text-lighter);
+  font-weight: 400;
+}
+
+.mlLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  flex-shrink: 0;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: var(--touch-target-min);
+  white-space: nowrap;
+}
+
+.addButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.addButton:active {
+  transform: translateY(0);
+}
+
+/* Dicas */
+.tipsSection {
+  background: var(--color-primary-light);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-light);
+}
+
+.tipsTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.tipsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tipsList li {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.tipsList li::before {
+  content: '💧';
+  position: absolute;
+  left: 0;
+  font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .intro {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+
+  .progressCard {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .waterIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .amount {
+    font-size: 2rem;
+  }
+
+  .goal {
+    font-size: 0.9rem;
+  }
+
+  .waterSizes {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .waterButton {
+    padding: 0.875rem 0.5rem;
+  }
+
+  .waterIcon {
+    font-size: 1.5rem;
+  }
+
+  .waterLabel {
+    font-size: 0.8rem;
+  }
+
+  .customInput {
+    flex-wrap: wrap;
+  }
+
+  .customInputField {
+    width: 100%;
+    order: 1;
+  }
+
+  .mlLabel {
+    order: 2;
+  }
+
+  .addButton {
+    width: 100%;
+    justify-content: center;
+    order: 3;
+  }
+
+  .sectionTitle {
+    font-size: 1.125rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .tipsSection {
+    padding: 1.25rem;
+  }
+
+  .tipsList li {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .waterSizes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .progressCard {
+    padding: 1.25rem;
+  }
+
+  .amount {
+    font-size: 1.75rem;
+  }
+}
+

@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer } from 'lucide-react';
+import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer, Droplet } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { ProfileToggle } from '../ProfileToggle/ProfileToggle';
@@ -36,6 +36,7 @@ export const HamburgerMenu = () => {
     { path: '/recipes', icon: ChefHat, label: 'Receitas', ariaLabel: 'Ir para receitas', category: 'nutricao' },
     { path: '/supplements', icon: Pill, label: 'Suplementos', ariaLabel: 'Ir para suplementação', category: 'nutricao' },
     { path: '/shopping', icon: ShoppingCart, label: 'Compras', ariaLabel: 'Ir para lista de compras', category: 'nutricao' },
+    { path: '/water', icon: Droplet, label: 'Hidratação', ariaLabel: 'Ir para controle de água', category: 'nutricao' },
     
     // === PERFIL E OUTROS ===
     { path: '/profile', icon: User, label: 'Perfil', ariaLabel: 'Ir para perfil', category: 'outros' },

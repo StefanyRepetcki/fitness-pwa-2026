@@ -23,3 +23,23 @@
 .emptyState p {
   font-size: 1.125rem;
 }
+
+@media (max-width: 480px) {
+  .intro {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .videosList {
+    gap: 1.25rem;
+  }
+
+  .emptyState {
+    padding: 3rem 1.5rem;
+  }
+
+  .emptyState p {
+    font-size: 1rem;
+  }
+}

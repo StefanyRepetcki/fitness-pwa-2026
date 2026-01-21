@@ -32,6 +32,7 @@ const Recipes = lazy(() => import('./pages/Recipes/Recipes').then(m => ({ defaul
 const Profile = lazy(() => import('./pages/Profile/Profile').then(m => ({ default: m.Profile })));
 const Macros = lazy(() => import('./pages/Macros/Macros').then(m => ({ default: m.Macros })));
 const RestTimer = lazy(() => import('./pages/RestTimer/RestTimer').then(m => ({ default: m.RestTimer })));
+const Water = lazy(() => import('./pages/Water/Water').then(m => ({ default: m.Water })));
 
 // Loading component melhorado com Skeleton Loader
 const PageLoader = () => (
@@ -281,6 +282,19 @@ function App() {
                     keywords="ciclei, timer, descanso, intervalo, treino, hipertrofia, força, cronômetro"
                   />
                   <RestTimer />
+                </>
+              } 
+            />
+            <Route 
+              path="/water" 
+              element={
+                <>
+                  <SEO 
+                    title="Hidratação - Ciclei"
+                    description="Controle sua hidratação diária. Acompanhe seu consumo de água e mantenha-se hidratado."
+                    keywords="ciclei, água, hidratação, água diária, consumo de água, saúde"
+                  />
+                  <Water />
                 </>
               } 
             />
