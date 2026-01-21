@@ -389,10 +389,13 @@ export const Profile = () => {
             <div className={styles.historySection}>
               <h3 className={styles.historyTitle}>Histórico Recente</h3>
               <div className={styles.historyList}>
-                {allHistory.slice(0, 7).map((entry) => {
-                  const entryDate = new Date(entry.date);
-                  const isToday = entry.date === new Date().toISOString().split('T')[0];
-                  const isYesterday = entry.date === new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                {(() => {
+                  const today = new Date().toISOString().split('T')[0];
+                  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                  return allHistory.slice(0, 7).map((entry) => {
+                    const entryDate = new Date(entry.date);
+                    const isToday = entry.date === today;
+                    const isYesterday = entry.date === yesterday;
                   
                   let dateLabel = '';
                   if (isToday) dateLabel = 'Hoje';
@@ -405,7 +408,8 @@ export const Profile = () => {
                       <div className={styles.historyWeight}>{entry.weight.toFixed(1)} kg</div>
                     </div>
                   );
-                })}
+                  });
+                })()}
               </div>
             </div>
           )}

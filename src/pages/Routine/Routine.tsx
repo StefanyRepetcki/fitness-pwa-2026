@@ -230,10 +230,13 @@ export const Routine = () => {
           <div className={styles.historySection}>
             <h2 className={styles.sectionTitle}>Histórico Recente</h2>
             <div className={styles.historyList}>
-              {history.slice(0, 5).map((entry) => {
-                const date = new Date(entry.date);
-                const isToday = entry.date === new Date().toISOString().split('T')[0];
-                const isYesterday = entry.date === new Date(Date.now() - 86400000).toISOString().split('T')[0];
+              {(() => {
+                const today = new Date().toISOString().split('T')[0];
+                const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                return history.slice(0, 5).map((entry) => {
+                  const date = new Date(entry.date);
+                  const isToday = entry.date === today;
+                  const isYesterday = entry.date === yesterday;
                 
                 let dateLabel = '';
                 if (isToday) dateLabel = 'Hoje';
@@ -251,7 +254,8 @@ export const Routine = () => {
                     </Link>
                   </div>
                 );
-              })}
+                });
+              })()}
             </div>
           </div>
         )}

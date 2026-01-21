@@ -84,7 +84,7 @@ export const MacroCalculator = ({ currentWeight, onMacrosCalculated }: MacroCalc
       saveMacroGoals(result.macros);
       showToast('Metas de macros salvas com sucesso!', 'success');
       setIsOpen(false);
-    } catch (error) {
+    } catch {
       showToast('Erro ao salvar macros', 'error');
     }
   };

@@ -1,4 +1,5 @@
 // Sistema de controle de água/hidratação
+import { getWeightProfile } from './weight';
 
 export interface WaterEntry {
   date: string; // YYYY-MM-DD
@@ -24,7 +25,6 @@ export const calculateWaterGoal = (weightKg: number): number => {
 // Obter peso atual do perfil
 export const getCurrentWeight = (): number | null => {
   try {
-    const { getWeightProfile } = require('./weight');
     const profile = getWeightProfile();
     if (profile.currentWeight !== null) {
       return profile.currentWeight;

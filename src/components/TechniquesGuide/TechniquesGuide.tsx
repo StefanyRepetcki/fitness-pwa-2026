@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, Info, X } from 'lucide-react';
+import { ChevronDown, Info } from 'lucide-react';
 import styles from './TechniquesGuide.module.css';
 
 interface Technique {

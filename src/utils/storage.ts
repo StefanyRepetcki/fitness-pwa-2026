@@ -38,7 +38,7 @@ export class StorageManager {
           const fullKey = this.getKey(key);
           const serialized = JSON.stringify(value);
           localStorage.setItem(fullKey, serialized);
-        } catch (retryError) {
+        } catch {
           throw new Error(`Falha ao salvar ${key} no localStorage após limpeza`);
         }
       } else {

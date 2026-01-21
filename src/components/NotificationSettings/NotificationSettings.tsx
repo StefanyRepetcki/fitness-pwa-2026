@@ -18,13 +18,13 @@ export const NotificationSettings = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const { showToast } = useToast();
 
-  useEffect(() => {
-    loadSchedules();
-  }, []);
-
   const loadSchedules = () => {
     setSchedules(getNotificationSchedules());
   };
+
+  useEffect(() => {
+    loadSchedules();
+  }, []);
 
   const handleRequestPermission = async () => {
     const granted = await requestNotificationPermission();

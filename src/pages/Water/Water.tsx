@@ -6,6 +6,7 @@ import {
   getTodayWaterGoal, 
   getTodayWaterEntry, 
   addWaterToday,
+  resetTodayWater,
   type WaterEntry 
 } from '../../data/water';
 import { Droplet, Plus, RotateCcw, CheckCircle2 } from 'lucide-react';
@@ -78,7 +79,6 @@ export const Water = () => {
 
   const handleReset = () => {
     if (window.confirm('Tem certeza que deseja resetar o consumo de água de hoje?')) {
-      const { resetTodayWater } = require('../../data/water');
       resetTodayWater(goal);
       setEntry(getTodayWaterEntry(goal));
       showToast('Consumo de água resetado', 'success');

@@ -50,7 +50,7 @@ export class ErrorBoundary extends Component<Props, State> {
         // Manter apenas os últimos 10 erros
         const recentErrors = errors.slice(-10);
         localStorage.setItem('ciclei-errors', JSON.stringify(recentErrors));
-      } catch (e) {
+      } catch {
         // Ignorar erros ao salvar log
       }
     }

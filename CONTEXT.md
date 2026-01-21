@@ -75,18 +75,49 @@ interface Exercise {
 
 ### Treinos Disponíveis
 
-#### Perfil Feminino (`workouts.ts`)
-1. **Treino A - Quadríceps + Panturrilha**
-   - Foco: Parte frontal da perna
-   - Exercícios: Leg Press, Cadeira Extensora, Agachamento, etc.
+#### Perfil Feminino
 
-2. **Treino B - Costas + Peito + Ombro**
-   - Foco: Parte superior do corpo
-   - Exercícios: Remada, Supino, Desenvolvimento, etc.
+**Rotina ABC (3x/semana)** - `workouts.ts` (padrão)
+1. **Treino A - Quadríceps + Panturrilha**
+   - Foco: Parte frontal da perna com técnicas avançadas
+   - Exercícios: Agachamento, Hack Machine, Leg Press, Elevação de Quadril, Abdutor, Panturrilha
+   - Técnicas: Progressão de carga, Rest Pause, Repetições parciais, Pico de contração, Drop set
+
+2. **Treino B - Costas, Peito, Ombros e Tríceps**
+   - Foco: Parte superior do corpo com alta densidade
+   - Exercícios: Abdômen, Pulley, Remada, Supino Inclinado, Elevação Frontal/Lateral, Tríceps
+   - Técnicas: Pico de contração, Repetições parciais, Intervalos curtos (45s)
 
 3. **Treino C - Posterior + Glúteos**
    - Foco: Parte posterior da perna e glúteos
-   - Exercícios: Stiff, Elevação Pélvica, Cadeira Flexora, etc.
+   - Exercícios: Flexor Deitado/Sentado, Stiff, Afundo, Elevação de Quadril, Abdutor
+   - Técnicas: Progressão de carga, Rest Pause, Pico de contração (3s no abdutor)
+
+**Rotina ABCDEF (5x/semana)** - `workoutsABCDEF.ts` (opcional, toggle no menu)
+1. **Treino A - Quadríceps (ABCDEF)**
+   - Foco exclusivo em quadríceps com ativação pré-exaustão
+   - Exercícios: Extensora (2x), Hack Machine, Leg Press, Adutor
+   - Técnicas: Progressão de carga, Rest Pause, Repetições parciais, Drop set
+
+2. **Treino B - Costas + Panturrilha (ABCDEF)**
+   - Foco em costas e panturrilha
+   - Exercícios: Abdômen (Supra + Infra), Panturrilha (2x), Pulley (Aberto + Supinado), Remada
+   - Técnicas: Pico de contração, Super-set, Parar antes da falha
+
+3. **Treino C - Posterior + Glúteos + Quadríceps (ABCDEF)**
+   - Foco em posterior, glúteos e quadríceps
+   - Exercícios: Flexor (Deitado + Sentado), Agachamento Smith, Leg Press, Elevação de Quadril, Abdutor
+   - Técnicas: Progressão de carga, Rest Pause, Drop set
+
+4. **Treino D - Peito, Ombros e Tríceps (ABCDEF)**
+   - Complementa o Treino B para desenvolvimento completo do tronco
+   - Exercícios: Abdômen, Panturrilha, Supino Inclinado, Elevação Lateral/Frontal, Tríceps
+   - Técnicas: Pico de contração, Parar antes da falha
+
+5. **Treino E - Quadríceps Submáximo (ABCDEF)**
+   - Treino leve para recuperação ativa
+   - Exercícios: Extensora (6 séries), Adutor
+   - Técnicas: Pico de contração, Parar antes da falha (submáximo)
 
 #### Perfil Masculino (`workoutsMale.ts`)
 - **Push/Pull/Legs** - Divisão de treino para homens
@@ -129,7 +160,40 @@ interface Exercise {
 - Persistência por treino e exercício
 - Chave: `ciclei-exercise-weight-{workoutId}-{exerciseId}`
 
-### Rotina Semanal (`routine.ts`)
+### Técnicas Avançadas de Treino
+
+Os treinos utilizam técnicas avançadas para maximizar resultados. Todas as técnicas são explicadas no **Guia de Técnicas Avançadas** na página de treinos.
+
+#### 1. Rest Pause ⏸️
+- Após falha, descansar 10-15s e continuar com mais 2-3 reps
+- Aumenta volume efetivo do treino
+- Exemplo: `1x8-12+2 rest pause`
+
+#### 2. Repetições Parciais 🔄
+- Após falha completa, fazer 10 reps parciais (meio movimento)
+- Aumenta tempo sob tensão
+- Exemplo: `1x8-12+10 parciais`
+
+#### 3. Pico de Contração ⏱️
+- Segurar 2-3 segundos no ponto máximo de contração
+- Melhora conexão mente-músculo
+- Exemplo: `3x10-15 com 2s pico`
+
+#### 4. Progressão de Carga 📈
+- Começar leve e aumentar carga a cada série
+- Aquecimento progressivo e prevenção de lesões
+- Exemplo: `1x15-20 + 1x10-15 + 1x8-12 + 1x6-10`
+
+#### 5. Drop Set ⬇️
+- Após falha, reduzir carga em 30% e continuar até falhar
+- Intensifica o estímulo
+- Exemplo: `1x6-10+2 drop`
+
+**Documentação completa:** `src/data/advancedTechniques.md`
+
+### Rotina Semanal
+
+#### Rotina ABC (3x/semana) - `routine.ts` (padrão)
 ```typescript
 interface RoutineDay {
   id: string;
@@ -141,14 +205,30 @@ interface RoutineDay {
 }
 ```
 
-**Estrutura padrão:**
-- Segunda: Treino A
-- Terça: Treino B
-- Quarta: Treino C
-- Quinta: Descanso Ativo
-- Sexta: Treino A (Foco Técnico)
-- Sábado: Treino C (Glúteo Extra)
+**Estrutura:**
+- Segunda: Treino A (Quadríceps + Panturrilha)
+- Terça: Descanso
+- Quarta: Treino B (Costas, Peito, Ombros, Tríceps)
+- Quinta: Descanso
+- Sexta: Treino C (Posterior + Glúteos)
+- Sábado: Descanso
 - Domingo: Descanso
+
+#### Rotina ABCDEF (5x/semana) - `routineABCDEF.ts` (opcional)
+**Estrutura:**
+- Segunda: Treino A (Quadríceps)
+- Terça: Descanso
+- Quarta: Treino B (Costas + Panturrilha)
+- Quinta: Treino C (Posterior + Glúteos + Quadríceps)
+- Sexta: Treino D (Peito, Ombros, Tríceps)
+- Sábado: Treino E (Quadríceps Submáximo)
+- Domingo: Descanso
+
+**Toggle de Rotina:**
+- Disponível no menu hamburger (apenas perfil feminino)
+- Permite alternar entre ABC (padrão) e ABCDEF
+- Persistência no localStorage (`routine-type`)
+- Atualiza automaticamente todos os treinos e componentes relacionados
 
 ---
 
@@ -352,11 +432,24 @@ interface StreakData {
 - Transições suaves
 
 ### Perfis (`ProfileContext.tsx`)
-- **Feminino** (padrão): Treinos ABC, Dieta 2100 cal
+- **Feminino** (padrão): Treinos ABC (3x/semana) ou ABCDEF (5x/semana), Dieta 2100 cal
 - **Masculino**: Push/Pull/Legs, Dieta adaptada
-- Toggle no Header
+- Toggle de Perfil no Header
+- Toggle de Rotina no Menu (apenas feminino): ABC ↔ ABCDEF
 - Persistência no localStorage
 - Aplicação via atributo `data-profile` no `html`
+
+**Context API:**
+```typescript
+interface ProfileContextType {
+  profileType: 'female' | 'male';
+  routineType: 'abc' | 'abcdef';  // Apenas para perfil feminino
+  setProfileType: (type: ProfileType) => void;
+  toggleProfile: () => void;
+  setRoutineType: (type: RoutineType) => void;
+  toggleRoutine: () => void;
+}
+```
 
 ---
 
@@ -385,9 +478,13 @@ interface StreakData {
   - 💪 Treino
   - 🍎 Nutrição
   - ⚙️ Outros
-- Toggles de Perfil e Tema
+- Toggles no header:
+  - RoutineToggle (ABC/ABCDEF) - apenas perfil feminino, linha separada
+  - ProfileToggle (Feminino/Masculino)
+  - ThemeToggle (Claro/Escuro)
 - Overlay escuro ao abrir
 - Menu hambúrguer branco
+- Layout responsivo com toggle de rotina em linha separada para evitar quebra
 
 ### ExerciseList (`ExerciseList.tsx`)
 - Lista de exercícios numerada
@@ -402,6 +499,25 @@ interface StreakData {
 - Contador de exercícios
 - Ícone de haltere
 
+### RoutineToggle (`RoutineToggle.tsx`)
+- Toggle para alternar entre rotina ABC e ABCDEF
+- Visível apenas para perfil feminino
+- Localizado no menu hamburger (linha separada)
+- Ícones: Calendar (ABC) e CalendarDays (ABCDEF)
+- Persistência no localStorage
+
+### TechniquesGuide (`TechniquesGuide.tsx`)
+- Guia expansível de técnicas avançadas de treino
+- Localizado na página de treinos (apenas perfil feminino)
+- Explica 5 técnicas principais:
+  - Rest Pause ⏸️
+  - Repetições Parciais 🔄
+  - Pico de Contração ⏱️
+  - Progressão de Carga 📈
+  - Drop Set ⬇️
+- Para cada técnica: descrição, como fazer, exemplo e benefícios
+- Design responsivo com animações
+
 ### CelebrationModal (`CelebrationModal.tsx`)
 - Modal de celebração ao desbloquear badge
 - Modal de celebração ao atingir streak (7, 14, 30 dias)
@@ -413,9 +529,14 @@ interface StreakData {
 ## 📊 Páginas da Aplicação
 
 ### `/` - Workouts (Treinos)
-- Lista de treinos disponíveis
+- Lista de treinos disponíveis (ABC ou ABCDEF conforme toggle)
 - Redirecionamento automático para último treino
 - Destaque visual no último treino aberto
+- **Guia de Técnicas Avançadas** (apenas perfil feminino):
+  - Seção expansível com botão "O que significam essas técnicas?"
+  - Explica todas as nomenclaturas técnicas usadas nos treinos
+  - Rest Pause, Repetições Parciais, Pico de Contração, Progressão de Carga, Drop Set
+  - Cada técnica com descrição, passo a passo, exemplo e benefícios
 
 ### `/workout/:id` - WorkoutDetail (Detalhes do Treino)
 - Informações completas do treino
@@ -468,7 +589,10 @@ interface StreakData {
 - Específicas por treino
 
 ### `/stretches` - Stretches (Alongamentos)
-- Alongamentos específicos
+- Alongamentos específicos para cada treino
+- Suporta treinos ABC e ABCDEF (conforme rotina selecionada)
+- Alongamentos adaptados para cada grupo muscular trabalhado
+- Instruções detalhadas com duração recomendada
 - Organizados por treino
 
 ### `/stats` - Stats (Estatísticas)
@@ -672,6 +796,29 @@ export const Component = ({ ... }: Props) => {
 - Notificações de treino
 - Notificações de streak
 
+## 📁 Arquivos de Dados
+
+### Treinos
+- `workouts.ts` - Treinos ABC (3x/semana) - padrão feminino
+- `workoutsABCDEF.ts` - Treinos ABCDEF (5x/semana) - opcional feminino
+- `workoutsMale.ts` - Treinos Push/Pull/Legs - masculino
+- `workoutsImproved.ts` - Versão melhorada dos treinos (referência)
+
+### Rotinas
+- `routine.ts` - Rotina ABC (3x/semana) - padrão
+- `routineABCDEF.ts` - Rotina ABCDEF (5x/semana) - opcional
+- `routineImproved.ts` - Rotina melhorada (referência)
+
+### Técnicas e Documentação
+- `advancedTechniques.md` - Documentação completa das técnicas avançadas
+- Explicações detalhadas de Rest Pause, Repetições Parciais, Pico de Contração, Progressão de Carga e Drop Set
+
+### Análises Profissionais
+- `ANALISE_ABC_VS_ABCDEF.md` - Comparação profissional entre rotina ABC e ABCDEF
+- `ANALISE_TREINO_PROFISSIONAL.md` - Análise comparativa dos treinos do projeto vs treino externo
+- Recomendações de quando usar cada rotina
+- Pontos fortes e melhorias sugeridas
+
 ---
 
 ## 🎨 Identidade Visual
@@ -756,4 +903,35 @@ Projeto desenvolvido para uso pessoal.
 
 **Última atualização:** Janeiro 2025
 **Versão:** 0.0.0
+
+---
+
+## 🆕 Mudanças Recentes (Janeiro 2025)
+
+### Rotina ABCDEF (5x/semana)
+- ✅ Adicionada rotina ABCDEF com 6 treinos (A, B, C, D, E)
+- ✅ Toggle de rotina no menu hamburger (apenas perfil feminino)
+- ✅ Treinos focados em quadríceps com técnicas avançadas
+- ✅ Rotina ABC permanece como padrão
+
+### Guia de Técnicas Avançadas
+- ✅ Componente expansível na página de treinos
+- ✅ Explicação completa de todas as nomenclaturas técnicas
+- ✅ Rest Pause, Repetições Parciais, Pico de Contração, Progressão de Carga, Drop Set
+- ✅ Cada técnica com descrição, passo a passo, exemplo e benefícios
+
+### Melhorias nos Treinos ABC
+- ✅ Treinos atualizados com técnicas avançadas
+- ✅ Progressão de carga implementada
+- ✅ Rest Pause e Repetições Parciais adicionados
+- ✅ Pico de contração em exercícios específicos
+
+### Alongamentos
+- ✅ Alongamentos atualizados para incluir todos os treinos ABCDEF
+- ✅ Alongamentos específicos para cada treino (A, B, C, D, E)
+
+### Layout e UX
+- ✅ Menu hamburger corrigido para evitar quebra com toggle de rotina
+- ✅ Toggle de rotina em linha separada no menu
+- ✅ Layout responsivo aprimorado
 
