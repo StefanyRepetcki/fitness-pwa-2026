@@ -191,11 +191,8 @@ export const RestTimer = () => {
         breadcrumbs={breadcrumbs}
       />
       <PageContainer>
-        <div className={styles.intro}>
-          <p>Controle seu tempo de descanso entre séries para maximizar seus resultados</p>
-        </div>
-
-        {/* Timer Principal */}
+        <div className={styles.container}>
+        {/* Timer Principal - Compacto */}
         <div className={styles.timerContainer}>
           <div className={styles.timerCircle}>
             <svg className={styles.timerSvg} viewBox="0 0 100 100">
@@ -238,19 +235,18 @@ export const RestTimer = () => {
             </div>
           </div>
 
-          {/* Status */}
+          {/* Status compacto */}
           {timeLeft === 0 && initialTime > 0 && (
             <div className={styles.finishedMessage}>
-              <h2>⏰ Tempo Finalizado!</h2>
-              <p>Volte ao exercício</p>
+              <span>⏰ Tempo Finalizado!</span>
             </div>
           )}
 
-          {/* Controles */}
+          {/* Controles compactos */}
           <div className={styles.controls}>
-            {!isRunning && timeLeft === 0 && (
+            {!isRunning && timeLeft === 0 && !showCustomInput && (
               <div className={styles.startPrompt}>
-                <p>Selecione um tempo ou defina um customizado</p>
+                Selecione um tempo abaixo
               </div>
             )}
 
@@ -260,8 +256,8 @@ export const RestTimer = () => {
                 className={`${styles.controlButton} ${styles.pauseButton}`}
                 aria-label="Pausar timer"
               >
-                <Pause size={24} strokeWidth={2} />
-                Pausar
+                <Pause size={20} strokeWidth={2} />
+                <span>Pausar</span>
               </button>
             )}
 
@@ -272,16 +268,15 @@ export const RestTimer = () => {
                   className={`${styles.controlButton} ${styles.resumeButton}`}
                   aria-label="Retomar timer"
                 >
-                  <Play size={24} strokeWidth={2} />
-                  Retomar
+                  <Play size={20} strokeWidth={2} />
+                  <span>Retomar</span>
                 </button>
                 <button
                   onClick={resetTimer}
                   className={`${styles.controlButton} ${styles.resetButton}`}
                   aria-label="Reiniciar timer"
                 >
-                  <RotateCcw size={24} strokeWidth={2} />
-                  Reiniciar
+                  <RotateCcw size={20} strokeWidth={2} />
                 </button>
               </>
             )}
@@ -292,106 +287,118 @@ export const RestTimer = () => {
                 className={`${styles.controlButton} ${styles.stopButton}`}
                 aria-label="Parar timer"
               >
-                <Square size={24} strokeWidth={2} />
-                Parar
+                <Square size={20} strokeWidth={2} />
+                <span>Parar</span>
               </button>
             )}
           </div>
         </div>
 
-        {/* Tempos Pré-definidos */}
-        <div className={styles.presetsSection}>
-          <h3 className={styles.sectionTitle}>Tempos Recomendados</h3>
-          <div className={styles.presetsGrid}>
-            {PRESET_TIMES.map((preset) => (
-              <button
-                key={preset.value}
-                onClick={() => startTimer(preset.value)}
-                className={`${styles.presetButton} ${timeLeft === 0 && initialTime === preset.value ? styles.active : ''}`}
-                disabled={isRunning || isPaused}
-                aria-label={`Iniciar timer de ${preset.label}`}
-              >
-                <div className={styles.presetLabel}>{preset.label}</div>
-                <div className={styles.presetDescription}>{preset.description}</div>
-              </button>
-            ))}
+        {/* Tempos Pré-definidos - Grid compacto */}
+        {!isRunning && !isPaused && (
+          <div className={styles.presetsSection}>
+            <div className={styles.presetsGrid}>
+              {PRESET_TIMES.map((preset) => (
+                <button
+                  key={preset.value}
+                  onClick={() => startTimer(preset.value)}
+                  className={`${styles.presetButton} ${timeLeft === 0 && initialTime === preset.value ? styles.active : ''}`}
+                  disabled={isRunning || isPaused}
+                  aria-label={`Iniciar timer de ${preset.label}`}
+                  title={preset.description}
+                >
+                  <span className={styles.presetLabel}>{preset.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Timer Customizado */}
-        <div className={styles.customSection}>
-          <button
-            onClick={() => setShowCustomInput(!showCustomInput)}
-            className={styles.customToggle}
-            aria-label={showCustomInput ? 'Fechar timer customizado' : 'Abrir timer customizado'}
-          >
-            {showCustomInput ? 'Fechar' : 'Timer Customizado'}
-          </button>
-
-          {showCustomInput && (
-            <div className={styles.customForm}>
-              <div className={styles.customInputs}>
-                <div className={styles.customInputGroup}>
-                  <label>Minutos</label>
-                  <input
-                    type="number"
-                    min="0"
-                    max="10"
-                    value={customMinutes}
-                    onChange={(e) => setCustomMinutes(e.target.value)}
-                    className={styles.customInput}
-                    disabled={isRunning || isPaused}
-                  />
+        {/* Timer Customizado - Compacto inline */}
+        {!isRunning && !isPaused && (
+          <div className={styles.customSection}>
+            {!showCustomInput ? (
+              <button
+                onClick={() => setShowCustomInput(true)}
+                className={styles.customToggle}
+                aria-label="Abrir timer customizado"
+              >
+                <span>+</span> Timer Customizado
+              </button>
+            ) : (
+              <div className={styles.customForm}>
+                <div className={styles.customHeader}>
+                  <span>Timer Customizado</span>
+                  <button
+                    onClick={() => setShowCustomInput(false)}
+                    className={styles.customClose}
+                    aria-label="Fechar"
+                  >
+                    ×
+                  </button>
                 </div>
-                <div className={styles.customInputGroup}>
-                  <label>Segundos</label>
-                  <input
-                    type="number"
-                    min="0"
-                    max="59"
-                    value={customSeconds}
-                    onChange={(e) => setCustomSeconds(e.target.value)}
-                    className={styles.customInput}
-                    disabled={isRunning || isPaused}
-                  />
+                <div className={styles.customInputs}>
+                  <div className={styles.customInputGroup}>
+                    <label>Min</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      value={customMinutes}
+                      onChange={(e) => setCustomMinutes(e.target.value)}
+                      className={styles.customInput}
+                    />
+                  </div>
+                  <div className={styles.customInputGroup}>
+                    <label>Seg</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="59"
+                      value={customSeconds}
+                      onChange={(e) => setCustomSeconds(e.target.value)}
+                      className={styles.customInput}
+                    />
+                  </div>
+                  <button
+                    onClick={handleCustomTime}
+                    className={styles.customStartButton}
+                  >
+                    Iniciar
+                  </button>
                 </div>
               </div>
-              <button
-                onClick={handleCustomTime}
-                className={styles.customStartButton}
-                disabled={isRunning || isPaused}
-              >
-                Iniciar Timer Customizado
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Configurações */}
-        <div className={styles.settingsSection}>
-          <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            className={styles.settingsButton}
-            aria-label={soundEnabled ? 'Desativar som' : 'Ativar som'}
-          >
-            {soundEnabled ? (
-              <Volume2 size={20} strokeWidth={2} />
-            ) : (
-              <VolumeX size={20} strokeWidth={2} />
             )}
-            <span>{soundEnabled ? 'Som Ativado' : 'Som Desativado'}</span>
-          </button>
-        </div>
+          </div>
+        )}
 
-        {/* Informações */}
-        <div className={styles.infoSection}>
-          <h3 className={styles.infoTitle}>💡 Dicas de Descanso</h3>
-          <ul className={styles.infoList}>
-            <li><strong>30-60s:</strong> Ideal para hipertrofia e resistência muscular</li>
-            <li><strong>90s-2min:</strong> Bom para força e potência</li>
-            <li><strong>3-5min:</strong> Recomendado para força máxima e exercícios compostos pesados</li>
-            <li>Respeite o tempo de descanso para maximizar seus resultados!</li>
-          </ul>
+        {/* Configurações e Informações - Compacto no rodapé */}
+        <div className={styles.footerSection}>
+          <div className={styles.settingsSection}>
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className={styles.settingsButton}
+              aria-label={soundEnabled ? 'Desativar som' : 'Ativar som'}
+              title={soundEnabled ? 'Som ativado' : 'Som desativado'}
+            >
+              {soundEnabled ? (
+                <Volume2 size={18} strokeWidth={2} />
+              ) : (
+                <VolumeX size={18} strokeWidth={2} />
+              )}
+            </button>
+          </div>
+
+          {/* Informações compactas */}
+          <div className={styles.infoSection}>
+            <div className={styles.infoTitle}>💡 Dicas de Descanso</div>
+            <div className={styles.infoList}>
+              <span><strong>30-60s:</strong> Hipertrofia</span>
+              <span><strong>90s-2min:</strong> Força</span>
+              <span><strong>3-5min:</strong> Força máxima</span>
+            </div>
+          </div>
+        </div>
         </div>
       </PageContainer>
     </>

@@ -4,6 +4,7 @@ import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { ExerciseList } from '../../components/ExerciseList/ExerciseList';
 import { CelebrationModal } from '../../components/CelebrationModal/CelebrationModal';
+import { QuickTimer } from '../../components/QuickTimer/QuickTimer';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
 import { useProfile } from '../../contexts/ProfileContext';
@@ -216,6 +217,9 @@ export const WorkoutDetail = () => {
           }}
         />
       )}
+      
+      {/* Timer flutuante para acesso rápido */}
+      <QuickTimer variant="floating" />
     </>
   );
 };
