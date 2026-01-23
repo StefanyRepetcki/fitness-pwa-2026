@@ -158,44 +158,7 @@
 }
 
 .logoFull {
-  max-width: 120px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-  transition: transform var(--transition-base);
-}
-
-.logoFull:hover {
-  transform: scale(1.02);
-}
-
-.logoFallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.logoPeach {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-  transition: transform var(--transition-base);
-}
-
-.logoPeach:hover {
-  transform: scale(1.05);
-}
-
-.brandName {
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.02em;
-  font-family: 'TAN Mergingue', 'Playfair Display', 'Cormorant Garamond', serif;
-  font-style: normal;
+  /* Estilos aplicados pelo componente Logo */
 }
 
 .title {
@@ -217,9 +180,7 @@
     padding-top: calc(1.5rem + env(safe-area-inset-top));
   }
   
-  .logoFull {
-    max-width: 130px;
-  }
+  /* Logo responsivo gerenciado pelo componente Logo */
   
   .title {
     font-size: 1.625rem;
@@ -237,18 +198,7 @@
     font-size: 2rem;
   }
 
-  .logoFull {
-    max-width: 140px;
-  }
-
-  .logoPeach {
-    width: 40px;
-    height: 40px;
-  }
-
-  .brandName {
-    font-size: 1.5rem;
-  }
+  /* Logo responsivo gerenciado pelo componente Logo */
   
   .breadcrumbLink {
     max-width: 200px;
@@ -281,9 +231,7 @@
     min-height: 32px;
   }
   
-  .logoFull {
-    max-width: 100px;
-  }
+  /* Logo responsivo gerenciado pelo componente Logo */
   
   .title {
     font-size: 1.25rem;

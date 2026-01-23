@@ -5,6 +5,7 @@ import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { workouts } from '../../data/workouts';
 import { workoutsABCDEF } from '../../data/workoutsABCDEF';
+import { workoutsMale } from '../../data/workoutsMale';
 import { useProfile } from '../../contexts/ProfileContext';
 import { 
   getWorkoutHistory, 
@@ -23,7 +24,7 @@ export const Routine = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   
   const currentWorkouts = profileType === 'male' 
-    ? workouts 
+    ? workoutsMale 
     : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
 
   useEffect(() => {

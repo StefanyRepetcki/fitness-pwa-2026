@@ -1,5 +1,5 @@
 /**
- * Rotinas de Aquecimento para Treinos Masculinos (Push/Pull/Legs)
+ * Rotinas de Aquecimento para Treinos Masculinos - Cutting Agressivo
  * Baseado em evidências científicas e práticas profissionais
  * 
  * Princípios:
@@ -14,7 +14,7 @@ import type { WarmupRoutine } from './warmups';
 export const warmupRoutinesMale: WarmupRoutine[] = [
   {
     workoutId: 'push-male',
-    workoutName: 'Push - Peito, Ombros e Tríceps',
+    workoutName: 'PUSH - Peito, Ombros e Tríceps',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -56,7 +56,7 @@ export const warmupRoutinesMale: WarmupRoutine[] = [
   },
   {
     workoutId: 'pull-male',
-    workoutName: 'Pull - Costas e Bíceps',
+    workoutName: 'PULL - Costas, Bíceps e Posterior de Ombro',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -98,7 +98,7 @@ export const warmupRoutinesMale: WarmupRoutine[] = [
   },
   {
     workoutId: 'legs-male',
-    workoutName: 'Legs - Pernas Completas',
+    workoutName: 'LEGS - Quadríceps, Posteriores e Panturrilha',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -139,5 +139,3 @@ export const warmupRoutinesMale: WarmupRoutine[] = [
     ]
   }
 ];
-
-

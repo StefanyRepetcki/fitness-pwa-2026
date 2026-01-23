@@ -1,5 +1,5 @@
 /**
- * Alongamentos para Treinos Masculinos (Push/Pull/Legs)
+ * Alongamentos para Treinos Masculinos - Cutting Agressivo
  * Baseado em evidências científicas e práticas profissionais
  * 
  * Princípios:
@@ -14,7 +14,7 @@ import type { WorkoutStretches } from './stretches';
 export const stretchesByWorkoutMale: WorkoutStretches[] = [
   {
     workoutId: 'push-male',
-    workoutName: 'Push - Peito, Ombros e Tríceps',
+    workoutName: 'PUSH - Peito, Ombros e Tríceps',
     stretches: [
       {
         id: 'stretch-push-1',
@@ -55,7 +55,7 @@ export const stretchesByWorkoutMale: WorkoutStretches[] = [
   },
   {
     workoutId: 'pull-male',
-    workoutName: 'Pull - Costas e Bíceps',
+    workoutName: 'PULL - Costas, Bíceps e Posterior de Ombro',
     stretches: [
       {
         id: 'stretch-pull-1',
@@ -96,7 +96,7 @@ export const stretchesByWorkoutMale: WorkoutStretches[] = [
   },
   {
     workoutId: 'legs-male',
-    workoutName: 'Legs - Pernas Completas',
+    workoutName: 'LEGS - Quadríceps, Posteriores e Panturrilha',
     stretches: [
       {
         id: 'stretch-legs-1',
@@ -132,16 +132,7 @@ export const stretchesByWorkoutMale: WorkoutStretches[] = [
         description: 'Alonga os músculos da panturrilha (gastrocnêmio e sóleo)',
         duration: '30 segundos cada perna',
         instructions: 'Apoie as mãos na parede, coloque um pé à frente e outro atrás. Mantenha a perna de trás estendida e empurre o calcanhar no chão. Depois, flexione levemente o joelho de trás para alongar o sóleo.'
-      },
-      {
-        id: 'stretch-legs-6',
-        name: 'Alongamento de Adutores Sentado',
-        description: 'Alonga a parte interna da coxa',
-        duration: '30-45 segundos',
-        instructions: 'Sente-se no chão com as pernas abertas em V. Incline o tronco para frente mantendo as costas retas. Respire profundamente e relaxe.'
       }
     ]
   }
 ];
-
-

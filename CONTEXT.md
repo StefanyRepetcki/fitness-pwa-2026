@@ -78,20 +78,28 @@ interface Exercise {
 #### Perfil Feminino
 
 **Rotina ABC (3x/semana)** - `workouts.ts` (padrão)
+- **Objetivo**: Competição Wellness (foco em glúteos e pernas)
+- **Volume Semanal Glúteos**: 17 séries (Treino A + C) - ideal para Wellness
+- **Gasto Calórico**: ~400-600 kcal/treino (ajuda perda de peso)
+- **Adequado para**: 26 anos, IMC 32.3, objetivo perda de peso + desenvolvimento
+
 1. **Treino A - Quadríceps + Panturrilha**
    - Foco: Parte frontal da perna com técnicas avançadas
    - Exercícios: Agachamento, Hack Machine, Leg Press, Elevação de Quadril, Abdutor, Panturrilha
    - Técnicas: Progressão de carga, Rest Pause, Repetições parciais, Pico de contração, Drop set
+   - Volume: 22 séries
 
 2. **Treino B - Costas, Peito, Ombros e Tríceps**
    - Foco: Parte superior do corpo com alta densidade
    - Exercícios: Abdômen, Pulley, Remada, Supino Inclinado, Elevação Frontal/Lateral, Tríceps
    - Técnicas: Pico de contração, Repetições parciais, Intervalos curtos (45s)
+   - Volume: 27 séries
 
 3. **Treino C - Posterior + Glúteos**
    - Foco: Parte posterior da perna e glúteos
    - Exercícios: Flexor Deitado/Sentado, Stiff, Afundo, Elevação de Quadril, Abdutor
    - Técnicas: Progressão de carga, Rest Pause, Pico de contração (3s no abdutor)
+   - Volume: 22 séries
 
 **Rotina ABCDEF (5x/semana)** - `workoutsABCDEF.ts` (opcional, toggle no menu)
 1. **Treino A - Quadríceps (ABCDEF)**
@@ -120,8 +128,29 @@ interface Exercise {
    - Técnicas: Pico de contração, Parar antes da falha (submáximo)
 
 #### Perfil Masculino (`workoutsMale.ts`)
-- **Push/Pull/Legs** - Divisão de treino para homens
-- Estrutura similar mas com exercícios adaptados
+- **Push/Pull/Legs** - Divisão de treino para cutting agressivo
+- **Objetivo**: Classic Physique (preservar massa durante cutting)
+- **Frequência**: 5-6x/semana (PUSH/PULL/LEGS 2x cada)
+- **RPE**: 7-8 (não até falha sempre) - preserva recuperação
+- **Técnicas**: Sem técnicas avançadas (rest pause, drop set) - evita fadiga excessiva
+- **Cardio**: 20-30 min pós-treino (aumenta déficit sem catabolizar)
+- **Gasto Calórico**: ~600-800 kcal/dia (treino + cardio)
+- **Adequado para**: 26 anos, 146kg, IMC 44.6, cutting agressivo preservando massa
+
+1. **PUSH - Peito, Ombros e Tríceps**
+   - Exercícios: Supino Reto, Supino Inclinado, Desenvolvimento, Elevação Lateral, Tríceps Corda, Mergulho
+   - Volume: 18 séries
+   - Foco: Força e preservação de massa
+
+2. **PULL - Costas, Bíceps e Posterior de Ombro**
+   - Exercícios: Barra Fixa/Pulldown, Remada Curvada, Remada Máquina, Face Pull, Rosca Direta, Rosca Alternada
+   - Volume: 19 séries
+   - Foco: Largura e espessura das costas
+
+3. **LEGS - Quadríceps, Posteriores e Panturrilha**
+   - Exercícios: Agachamento/Hack, Leg Press, Stiff, Mesa Flexora, Panturrilha
+   - Volume: 17 séries
+   - Foco: Força e alto gasto metabólico
 
 ### Funcionalidades de Treino
 
@@ -258,18 +287,32 @@ interface Meal {
 ### Plano Alimentar
 
 #### Perfil Feminino (`diet.ts`)
-- **2100 calorias** diárias
-- 6 refeições por dia:
-  1. Café da Manhã (~350 cal)
-  2. Almoço (~450 cal)
-  3. Lanche (~200 cal)
-  4. Pré-treino (~250 cal)
-  5. Pós-treino (~400 cal)
-  6. Jantar (~450 cal)
+- **1900 calorias** diárias (cutting para competição Wellness)
+- **Objetivo**: Perda de peso + desenvolvimento para competição Wellness
+- **Macros**: ~130g proteína, ~210g carboidratos, ~55g gorduras
+- **Estrutura**: 6-7 refeições por dia com pré-treino e pós-treino estruturados
+- **Distribuição**: 
+  - Café da Manhã: ~300-350 kcal
+  - Pré-Treino: 150 kcal (quando houver treino)
+  - Pós-Treino: 280 kcal (quando houver treino)
+  - Almoço: ~380-420 kcal
+  - Lanche: ~150-200 kcal
+  - Jantar: ~280-400 kcal
+  - Antes de Dormir: 120 kcal (opcional)
+- **Considerações**: 
+  - IMC 32.3 requer déficit para perda de peso eficiente
+  - 1900 kcal = déficit de 20-25% para perda de peso eficiente
+  - Foco em preservar massa durante cutting
 
 #### Perfil Masculino (`dietMale.ts`)
-- Plano adaptado para necessidades masculinas
-- Estrutura similar com quantidades ajustadas
+- **3000 calorias** diárias (cutting agressivo)
+- **Objetivo**: Perda de peso agressiva preservando massa muscular
+- **Macros**: 230g proteína, 280g carboidratos, 80g gorduras
+- **Déficit**: 600-1000 kcal/dia (perda de 0.8-1.2% peso/semana)
+- **Estrutura**: 7 refeições com pré-treino e pós-treino estruturados
+- **Considerações**: 
+  - IMC 44.6 requer cutting agressivo mas inteligente
+  - Foco em preservar força e massa durante déficit
 
 ### Receitas (`recipes.ts`)
 - Receitas práticas e saudáveis
@@ -322,11 +365,22 @@ interface Supplement {
 ```
 
 ### Organização por Horários
-- **Manhã** (🌅): Multivitamínico, Ômega 3, etc.
-- **Pré-treino** (💪): Pré-treino, Creatina, etc.
-- **Pós-treino** (🥤): Whey Protein, etc.
-- **Tarde** (☀️): Colágeno, etc.
-- **Noite** (🌙): Magnésio, ZMA, etc.
+
+#### Perfil Feminino (`supplements.ts`)
+- **Manhã** (🌅): Multivitamínico, Vitamina D 2000 UI, Ômega 3 2g
+- **Antes do Almoço** (🍽️): Colágeno 10g + Vitamina C 500mg
+- **Pós-Almoço** (☕): Probiótico
+- **Pré-treino** (💪): Cafeína 200mg
+- **Pós-treino** (🏋️): Whey Protein 30g, Creatina 5g
+- **Noite** (🌙): Magnésio 400mg, Zinco 15mg
+- **Considerações**: Otimizada para 26 anos, objetivo competição Wellness, treino intenso
+
+#### Perfil Masculino (`supplementsMale.ts`)
+- **Manhã** (🌅): Multivitamínico, Vitamina D 2000 UI, Ômega 3 2-3g
+- **Pré-treino** (💪): Cafeína 200-300mg, Eletrólitos (500-1000mg sódio, 200-400mg potássio, 100-200mg magnésio)
+- **Pós-treino** (🏋️): Whey Protein 30g, Creatina 5g
+- **Noite** (🌙): Magnésio 400mg, Zinco 15mg
+- **Considerações**: Otimizada para 26 anos, cutting agressivo, 146kg, preservação de massa e força
 
 ---
 
@@ -438,6 +492,43 @@ interface StreakData {
 - Toggle de Rotina no Menu (apenas feminino): ABC ↔ ABCDEF
 - Persistência no localStorage
 - Aplicação via atributo `data-profile` no `html`
+
+#### Características Físicas e Objetivos por Perfil
+
+##### Perfil Feminino
+- **Idade**: 26 anos
+- **Biotipo**: Ampulheta (grande embaixo e acima, cintura fina)
+- **Altura**: 165cm
+- **Peso**: 88kg
+- **IMC**: 32.3 (Sobrepeso/Obesidade Grau I)
+- **Vantagem Genética**: Cintura fina natural (excelente para competição)
+- **Categoria Recomendada**: 
+  - **Wellness** (foco em glúteos e pernas, estrutura maior)
+- **Objetivo**: Competição de fisiculturismo feminino (Wellness)
+- **Fase Atual**: Desenvolvimento e preparação para competição
+- **Meta Principal**: Perda de peso + desenvolvimento muscular para competição
+- **Treino**: ABC (3x) ou ABCDEF (5x) - foco em glúteos (17 séries semanais)
+- **Dieta**: 1900 kcal (cutting para competição) - macros: 130g P, 210g C, 55g F
+- **Hidratação**: 3.0-3.5L/dia (88kg × 35ml/kg = 3.08L)
+- **Suplementação**: Otimizada para 26 anos, treino intenso, objetivo competição
+
+##### Perfil Masculino
+- **Idade**: 26 anos
+- **Biotipo**: Mesomorfo (ganho de massa natural, estrutura grande, recuperação rápida)
+- **Altura**: 1.81m
+- **Peso**: 146kg
+- **IMC**: ~44.6 kg/m²
+- **Características**: Forte, com muita estrutura, muita carga, bastante gordura para queimar
+- **Categoria Recomendada**: 
+  - **Classic Physique** (objetivo final - proporções equilibradas, estética e simetria)
+  - **Fase Atual**: Cutting Agressivo ("escavar o físico que já existe")
+- **Objetivo**: Cutting agressivo preservando massa, evoluindo para Classic Physique
+- **Nível**: Avançado (não é iniciante)
+- **Meta Principal**: Perda de peso agressiva (0.8-1.2% peso/semana) preservando massa
+- **Treino**: PUSH/PULL/LEGS (5-6x/semana) - RPE 7-8, sem técnicas avançadas
+- **Dieta**: 3000 kcal (déficit de 600-1000 kcal/dia) - macros: 230g P, 280g C, 80g F
+- **Hidratação**: 5.0L/dia (146kg × 40ml/kg = 5.84L, limitado a 5L)
+- **Suplementação**: Otimizada para 26 anos, cutting agressivo, preservação de força e massa
 
 **Context API:**
 ```typescript

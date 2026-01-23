@@ -43,6 +43,14 @@ export const supplementSchedule: SupplementSchedule[] = [
         time: '07:00',
         notes: 'Com refeição para melhor absorção. Evitar tomar junto com cálcio.',
         icon: '🐟'
+      },
+      {
+        id: 's12',
+        name: 'Ferro (Bisglicinato)',
+        dosage: '18-30mg',
+        time: '07:00',
+        notes: 'Em jejum ou com vitamina C (aumenta absorção). IMPORTANTE: Fazer exame de sangue (hemograma + ferritina) antes de começar e monitorar a cada 3-4 meses. Não tomar junto com café/chá, cálcio ou zinco (reduzem absorção). Ciclo: 3 meses on, 1 mês off. Recomendado especialmente se já teve anemia ou treino muito intenso.',
+        icon: '🔴'
       }
     ]
   },
@@ -56,7 +64,7 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Colágeno',
         dosage: '10g',
         time: '12:00',
-        notes: '30min antes do almoço, com água',
+        notes: '30min antes do almoço, com água e 500mg de vitamina C (melhora absorção e síntese de colágeno). Importante para pele e articulações durante treino intenso.',
         icon: '✨'
       }
     ]
@@ -82,19 +90,11 @@ export const supplementSchedule: SupplementSchedule[] = [
     icon: '💪',
     supplements: [
       {
-        id: 's6',
-        name: 'Creatina',
-        dosage: '5g (ou 0.03g/kg de peso)',
-        time: '30min antes',
-        notes: 'Com suco ou água (fonte de carboidrato melhora absorção). Ciclo: 8 semanas on, 4 semanas off (ou uso contínuo com dosagem menor).',
-        icon: '⚡'
-      },
-      {
         id: 's7',
         name: 'Cafeína',
         dosage: '200mg',
         time: '30min antes',
-        notes: 'Ou café preto',
+        notes: 'Ou café preto. Aumenta performance e foco durante treino. Para idade de 26 anos, metabolismo ainda alto, dose adequada.',
         icon: '☕'
       }
     ]
@@ -109,15 +109,15 @@ export const supplementSchedule: SupplementSchedule[] = [
         name: 'Whey Protein',
         dosage: '30g (ou 0.4-0.5g/kg de peso)',
         time: 'Imediato',
-        notes: 'Até 30min após o treino (janela anabólica). Pode misturar com creatina.',
+        notes: 'Até 30min após o treino (janela anabólica). Complementa proteína diária para desenvolvimento muscular.',
         icon: '🥤'
       },
       {
         id: 's9',
         name: 'Creatina',
-        dosage: '5g (ou 0.03g/kg de peso)',
+        dosage: '5g',
         time: 'Imediato',
-        notes: 'Junto com o whey (melhor absorção com carboidrato/proteína)',
+        notes: 'Junto com o whey e carboidrato (melhor absorção). Para 26 anos e 88kg, 5g/dia é suficiente. Mantém força e recuperação durante treino intenso.',
         icon: '⚡'
       }
     ]

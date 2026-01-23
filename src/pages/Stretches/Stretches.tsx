@@ -19,7 +19,7 @@ export const Stretches = () => {
   const currentStretches = profileType === 'male' ? stretchesByWorkoutMale : stretchesByWorkout;
   const defaultWorkoutId = profileType === 'male' 
     ? 'push-male' 
-    : (routineType === 'abcdef' ? 'treino-a-abcdef' : 'treino-a');
+    : (routineType === 'abcdef' ? 'treino-a-abcdef' : 'treino-a-improved');
   const [selectedWorkout, setSelectedWorkout] = useState<string>(defaultWorkoutId);
 
   const selectedStretches = currentStretches.find(s => s.workoutId === selectedWorkout);

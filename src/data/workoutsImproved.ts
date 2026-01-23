@@ -10,7 +10,7 @@ import type { Workout } from './workouts';
 export const workoutsImproved: Workout[] = [
   {
     id: 'treino-a-improved',
-    name: 'Treino A - Quadríceps + Panturrilha (Melhorado)',
+    name: 'Treino A - Quadríceps + Panturrilha',
     description: 'Treino avançado com técnicas de alta intensidade. Progressão de carga e técnicas avançadas para máximo desenvolvimento.',
     exercises: [
       {
@@ -71,7 +71,7 @@ export const workoutsImproved: Workout[] = [
   },
   {
     id: 'treino-b-improved',
-    name: 'Treino B - Costas, Peito, Ombros e Tríceps (Melhorado)',
+    name: 'Treino B - Costas, Peito, Ombros e Tríceps',
     description: 'Treino de alta densidade com pico de contração e técnicas avançadas. Intervalos curtos para máxima intensidade.',
     exercises: [
       {
@@ -141,7 +141,7 @@ export const workoutsImproved: Workout[] = [
   },
   {
     id: 'treino-c-improved',
-    name: 'Treino C - Posterior + Glúteos (Melhorado)',
+    name: 'Treino C - Posterior + Glúteos',
     description: 'Treino focado em posterior e glúteos com técnicas avançadas. Progressão de carga e rest pause para máximo desenvolvimento.',
     exercises: [
       {

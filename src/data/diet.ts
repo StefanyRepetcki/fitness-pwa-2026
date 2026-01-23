@@ -11,6 +11,27 @@ export interface DietDay {
   meals: Meal[];
 }
 
+/**
+ * Dieta para Perfil Feminino - Cutting para Competição Wellness
+ * Adaptado por Profissional de Nutrição Esportiva
+ * 
+ * Perfil da atleta:
+ * - Idade: 26 anos
+ * - Peso: 88kg | Altura: 165cm | IMC: 32.3
+ * - Objetivo: Competição Wellness (perda de peso + desenvolvimento)
+ * 
+ * Macros para Cutting:
+ * - Calorias: 1900 kcal (déficit de 20-25% para perda de peso eficiente)
+ * - Proteína: ~120-130g (1.4-1.5g/kg) - preservar massa durante cutting
+ * - Carboidratos: ~200-220g (priorizar em torno do treino)
+ * - Gorduras: ~50-55g (essenciais para produção hormonal)
+ * 
+ * Distribuição Média:
+ * - 27% Proteína (130g)
+ * - 45% Carboidratos (210g)
+ * - 28% Gorduras (55g)
+ */
+
 export const diet: DietDay[] = [
   {
     id: 'day1',
@@ -22,42 +43,61 @@ export const diet: DietDay[] = [
         items: [
           '2 ovos mexidos',
           '1 fatia de pão integral',
-          '1 banana',
+          '1 banana média',
           '1 xícara de café com leite desnatado'
         ],
-        calories: 350
+        calories: 320
+      },
+      {
+        id: 'pre-workout-1',
+        name: 'Pré-Treino (30-60min antes)',
+        items: [
+          '1 banana média',
+          '1 colher de mel',
+          'Café preto (opcional)'
+        ],
+        calories: 150
+      },
+      {
+        id: 'post-workout-1',
+        name: 'Pós-Treino',
+        items: [
+          '1 scoop de whey protein (30g)',
+          '1 banana média',
+          '500ml de água'
+        ],
+        calories: 280
       },
       {
         id: 'lunch-1',
         name: 'Almoço',
         items: [
           '150g de peito de frango grelhado',
-          '100g de arroz integral',
+          '80g de arroz integral',
           'Salada verde à vontade',
           '1 colher de azeite'
         ],
-        calories: 450
+        calories: 400
       },
       {
         id: 'snack-1',
         name: 'Lanche',
         items: [
           '1 iogurte grego',
-          '1 colher de mel',
           '10 amêndoas'
         ],
-        calories: 200
+        calories: 180
       },
       {
         id: 'dinner-1',
         name: 'Jantar',
         items: [
           '150g de salmão grelhado',
-          'Batata doce assada',
+          'Batata doce assada (100g)',
           'Brócolis no vapor',
           'Salada de rúcula'
         ],
-        calories: 400
+        calories: 370
       }
     ]
   },
@@ -69,32 +109,34 @@ export const diet: DietDay[] = [
         id: 'breakfast-2',
         name: 'Café da Manhã',
         items: [
-          'Aveia com frutas vermelhas',
+          'Aveia (50g) com frutas vermelhas',
           '1 colher de chia',
+          '1 scoop de whey protein (30g)',
           '1 xícara de chá verde'
         ],
-        calories: 300
+        calories: 350
       },
       {
         id: 'lunch-2',
         name: 'Almoço',
         items: [
           '150g de carne magra grelhada',
-          'Quinoa cozida',
+          'Quinoa cozida (80g)',
           'Abobrinha grelhada',
-          'Salada colorida'
+          'Salada colorida',
+          '1 colher de azeite'
         ],
-        calories: 480
+        calories: 420
       },
       {
         id: 'snack-2',
         name: 'Lanche',
         items: [
           '1 maçã',
-          '1 punhado de castanhas',
+          '1 punhado de castanhas (15g)',
           'Chá de ervas'
         ],
-        calories: 180
+        calories: 150
       },
       {
         id: 'dinner-2',
@@ -105,7 +147,15 @@ export const diet: DietDay[] = [
           'Tomate cereja',
           '1 fatia de queijo branco'
         ],
-        calories: 320
+        calories: 280
+      },
+      {
+        id: 'bedtime-2',
+        name: 'Antes de Dormir',
+        items: [
+          '1 scoop de caseína (30g) ou 150g de queijo cottage'
+        ],
+        calories: 120
       }
     ]
   },
@@ -117,43 +167,63 @@ export const diet: DietDay[] = [
         id: 'breakfast-3',
         name: 'Café da Manhã',
         items: [
-          'Panqueca de aveia e banana',
+          'Panqueca de aveia (50g) e banana',
           '1 colher de mel',
           '1 xícara de café'
         ],
-        calories: 340
+        calories: 300
+      },
+      {
+        id: 'pre-workout-3',
+        name: 'Pré-Treino (30-60min antes)',
+        items: [
+          '1 banana média',
+          '1 colher de mel',
+          'Café preto (opcional)'
+        ],
+        calories: 150
+      },
+      {
+        id: 'post-workout-3',
+        name: 'Pós-Treino',
+        items: [
+          '1 scoop de whey protein (30g)',
+          '1 banana média',
+          '500ml de água'
+        ],
+        calories: 280
       },
       {
         id: 'lunch-3',
         name: 'Almoço',
         items: [
           '150g de peito de peru',
-          'Batata doce assada',
+          'Batata doce assada (100g)',
           'Couve refogada',
-          'Salada de alface e tomate'
+          'Salada de alface e tomate',
+          '1 colher de azeite'
         ],
-        calories: 420
+        calories: 380
       },
       {
         id: 'snack-3',
         name: 'Lanche',
         items: [
-          'Smoothie de frutas',
-          '1 colher de proteína em pó',
-          '1 punhado de granola'
+          'Smoothie de frutas (sem açúcar)',
+          '1 colher de proteína em pó (30g)'
         ],
-        calories: 250
+        calories: 200
       },
       {
         id: 'dinner-3',
         name: 'Jantar',
         items: [
-          'Salmão ao forno',
-          'Arroz integral',
+          'Salmão ao forno (150g)',
+          'Arroz integral (80g)',
           'Aspargos grelhados',
           'Salada verde'
         ],
-        calories: 410
+        calories: 400
       }
     ]
   }

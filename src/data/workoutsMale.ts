@@ -1,15 +1,27 @@
 /**
- * Treinos Push/Pull/Legs para Perfil Masculino
- * Baseado em evidências científicas e práticas profissionais de hipertrofia
+ * Treinos Masculinos - Cutting Agressivo (PUSH/PULL/LEGS)
+ * Adaptado por Profissional de Educação Física
+ * 
+ * Perfil do atleta:
+ * - Biotipo: Mesomorfo
+ * - Objetivo: Cutting Agressivo (preservar massa, queimar gordura)
+ * - Altura: 1.81m
+ * - Peso: 146kg
  * 
  * Estrutura:
- * - Push: Peito, Ombros, Tríceps
- * - Pull: Costas, Bíceps, Deltoides Posteriores
- * - Legs: Quadríceps, Posteriores, Glúteos, Panturrilhas
+ * - PUSH: Peito, Ombros, Tríceps
+ * - PULL: Costas, Bíceps, Posterior de Ombro
+ * - LEGS: Quadríceps, Posteriores, Panturrilha
  * 
- * Volume: 3-4 séries por exercício
- * Repetições: 6-12 (força-hipertrofia)
- * Descanso: 1-3 minutos (compostos mais longos)
+ * Frequência: 5-6x/semana (PUSH/PULL/LEGS 2x cada)
+ * 
+ * Princípios:
+ * - Manter estímulo neural
+ * - Controlar fadiga
+ * - Aumentar gasto energético
+ * - RPE 7-8 (não até falha sempre)
+ * - Sem técnicas avançadas (rest pause, drop set, parciais)
+ * - Foco em força e preservação de massa
  */
 
 import type { Workout } from './workouts';
@@ -17,300 +29,176 @@ import type { Workout } from './workouts';
 export const workoutsMale: Workout[] = [
   {
     id: 'push-male',
-    name: 'Push - Peito, Ombros e Tríceps',
-    description: 'Treino focado em movimentos de empurrar. Desenvolve peitoral, deltoides e tríceps com volume e intensidade otimizados para hipertrofia.',
+    name: 'PUSH - Peito, Ombros e Tríceps',
+    description: 'Treino focado em movimentos de empurrar. Mantém estímulo neural e força durante cutting agressivo. RPE 7-8, sem técnicas avançadas.',
     exercises: [
       {
         id: 'push-1',
-        name: 'Supino Inclinado com Barra (45°)',
+        name: 'Supino Reto com Barra',
         sets: 4,
-        reps: '6-10',
+        reps: '4x5-8',
         restTime: '2-3min',
         rpe: 8,
-        notes: 'Exercício principal. Foco em peitoral superior. Controle a descida (2s) e explosão na subida.'
+        notes: 'Exercício principal. Foco em força. Manter técnica perfeita. Não ir até falha absoluta.'
       },
       {
         id: 'push-2',
-        name: 'Supino Reto com Barra',
-        sets: 4,
-        reps: '6-10',
-        restTime: '2-3min',
-        rpe: 8,
-        notes: 'Desenvolvimento completo do peitoral. Manter omoplatas retraídas e pés no chão.'
+        name: 'Supino Inclinado com Halteres',
+        sets: 3,
+        reps: '3x8-10',
+        restTime: '2min',
+        rpe: 7,
+        notes: 'Desenvolvimento peitoral superior. Controle total do movimento.'
       },
       {
         id: 'push-3',
-        name: 'Supino Declinado com Halteres',
+        name: 'Desenvolvimento com Halteres',
         sets: 3,
-        reps: '8-12',
-        restTime: '1-2min',
-        rpe: 7,
-        notes: 'Foco em peitoral inferior. Amplitude completa de movimento.'
-      },
-      {
-        id: 'push-4',
-        name: 'Voador Frontal (Pec Deck)',
-        sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 7,
-        cadence: '2s excêntrico, 1s concêntrico',
-        notes: 'Isolamento do peitoral. Controle total do movimento.'
-      },
-      {
-        id: 'push-5',
-        name: 'Desenvolvimento Militar (Ombros)',
-        sets: 4,
-        reps: '6-10',
-        restTime: '2-3min',
+        reps: '3x6-8',
+        restTime: '2min',
         rpe: 8,
         notes: 'Desenvolvimento completo dos deltoides. Pode ser feito em pé ou sentado.'
       },
       {
-        id: 'push-6',
-        name: 'Elevação Lateral (Ombros)',
+        id: 'push-4',
+        name: 'Elevação Lateral',
         sets: 3,
-        reps: '10-12',
+        reps: '3x12-15',
         restTime: '1-1.5min',
         rpe: 7,
-        cadence: '2s subida, 2s descida',
         notes: 'Isolamento deltoide médio. Evitar balanço do corpo.'
       },
       {
-        id: 'push-7',
-        name: 'Elevação Frontal com Barra',
+        id: 'push-5',
+        name: 'Tríceps Corda',
         sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 6,
-        notes: 'Desenvolvimento deltoide anterior. Alternar com halteres para variação.'
-      },
-      {
-        id: 'push-8',
-        name: 'Paralelas (Tríceps)',
-        sets: 3,
-        reps: '8-12',
-        restTime: '1-2min',
-        rpe: 7,
-        notes: 'Exercício composto para tríceps. Pode usar peso adicional quando ficar fácil.'
-      },
-      {
-        id: 'push-9',
-        name: 'Tríceps Pulley (Corda)',
-        sets: 3,
-        reps: '10-12',
+        reps: '3x10-12',
         restTime: '1-1.5min',
         rpe: 7,
-        cadence: '1s concêntrico, 2s excêntrico',
         notes: 'Isolamento tríceps. Extensão completa no final do movimento.'
       },
       {
-        id: 'push-10',
-        name: 'Tríceps Francês (Halter ou Barra)',
-        sets: 3,
-        reps: '8-12',
-        restTime: '1-1.5min',
+        id: 'push-6',
+        name: 'Mergulho Máquina ou Paralela',
+        sets: 2,
+        reps: '2x8-10',
+        restTime: '1-2min',
         rpe: 7,
-        notes: 'Isolamento tríceps. Manter cotovelos fixos durante todo o movimento.'
+        notes: 'Exercício composto para tríceps. Pode usar peso adicional se necessário.'
       }
     ]
   },
   {
     id: 'pull-male',
-    name: 'Pull - Costas e Bíceps',
-    description: 'Treino focado em movimentos de puxar. Desenvolve dorsais, trapézio, romboides e bíceps com ênfase em largura e espessura das costas.',
+    name: 'PULL - Costas, Bíceps e Posterior de Ombro',
+    description: 'Treino focado em movimentos de puxar. Preserva força e massa das costas durante cutting. RPE 7-8, foco em movimento controlado.',
     exercises: [
       {
         id: 'pull-1',
-        name: 'Barra Fixa ou Puxada Frontal',
+        name: 'Barra Fixa ou Pulldown Pesado',
         sets: 4,
-        reps: '6-10',
+        reps: '4x6-8',
         restTime: '2-3min',
         rpe: 8,
-        notes: 'Exercício principal para largura das costas. Pegada pronada (palmas para frente) ou supinada (palmas para você).'
+        notes: 'Exercício principal para largura das costas. Foco em força. Se não conseguir barra fixa, usar pulldown com carga pesada.'
       },
       {
         id: 'pull-2',
         name: 'Remada Curvada com Barra',
-        sets: 4,
-        reps: '6-10',
+        sets: 3,
+        reps: '3x6-8',
         restTime: '2-3min',
         rpe: 8,
         notes: 'Desenvolvimento de espessura das costas. Manter coluna neutra e puxar em direção ao umbigo.'
       },
       {
         id: 'pull-3',
-        name: 'Remada Articulada (Máquina)',
+        name: 'Remada Máquina Neutra',
         sets: 3,
-        reps: '8-12',
-        restTime: '1-2min',
+        reps: '3x8-10',
+        restTime: '2min',
         rpe: 7,
         notes: 'Isolamento das costas médias. Controle total do movimento.'
       },
       {
         id: 'pull-4',
-        name: 'Puxada Fechada (Pegada Neutra)',
+        name: 'Face Pull',
         sets: 3,
-        reps: '8-12',
-        restTime: '1-2min',
-        rpe: 7,
-        notes: 'Variação de pegada para ativar diferentes fibras. Puxar até o peito.'
-      },
-      {
-        id: 'pull-5',
-        name: 'Encolhimento com Halteres',
-        sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 7,
-        notes: 'Desenvolvimento do trapézio superior. Elevação apenas com os ombros.'
-      },
-      {
-        id: 'pull-6',
-        name: 'Extensão Lombar (Hiperextensão)',
-        sets: 3,
-        reps: '12-15',
-        restTime: '1-1.5min',
-        rpe: 6,
-        notes: 'Fortalecimento da lombar. Essencial para estabilidade e prevenção de lesões.'
-      },
-      {
-        id: 'pull-7',
-        name: 'Voador Invertido (Deltoides Posteriores)',
-        sets: 3,
-        reps: '12-15',
+        reps: '3x12-15',
         restTime: '1-1.5min',
         rpe: 7,
         notes: 'Desenvolvimento dos deltoides posteriores. Importante para postura e equilíbrio dos ombros.'
       },
       {
-        id: 'pull-8',
+        id: 'pull-5',
         name: 'Rosca Direta com Barra',
         sets: 3,
-        reps: '8-10',
-        restTime: '1-1.5min',
+        reps: '3x6-8',
+        restTime: '1-2min',
         rpe: 7,
-        cadence: '1s concêntrico, 2s excêntrico',
         notes: 'Desenvolvimento do bíceps. Controle total na descida.'
       },
       {
-        id: 'pull-9',
-        name: 'Rosca com Polia Alta',
-        sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
+        id: 'pull-6',
+        name: 'Rosca Alternada',
+        sets: 2,
+        reps: '2x10-12',
+        restTime: '1min',
         rpe: 7,
-        notes: 'Isolamento bíceps com tensão constante. Variação importante.'
-      },
-      {
-        id: 'pull-10',
-        name: 'Rosca Martelo',
-        sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 7,
-        notes: 'Desenvolvimento do braquial e braquiorradial. Dá mais "pico" ao braço.'
+        notes: 'Isolamento bíceps unilateral. Trabalho de cada braço separadamente.'
       }
     ]
   },
   {
     id: 'legs-male',
-    name: 'Legs - Pernas Completas',
-    description: 'Treino completo de pernas: quadríceps, posteriores, glúteos e panturrilhas. Volume alto para desenvolvimento máximo de massa e força.',
+    name: 'LEGS - Quadríceps, Posteriores e Panturrilha',
+    description: 'Treino completo de pernas focado em força e metabolismo. Preserva massa durante cutting. RPE 7-8, movimento controlado.',
     exercises: [
       {
         id: 'legs-1',
-        name: 'Agachamento Livre',
+        name: 'Agachamento ou Hack Pesado',
         sets: 4,
-        reps: '6-10',
+        reps: '4x5-8',
         restTime: '2-3min',
         rpe: 8,
-        notes: 'Exercício rei das pernas. Descer até paralelo ou abaixo. Manter coluna neutra e joelhos alinhados.'
+        notes: 'Exercício principal. Foco em força. Descer até paralelo ou abaixo. Manter coluna neutra e joelhos alinhados.'
       },
       {
         id: 'legs-2',
-        name: 'Leg Press 45°',
-        sets: 4,
-        reps: '8-12',
-        restTime: '1-2min',
+        name: 'Leg Press',
+        sets: 3,
+        reps: '3x8-10',
+        restTime: '2min',
         rpe: 7,
         notes: 'Volume adicional para quadríceps. Amplitude completa (até 90°).'
       },
       {
         id: 'legs-3',
-        name: 'Cadeira Extensora Unilateral',
+        name: 'Stiff',
         sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 7,
-        cadence: '2s excêntrico, 1s concêntrico, 1s isometria',
-        notes: 'Isolamento quadríceps. Trabalho unilateral para equilíbrio.'
+        reps: '3x6-8',
+        restTime: '2-3min',
+        rpe: 8,
+        notes: 'Desenvolvimento posteriores e glúteos. Manter pernas semi-flexionadas e coluna neutra.'
       },
       {
         id: 'legs-4',
-        name: 'Mesa Flexora (Deitado)',
+        name: 'Mesa Flexora',
         sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
+        reps: '3x10-12',
+        restTime: '1-2min',
         rpe: 7,
         notes: 'Isolamento posteriores. Controle total do movimento.'
       },
       {
         id: 'legs-5',
-        name: 'Cadeira Flexora (Sentado)',
-        sets: 3,
-        reps: '10-12',
-        restTime: '1-1.5min',
-        rpe: 7,
-        notes: 'Variação para posteriores. Diferente ângulo de ativação.'
-      },
-      {
-        id: 'legs-6',
-        name: 'Stiff ou Levantamento Terra Romeno',
-        sets: 3,
-        reps: '8-12',
-        restTime: '1-2min',
-        rpe: 7,
-        notes: 'Desenvolvimento posteriores e glúteos. Manter pernas semi-flexionadas e coluna neutra.'
-      },
-      {
-        id: 'legs-7',
-        name: 'Cadeira Abdutora',
-        sets: 3,
-        reps: '12-15',
-        restTime: '1-1.5min',
-        rpe: 6,
-        notes: 'Desenvolvimento glúteos e adutores. Importante para estabilidade do quadril.'
-      },
-      {
-        id: 'legs-8',
-        name: 'Cadeira Adutora',
-        sets: 3,
-        reps: '12-15',
-        restTime: '1-1.5min',
-        rpe: 6,
-        notes: 'Fortalecimento adutores. Previne desequilíbrios musculares.'
-      },
-      {
-        id: 'legs-9',
-        name: 'Panturrilha em Máquina (Em Pé)',
+        name: 'Panturrilha',
         sets: 4,
-        reps: '12-15',
+        reps: '4x10-12',
         restTime: '1min',
         rpe: 7,
-        cadence: '1s subida, 2s descida',
-        notes: 'Desenvolvimento gastrocnêmio. Amplitude completa (subir na ponta dos pés).'
-      },
-      {
-        id: 'legs-10',
-        name: 'Panturrilha Unilateral com Halter',
-        sets: 3,
-        reps: '12-15',
-        restTime: '1min',
-        rpe: 7,
-        notes: 'Trabalho unilateral para equilíbrio. Foco em sóleo e gastrocnêmio.'
+        notes: 'Desenvolvimento gastrocnêmio e sóleo. Amplitude completa (subir na ponta dos pés).'
       }
     ]
   }
 ];
-

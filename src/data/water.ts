@@ -14,12 +14,23 @@ export interface WaterData {
 
 const WATER_DATA_KEY = 'water-data';
 
-// Calcular meta diária de água baseada no peso
-// Fórmula: 35ml por kg de peso corporal (recomendação geral)
-export const calculateWaterGoal = (weightKg: number): number => {
-  // Mínimo: 2 litros, máximo: 4 litros
-  const calculated = Math.round(weightKg * 35);
-  return Math.max(2000, Math.min(calculated, 4000));
+// Calcular meta diária de água baseada no peso e perfil
+// Fórmula adaptada por perfil:
+// - Feminino: 35ml/kg (treino intenso, cutting)
+// - Masculino: 40ml/kg (cutting agressivo, 146kg, alta atividade)
+export const calculateWaterGoal = (weightKg: number, profileType?: 'female' | 'male'): number => {
+  // Feminino: 35ml/kg (mínimo 2.5L, máximo 3.5L para 88kg = 3.08L)
+  // Masculino: 40ml/kg (mínimo 3L, máximo 5L para 146kg = 5.84L, limitado a 5L)
+  const multiplier = profileType === 'male' ? 40 : 35;
+  const calculated = Math.round(weightKg * multiplier);
+  
+  if (profileType === 'male') {
+    // Masculino: 146kg * 40ml = 5840ml, limitado a 5L (5000ml)
+    return Math.max(3000, Math.min(calculated, 5000));
+  } else {
+    // Feminino: 88kg * 35ml = 3080ml, limitado a 3.5L (3500ml)
+    return Math.max(2500, Math.min(calculated, 3500));
+  }
 };
 
 // Obter peso atual do perfil
@@ -42,10 +53,10 @@ export const getCurrentWeight = (): number | null => {
   }
 };
 
-// Valores padrão por perfil
+// Valores padrão por perfil (baseados no CONTEXT.md)
 export const DEFAULT_WEIGHTS = {
-  female: 88, // kg - baseado no perfil da usuária
-  male: 85    // kg - valor padrão para homens
+  female: 88,  // kg - Perfil feminino: 88kg, 165cm, IMC 32.3
+  male: 146    // kg - Perfil masculino: 146kg, 1.81m, IMC 44.6
 };
 
 // Obter meta de água para o dia atual
@@ -53,7 +64,7 @@ export const getTodayWaterGoal = (profileType: 'female' | 'male'): number => {
   const currentWeight = getCurrentWeight();
   const defaultWeight = profileType === 'female' ? DEFAULT_WEIGHTS.female : DEFAULT_WEIGHTS.male;
   const weight = currentWeight || defaultWeight;
-  return calculateWaterGoal(weight);
+  return calculateWaterGoal(weight, profileType);
 };
 
 // Obter dados de água

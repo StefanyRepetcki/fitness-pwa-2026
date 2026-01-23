@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -17,10 +17,9 @@ interface ProfileContextType {
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
-  const [storedProfile, setStoredProfile] = useLocalStorage<ProfileType>('profile-type', 'female');
-  const [storedRoutine, setStoredRoutine] = useLocalStorage<RoutineType>('routine-type', 'abc');
-  const [profileType, setProfileTypeState] = useState<ProfileType>(storedProfile);
-  const [routineType, setRoutineTypeState] = useState<RoutineType>(storedRoutine);
+  // Usar diretamente os valores do hook useLocalStorage (já sincroniza com localStorage)
+  const [profileType, setStoredProfile] = useLocalStorage<ProfileType>('profile-type', 'female');
+  const [routineType, setStoredRoutine] = useLocalStorage<RoutineType>('routine-type', 'abc');
 
   // Aplicar perfil ao documento para CSS
   useEffect(() => {
@@ -39,23 +38,21 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   }, [profileType]);
 
   const setProfileType = (type: ProfileType) => {
-    setProfileTypeState(type);
     setStoredProfile(type);
   };
 
   const toggleProfile = () => {
     const newProfile = profileType === 'female' ? 'male' : 'female';
-    setProfileType(newProfile);
+    setStoredProfile(newProfile);
   };
 
   const setRoutineType = (type: RoutineType) => {
-    setRoutineTypeState(type);
     setStoredRoutine(type);
   };
 
   const toggleRoutine = () => {
     const newRoutine = routineType === 'abc' ? 'abcdef' : 'abc';
-    setRoutineType(newRoutine);
+    setStoredRoutine(newRoutine);
   };
 
   return (
