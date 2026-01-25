@@ -18,7 +18,7 @@ export const Warmup = () => {
     : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
   const currentWarmups = profileType === 'male' ? warmupRoutinesMale : warmupRoutines;
   const defaultWorkoutId = profileType === 'male' 
-    ? 'push-male' 
+    ? 'treino-a-male' 
     : (routineType === 'abcdef' ? 'treino-a-abcdef' : 'treino-a');
   const [selectedWorkout, setSelectedWorkout] = useState<string>(defaultWorkoutId);
 

@@ -1,15 +1,15 @@
 /**
- * Rotina Semanal para Treino Masculino - Cutting Agressivo
- * Frequência: 5-6x/semana (PUSH/PULL/LEGS 2x cada)
+ * Rotina Semanal para Treino Masculino - ABCDEF (6 treinos)
+ * Frequência: 6x/semana
  * 
  * Estrutura:
- * - Segunda: PUSH
- * - Terça: PULL
- * - Quarta: LEGS
- * - Quinta: Descanso Ativo (8-12k passos)
- * - Sexta: PUSH
- * - Sábado: PULL
- * - Domingo: LEGS ou Descanso (dependendo da recuperação)
+ * - Segunda: Treino A (Costas)
+ * - Terça: Treino B (Peito, Ombros, Tríceps)
+ * - Quarta: Treino C (Pernas - Quadríceps)
+ * - Quinta: Treino D (Costas)
+ * - Sexta: Treino E (Peito, Ombros)
+ * - Sábado: Treino F (Pernas - Posterior)
+ * - Domingo: Descanso
  */
 
 import type { RoutineDay } from './routine';
@@ -18,50 +18,50 @@ export const routineMale: RoutineDay[] = [
   {
     id: 'mon-male',
     day: 'Segunda',
-    workoutId: 'push-male',
-    workoutName: 'PUSH - Peito, Ombros e Tríceps',
+    workoutId: 'treino-a-male',
+    workoutName: 'Treino A - Costas',
     rest: false
   },
   {
     id: 'tue-male',
     day: 'Terça',
-    workoutId: 'pull-male',
-    workoutName: 'PULL - Costas, Bíceps e Posterior de Ombro',
+    workoutId: 'treino-b-male',
+    workoutName: 'Treino B - Peito, Ombros e Tríceps',
     rest: false
   },
   {
     id: 'wed-male',
     day: 'Quarta',
-    workoutId: 'legs-male',
-    workoutName: 'LEGS - Quadríceps, Posteriores e Panturrilha',
+    workoutId: 'treino-c-male',
+    workoutName: 'Treino C - Pernas (Quadríceps)',
     rest: false
   },
   {
     id: 'thu-male',
     day: 'Quinta',
-    workoutId: '',
-    workoutName: 'Descanso Ativo (8-12k passos)',
-    rest: true
+    workoutId: 'treino-d-male',
+    workoutName: 'Treino D - Costas',
+    rest: false
   },
   {
     id: 'fri-male',
     day: 'Sexta',
-    workoutId: 'push-male',
-    workoutName: 'PUSH - Peito, Ombros e Tríceps',
+    workoutId: 'treino-e-male',
+    workoutName: 'Treino E - Peito e Ombros',
     rest: false
   },
   {
     id: 'sat-male',
     day: 'Sábado',
-    workoutId: 'pull-male',
-    workoutName: 'PULL - Costas, Bíceps e Posterior de Ombro',
+    workoutId: 'treino-f-male',
+    workoutName: 'Treino F - Pernas (Posterior)',
     rest: false
   },
   {
     id: 'sun-male',
     day: 'Domingo',
-    workoutId: 'legs-male',
-    workoutName: 'LEGS - Quadríceps, Posteriores e Panturrilha',
-    rest: false
+    workoutId: '',
+    workoutName: 'Descanso',
+    rest: true
   }
 ];
