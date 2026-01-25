@@ -7,19 +7,14 @@ import { stretchesByWorkout } from '../../data/stretches';
 import { stretchesByWorkoutMale } from '../../data/stretchesMale';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
-import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { useProfile } from '../../contexts/ProfileContext';
 import styles from './Stretches.module.css';
 
 export const Stretches = () => {
-  const { profileType, routineType } = useProfile();
-  const currentWorkouts = profileType === 'male' 
-    ? workoutsMale 
-    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
+  const { profileType } = useProfile();
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
   const currentStretches = profileType === 'male' ? stretchesByWorkoutMale : stretchesByWorkout;
-  const defaultWorkoutId = profileType === 'male' 
-    ? 'treino-a-male' 
-    : (routineType === 'abcdef' ? 'treino-a-abcdef' : 'treino-a');
+  const defaultWorkoutId = profileType === 'male' ? 'treino-a-male' : 'treino-a';
   const [selectedWorkout, setSelectedWorkout] = useState<string>(defaultWorkoutId);
 
   const selectedStretches = currentStretches.find(s => s.workoutId === selectedWorkout);

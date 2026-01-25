@@ -7,7 +7,6 @@ import { CelebrationModal } from '../../components/CelebrationModal/CelebrationM
 import { QuickTimer } from '../../components/QuickTimer/QuickTimer';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
-import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { useProfile } from '../../contexts/ProfileContext';
 import { saveLastWorkout } from '../../utils/lastWorkout';
 import { 
@@ -27,10 +26,8 @@ import styles from './WorkoutDetail.module.css';
 export const WorkoutDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { profileType, routineType } = useProfile();
-  const currentWorkouts = profileType === 'male' 
-    ? workoutsMale 
-    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
+  const { profileType } = useProfile();
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
   const workout = currentWorkouts.find((w) => w.id === id);
   const [progress, setProgress] = useState<WorkoutProgress | null>(null);
   const [celebrationBadge, setCelebrationBadge] = useState<Badge | null>(null);

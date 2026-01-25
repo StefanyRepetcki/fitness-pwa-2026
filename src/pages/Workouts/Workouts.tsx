@@ -6,18 +6,15 @@ import { WorkoutCard } from '../../components/WorkoutCard/WorkoutCard';
 import { TechniquesGuide } from '../../components/TechniquesGuide/TechniquesGuide';
 import { workouts } from '../../data/workouts';
 import { workoutsMale } from '../../data/workoutsMale';
-import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { useProfile } from '../../contexts/ProfileContext';
 import { getLastWorkout, getLastWorkoutPath } from '../../utils/lastWorkout';
 import styles from './Workouts.module.css';
 
 export const Workouts = () => {
-  const { profileType, routineType } = useProfile();
+  const { profileType } = useProfile();
   const location = useLocation();
   const navigate = useNavigate();
-  const currentWorkouts = profileType === 'male' 
-    ? workoutsMale 
-    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
   const [lastWorkoutId, setLastWorkoutId] = useState<string | null>(null);
   const hasAutoRedirected = useRef(false);
 

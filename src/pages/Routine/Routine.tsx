@@ -4,7 +4,6 @@ import { Lightbulb, Dumbbell, Check, X, Calendar as CalendarIcon } from 'lucide-
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { workouts } from '../../data/workouts';
-import { workoutsABCDEF } from '../../data/workoutsABCDEF';
 import { workoutsMale } from '../../data/workoutsMale';
 import { useProfile } from '../../contexts/ProfileContext';
 import { 
@@ -18,14 +17,12 @@ import {
 import styles from './Routine.module.css';
 
 export const Routine = () => {
-  const { profileType, routineType } = useProfile();
+  const { profileType } = useProfile();
   const [history, setHistory] = useState<WorkoutHistoryEntry[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [showCalendar, setShowCalendar] = useState(false);
   
-  const currentWorkouts = profileType === 'male' 
-    ? workoutsMale 
-    : (routineType === 'abcdef' ? workoutsABCDEF : workouts);
+  const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
 
   useEffect(() => {
     setHistory(getWorkoutHistory());
