@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { ChevronDown, Info } from 'lucide-react';
-import styles from './TechniquesGuide.module.css';
+import { Info } from 'lucide-react';
+import { Header } from '../../components/Header/Header';
+import { PageContainer } from '../../components/PageContainer/PageContainer';
+import styles from './Techniques.module.css';
 
 interface Technique {
   name: string;
@@ -120,84 +121,64 @@ const techniques: Technique[] = [
   }
 ];
 
-export const TechniquesGuide = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+export const Techniques = () => {
   return (
-    <div className={styles.container}>
-      <button
-        className={styles.toggleButton}
-        onClick={() => setIsExpanded(!isExpanded)}
-        aria-expanded={isExpanded}
-        aria-label={isExpanded ? 'Ocultar guia de técnicas' : 'Mostrar guia de técnicas'}
-      >
-        <Info className={styles.infoIcon} size={20} strokeWidth={2} />
-        <span className={styles.toggleText}>
-          {isExpanded ? 'Ocultar' : 'O que significam essas técnicas?'}
-        </span>
-        <ChevronDown 
-          className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`} 
-          size={20} 
-          strokeWidth={2} 
-        />
-      </button>
-
-      {isExpanded && (
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <h3 className={styles.title}>Guia de Técnicas Avançadas</h3>
-            <p className={styles.subtitle}>
-              Entenda as nomenclaturas técnicas usadas nos treinos
-            </p>
-          </div>
-
-          <div className={styles.techniquesList}>
-            {techniques.map((technique, index) => (
-              <div key={index} className={styles.techniqueCard}>
-                <div className={styles.techniqueHeader}>
-                  <span className={styles.techniqueIcon}>{technique.icon}</span>
-                  <h4 className={styles.techniqueName}>{technique.name}</h4>
-                </div>
-                
-                <p className={styles.techniqueDescription}>{technique.description}</p>
-
-                <div className={styles.techniqueSection}>
-                  <h5 className={styles.sectionTitle}>Como fazer:</h5>
-                  <ol className={styles.howToList}>
-                    {technique.howTo.map((step, stepIndex) => (
-                      <li key={stepIndex} className={styles.howToItem}>{step}</li>
-                    ))}
-                  </ol>
-                </div>
-
-                <div className={styles.techniqueSection}>
-                  <h5 className={styles.sectionTitle}>Exemplo:</h5>
-                  <p className={styles.example}>{technique.example}</p>
-                </div>
-
-                <div className={styles.techniqueSection}>
-                  <h5 className={styles.sectionTitle}>Benefícios:</h5>
-                  <ul className={styles.benefitsList}>
-                    {technique.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className={styles.benefitItem}>
-                        <span className={styles.checkmark}>✓</span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.footer}>
-            <p className={styles.footerText}>
-              <strong>Lembre-se:</strong> Qualidade &gt; Quantidade! Escute seu corpo e mantenha a técnica correta.
-            </p>
-          </div>
+    <>
+      <Header title="Técnicas de Treino" />
+      <PageContainer>
+        <div className={styles.intro}>
+          <Info className={styles.infoIcon} size={24} strokeWidth={2} />
+          <p>
+            Entenda as nomenclaturas técnicas usadas nos treinos e como executá-las corretamente
+          </p>
         </div>
-      )}
-    </div>
+
+        <div className={styles.techniquesList}>
+          {techniques.map((technique, index) => (
+            <div key={index} className={styles.techniqueCard}>
+              <div className={styles.techniqueHeader}>
+                <span className={styles.techniqueIcon}>{technique.icon}</span>
+                <h3 className={styles.techniqueName}>{technique.name}</h3>
+              </div>
+              
+              <p className={styles.techniqueDescription}>{technique.description}</p>
+
+              <div className={styles.techniqueSection}>
+                <h4 className={styles.sectionTitle}>Como fazer:</h4>
+                <ol className={styles.howToList}>
+                  {technique.howTo.map((step, stepIndex) => (
+                    <li key={stepIndex} className={styles.howToItem}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className={styles.techniqueSection}>
+                <h4 className={styles.sectionTitle}>Exemplo:</h4>
+                <p className={styles.example}>{technique.example}</p>
+              </div>
+
+              <div className={styles.techniqueSection}>
+                <h4 className={styles.sectionTitle}>Benefícios:</h4>
+                <ul className={styles.benefitsList}>
+                  {technique.benefits.map((benefit, benefitIndex) => (
+                    <li key={benefitIndex} className={styles.benefitItem}>
+                      <span className={styles.checkmark}>✓</span>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.footer}>
+          <p className={styles.footerText}>
+            <strong>Lembre-se:</strong> Qualidade &gt; Quantidade! Escute seu corpo e mantenha a técnica correta.
+          </p>
+        </div>
+      </PageContainer>
+    </>
   );
 };
 

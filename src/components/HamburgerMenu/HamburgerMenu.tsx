@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer, Droplet } from 'lucide-react';
+import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer, Droplet, GraduationCap } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { ProfileToggle } from '../ProfileToggle/ProfileToggle';
@@ -27,6 +27,7 @@ export const HamburgerMenu = () => {
     { path: '/rest-timer', icon: Timer, label: 'Timer de Descanso', ariaLabel: 'Ir para timer de descanso', category: 'treino' },
     { path: '/warmup', icon: Flame, label: 'Aquecimento', ariaLabel: 'Ir para rotinas de aquecimento', category: 'treino' },
     { path: '/stretches', icon: Activity, label: 'Alongamentos', ariaLabel: 'Ir para alongamentos', category: 'treino' },
+    { path: '/techniques', icon: GraduationCap, label: 'Técnicas de Treino', ariaLabel: 'Ir para guia de técnicas de treino', category: 'treino' },
     { path: '/stats', icon: TrendingUp, label: 'Estatísticas', ariaLabel: 'Ir para estatísticas', category: 'treino' },
     { path: '/diary', icon: BookOpen, label: 'Diário', ariaLabel: 'Ir para diário', category: 'treino' },
     

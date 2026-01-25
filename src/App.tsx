@@ -24,6 +24,7 @@ const Nutrition = lazy(() => import('./pages/Nutrition/Nutrition').then(m => ({ 
 const ShoppingList = lazy(() => import('./pages/ShoppingList/ShoppingList').then(m => ({ default: m.ShoppingList })));
 const Supplements = lazy(() => import('./pages/Supplements/Supplements').then(m => ({ default: m.Supplements })));
 const Tips = lazy(() => import('./pages/Tips/Tips').then(m => ({ default: m.Tips })));
+const Techniques = lazy(() => import('./pages/Techniques/Techniques').then(m => ({ default: m.Techniques })));
 const Stretches = lazy(() => import('./pages/Stretches/Stretches').then(m => ({ default: m.Stretches })));
 const Warmup = lazy(() => import('./pages/Warmup/Warmup').then(m => ({ default: m.Warmup })));
 const Stats = lazy(() => import('./pages/Stats/Stats').then(m => ({ default: m.Stats })));
@@ -204,6 +205,19 @@ function App() {
                     keywords="ciclei, aquecimento, mobilidade, ativação muscular, preparação para treino, prevenção de lesões"
                   />
                   <Warmup />
+                </>
+              } 
+            />
+            <Route 
+              path="/techniques" 
+              element={
+                <>
+                  <SEO 
+                    title="Técnicas de Treino - Ciclei"
+                    description="Guia completo de técnicas avançadas de treino: RPE, Rest Pause, Repetições Parciais, Pico de Contração, Progressão de Carga e Drop Set."
+                    keywords="ciclei, técnicas de treino, RPE, rest pause, repetições parciais, pico de contração, progressão de carga, drop set, hipertrofia"
+                  />
+                  <Techniques />
                 </>
               } 
             />

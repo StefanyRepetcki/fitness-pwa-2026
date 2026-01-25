@@ -1,5 +1,44 @@
 # 💪 Guia de Técnicas Avançadas de Treino
 
+## 📊 RPE (Rate of Perceived Exertion) - Taxa de Esforço Percebido
+
+**O que é:**
+RPE é uma escala de 1 a 10 que mede a intensidade do exercício baseada na sua percepção subjetiva de esforço. É uma forma de autoregulação que permite ajustar a carga conforme seu estado do dia.
+
+**Escala RPE (1-10):**
+- **RPE 1-2**: Muito leve - esforço mínimo, quase sem esforço
+- **RPE 3-4**: Leve - consegue conversar facilmente
+- **RPE 5-6**: Moderado - respiração mais pesada, mas confortável
+- **RPE 7**: Pesado - difícil, mas ainda controlável (2-3 repetições de reserva)
+- **RPE 8**: Muito pesado - próximo da falha (1-2 repetições de reserva)
+- **RPE 9**: Extremamente pesado - quase na falha (0-1 repetição de reserva)
+- **RPE 10**: Falha - não consegue fazer mais nenhuma repetição
+
+**Como usar:**
+1. Escolha a carga que permita fazer o número de repetições indicado
+2. Pare quando atingir o RPE especificado
+3. **RPE 7**: Pare quando ainda conseguir fazer 2-3 repetições a mais
+4. **RPE 8**: Pare quando ainda conseguir fazer 1-2 repetições a mais
+5. **RPE 9**: Pare quando estiver quase na falha (0-1 repetição de reserva)
+
+**Exemplo prático:**
+- Treino pede: **3x8-10 reps com RPE 8**
+- Você faz 8-10 repetições
+- Pare quando ainda conseguir fazer 1-2 repetições a mais
+- **NÃO vá até a falha absoluta**
+
+**Benefícios:**
+- Permite ajustar a carga conforme seu estado do dia (recuperação, sono, estresse)
+- Reduz risco de overtraining
+- Mantém qualidade técnica
+- Ajuda a progredir de forma mais sustentável
+- Autoregulação inteligente
+
+**Dica importante:**
+RPE é subjetivo e melhora com a prática. Com o tempo, você desenvolve melhor percepção do seu esforço. Se estiver em dúvida, é melhor errar para menos (RPE mais baixo) do que para mais.
+
+---
+
 ## Técnicas Implementadas nos Treinos
 
 ### 1. **REST PAUSE** ⏸️
