@@ -12,7 +12,7 @@ export const routine: RoutineDay[] = [
     id: 'mon',
     day: 'Segunda',
     workoutId: 'treino-a',
-    workoutName: 'Treino A - Quadríceps + Panturrilha',
+    workoutName: 'Treino A – Quadríceps + Glúteo',
     rest: false
   },
   {
@@ -26,7 +26,7 @@ export const routine: RoutineDay[] = [
     id: 'wed',
     day: 'Quarta',
     workoutId: 'treino-b',
-    workoutName: 'Treino B - Costas, Peito, Ombros e Tríceps',
+    workoutName: 'Treino B – Costas + Ombro (Construção do V Feminino)',
     rest: false
   },
   {
@@ -40,7 +40,7 @@ export const routine: RoutineDay[] = [
     id: 'fri',
     day: 'Sexta',
     workoutId: 'treino-c',
-    workoutName: 'Treino C - Posterior + Glúteos',
+    workoutName: 'Treino C – Posterior + Glúteo',
     rest: false
   },
   {

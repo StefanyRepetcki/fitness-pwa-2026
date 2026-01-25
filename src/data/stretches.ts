@@ -15,8 +15,8 @@ export interface WorkoutStretches {
 
 export const stretchesByWorkout: WorkoutStretches[] = [
   {
-    workoutId: 'treino-a-improved',
-    workoutName: 'Treino A - Quadríceps + Panturrilha',
+    workoutId: 'treino-a',
+    workoutName: 'Treino A – Quadríceps + Glúteo',
     stretches: [
       {
         id: 'stretch-a-1',
@@ -56,8 +56,8 @@ export const stretchesByWorkout: WorkoutStretches[] = [
     ]
   },
   {
-    workoutId: 'treino-b-improved',
-    workoutName: 'Treino B - Costas + Peito + Ombro',
+    workoutId: 'treino-b',
+    workoutName: 'Treino B – Costas + Ombro (Construção do V Feminino)',
     stretches: [
       {
         id: 'stretch-b-1',
@@ -97,8 +97,8 @@ export const stretchesByWorkout: WorkoutStretches[] = [
     ]
   },
   {
-    workoutId: 'treino-c-improved',
-    workoutName: 'Treino C - Posterior + Glúteos',
+    workoutId: 'treino-c',
+    workoutName: 'Treino C – Posterior + Glúteo',
     stretches: [
       {
         id: 'stretch-c-1',

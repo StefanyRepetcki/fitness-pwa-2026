@@ -16,7 +16,7 @@ export interface WarmupRoutine {
 export const warmupRoutines: WarmupRoutine[] = [
   {
     workoutId: 'treino-a',
-    workoutName: 'Treino A - Quadríceps + Panturrilha',
+    workoutName: 'Treino A – Quadríceps + Glúteo',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -58,7 +58,7 @@ export const warmupRoutines: WarmupRoutine[] = [
   },
   {
     workoutId: 'treino-b',
-    workoutName: 'Treino B - Costas + Peito + Ombro',
+    workoutName: 'Treino B – Costas + Ombro (Construção do V Feminino)',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -100,7 +100,7 @@ export const warmupRoutines: WarmupRoutine[] = [
   },
   {
     workoutId: 'treino-c',
-    workoutName: 'Treino C - Posterior + Glúteos',
+    workoutName: 'Treino C – Posterior + Glúteo',
     totalDuration: '5-7 minutos',
     exercises: [
       {
@@ -141,6 +141,7 @@ export const warmupRoutines: WarmupRoutine[] = [
     ]
   }
 ];
+
 
 
 
