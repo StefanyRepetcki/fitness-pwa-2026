@@ -33,61 +33,61 @@ export interface Workout {
 export const workouts: Workout[] = [
   {
     id: 'treino-a',
-    name: 'Treino A – Quadríceps + Glúteo',
+    name: 'Treino A – Quadríceps',
     description: 'Treino focado em quadríceps e glúteos com técnicas de contração e controle. Ideal para desenvolvimento da parte frontal da perna e glúteos.',
     exercises: [
       {
         id: 'ex1',
-        name: 'Cadeira Extensora',
+        name: 'Agachamento Livre ou Smith',
         sets: 4,
-        reps: '2x15 (aquecimento) + 2x10-12',
-        restTime: '60s',
-        rpe: 7,
-        notes: 'Primeiras 2 séries são aquecimento com 15 repetições. Séries válidas com 1 segundo de contração no topo. Ativação pré-exaustão do quadríceps.'
-      },
-      {
-        id: 'ex2',
-        name: 'Agachamento no Smith',
-        sets: 5,
-        reps: '2x preparatórias + 3x8-10',
+        reps: '1x15-20, 1x10-15, 1x8-12, 1x6-10 (foco em progressão de carga)',
         restTime: '2min',
         rpe: 8,
         cadence: 'Controle na descida 2s',
-        notes: 'Primeiras 2 séries são preparatórias (aquecimento). Controle de 2 segundos na descida para máxima ativação muscular. Exercício principal para quadríceps e glúteos.'
+        notes: 'Primeiras 2 séries são preparatórias. Controle de 2 segundos na descida para máxima ativação muscular. Exercício principal para quadríceps e glúteos.'
+      },
+      {
+        id: 'ex2',
+        name: 'Hack Machine ou Afundo Búlgaro',
+        sets: 3,
+        reps: '1x10-15, 1x8-12, 1x8-12 + 2 rest pause',
+        restTime: '90s',
+        rpe: 8,
+        notes: 'Foco em glúteos e quadríceps.'
       },
       {
         id: 'ex3',
         name: 'Leg Press 45º',
         sets: 3,
-        reps: '3x10-12',
+        reps: '1x10-15 + 10 rep apos falha, 1x8-12 + 10 rep apos falha, 1x8-12 + 10 rep apos falha',
         restTime: '90s',
         rpe: 8,
-        notes: 'Pé médio/levemente alto na plataforma. Posicionamento otimizado para ativação de quadríceps e glúteos. Amplitude completa do movimento. Progressão de carga é prioridade. Técnicas avançadas (parciais) podem ser usadas esporadicamente (1x a cada 3-4 semanas), não como padrão fixo.'
+        notes: 'Foco em quadríceps.'
       },
       {
         id: 'ex4',
-        name: 'Afundo Búlgaro',
-        sets: 3,
-        reps: '3x8-10 (por perna)',
-        restTime: '60s entre pernas',
-        rpe: 8,
-        notes: 'Trabalho unilateral para equilíbrio e desenvolvimento simétrico. Foco em glúteos e quadríceps. Alternar pernas entre séries.'
+        name: 'Cadeira Extensora',
+        sets: 4,
+        reps: '1x10-15, 1x8-12, 1x6-10, 1x4-6 (foco em progressão de carga)',
+        restTime: '90s',
+        rpe: 7,
+        notes: 'Foco em quadríceps.'
       },
       {
         id: 'ex5',
         name: 'Elevação Pélvica',
         sets: 3,
-        reps: '3x8-12',
+        reps: '3x10-15 com 2s pico de contração',
         restTime: '60s',
         rpe: 8,
-        notes: '2 segundos de pico de contração no topo. Máxima contração dos glúteos. Exercício isolado para desenvolvimento posterior do glúteo. Progressão de carga é mais importante que técnicas extremas.'
+        notes: 'Máxima contração dos glúteos. Exercício isolado para desenvolvimento posterior do glúteo. Progressão de carga é mais importante que técnicas extremas.'
       },
       {
         id: 'ex6',
         name: 'Abdutor',
-        sets: 3,
-        reps: '3x12-15',
-        restTime: '60s',
+        sets: 5,
+        reps: '5x10-15 com 2s pico de contração',
+        restTime: '45s',
         rpe: 6,
         notes: 'Séries leves e controladas para aumentar frequência de estímulo do glúteo médio. Foco em qualidade de movimento, não em carga máxima. Aumenta frequência sem sobrecarregar.'
       },
@@ -104,81 +104,63 @@ export const workouts: Workout[] = [
   },
   {
     id: 'treino-b',
-    name: 'Treino B – Costas + Ombro (Construção do V Feminino)',
+    name: 'Treino B – Costas + Ombro',
     description: 'Treino focado em construção do V feminino através de desenvolvimento de costas e ombros. Inclui mobilidade escapular e trabalho de manguito rotador.',
     exercises: [
       {
         id: 'ex1',
-        name: 'Mobilidade Escapular + Manguito',
-        sets: 1,
-        reps: 'Aquecimento',
-        restTime: '-',
-        rpe: 5,
-        notes: 'Aquecimento específico: mobilidade escapular e ativação do manguito rotador. Essencial para prevenir lesões e melhorar execução dos exercícios seguintes.'
-      },
-      {
-        id: 'ex2',
         name: 'Pulley Frente',
-        sets: 3,
-        reps: '3x8-12',
-        restTime: '90s',
+        sets: 4,
+        reps: '4x10-15 com 2s pico de contração',
+        restTime: '45s',
         rpe: 8,
         notes: 'Exercício principal para largura das costas. Puxar até o peito, contração completa. Fundamental para construção do V feminino.'
       },
       {
-        id: 'ex3',
+        id: 'ex2',
         name: 'Remada Baixa Triângulo',
         sets: 4,
-        reps: '4x10-12',
-        restTime: '90s',
+        reps: '4x10-15 com 2s pico de contração',
+        restTime: '45s',
         rpe: 8,
         notes: 'Foco em espessura das costas médias. Puxar o cotovelo para trás, não apenas o braço. Máxima contração no final do movimento. Volume aumentado para construção do V feminino (10-12 séries semanais de costas).'
       },
       {
-        id: 'ex4',
+        id: 'ex3',
         name: 'Supino Inclinado Halter',
-        sets: 3,
-        reps: '3x10-12',
-        restTime: '90s',
+        sets: 4,
+        reps: '4x10-15',
+        restTime: '45s',
         rpe: 7,
         notes: 'Desenvolvimento do peitoral superior. Complementa o trabalho de costas para equilíbrio muscular. Controle na descida.'
       },
       {
-        id: 'ex5',
+        id: 'ex4',
         name: 'Elevação Lateral',
         sets: 4,
-        reps: '4x12-15',
-        restTime: '60s',
+        reps: '4x10-15 + 10 rep parciais apos falha',
+        restTime: '45s',
         rpe: 8,
-        notes: 'EXERCÍCIO PRINCIPAL DO TREINO. Volume alto (4 séries) para desenvolvimento do deltoide médio. Essencial para largura dos ombros e construção do V feminino. Elevar até altura dos ombros.'
+        notes: 'desenvolvimento do deltoide médio. Essencial para largura dos ombros e construção do V feminino. Elevar até altura dos ombros.'
       },
       {
-        id: 'ex6',
-        name: 'Posterior de Ombro (Crucifixo Invertido ou Máquina)',
+        id: 'ex5',
+        name: 'Elevação Frontal',
         sets: 3,
-        reps: '3x12-15',
-        restTime: '60s',
+        reps: '4x10 a 15',
+        restTime: '45s',
         rpe: 7,
         notes: 'Desenvolvimento do deltoide posterior. Crucial para equilíbrio muscular e postura. Máxima contração no final do movimento.'
       },
       {
-        id: 'ex7',
+        id: 'ex6',
         name: 'Tríceps Corda',
-        sets: 3,
-        reps: '3x10-12',
+        sets: 4,
+        reps: '4x10-15 com 2s pico de contração',
         restTime: '60s',
         rpe: 7,
         notes: 'Isolamento do tríceps. Extensão completa com pico de contração. Complementa o trabalho de peito e ombros.'
       },
-      {
-        id: 'ex8',
-        name: 'Rosca Martelo',
-        sets: 2,
-        reps: '2-3x10-12',
-        restTime: '60s',
-        rpe: 7,
-        notes: 'Desenvolvimento do bíceps braquial e braquiorradial. Movimento controlado. Volume moderado para equilíbrio com tríceps.'
-      }
     ]
   },
   {
@@ -189,51 +171,61 @@ export const workouts: Workout[] = [
       {
         id: 'ex1',
         name: 'Flexora Deitada',
-        sets: 5,
-        reps: '2x leve + 3x10-12',
-        restTime: '90s',
+        sets: 4,
+        reps: '1x15-20, 1x10-15, 1x8-12, 1x6-10 (foco em progressão de carga)',
+        restTime: '2min',
         rpe: 8,
         cadence: 'Cadência lenta',
-        notes: 'Primeiras 2 séries são leves (aquecimento). Séries válidas com cadência lenta: 2s excêntrico, 1s concêntrico, 1s pico. Máxima contração do posterior.'
+        notes: 'Foco em progressão de carga.'
       },
       {
         id: 'ex2',
-        name: 'Stiff',
-        sets: 4,
-        reps: '4x8-10',
+        name: 'Flexora Sentada',
+        sets: 3,
+        reps: '1x15-20, 1x10-15, 1x8-12 + 2 rest pause. (com 2s pico de contração)',
         restTime: '90s',
         rpe: 8,
-        notes: 'Exercício composto para posterior e glúteos. Manter pernas semi-flexionadas. Descer até sentir alongamento, não forçar amplitude excessiva. Controle total do movimento.'
+        cadence: 'Cadência lenta',
+        notes: 'Com pico de contração de 2 segundos.'
       },
       {
         id: 'ex3',
-        name: 'Elevação Pélvica',
-        sets: 4,
-        reps: '4x8-10',
-        restTime: '90s',
-        rpe: 9,
-        notes: 'PESADO - Exercício principal para glúteos. Máxima carga possível com boa execução. 2 segundos de pico de contração no topo. Glúteo é protagonista neste treino. Progressão de carga é mais importante que técnicas extremas - glúteo responde muito bem a carga progressiva simples.'
+        name: 'Stiff',
+        sets: 3,
+        reps: '3x8-12',
+        restTime: '45s',
+        rpe: 8,
+        notes: 'Exercício composto para posterior e glúteos. Manter pernas semi-flexionadas. Descer até sentir alongamento, não forçar amplitude excessiva. Controle total do movimento.'
       },
       {
         id: 'ex4',
         name: 'Afundo Smith com Step',
         sets: 3,
-        reps: '3x10 (por perna)',
-        restTime: '60s entre pernas',
+        reps: '3x8-12 (por perna)',
+        restTime: '45s entre pernas',
         rpe: 8,
         notes: 'Step aumenta amplitude e ativação dos glúteos. Trabalho unilateral para desenvolvimento simétrico. Alternar pernas entre séries.'
       },
       {
         id: 'ex5',
-        name: 'Abdutora',
+        name: 'Elevação Pélvica',
         sets: 4,
-        reps: '4x12-15',
-        restTime: '60s',
-        rpe: 7,
-        notes: '1-2 segundos de isometria no ponto máximo de contração. Desenvolvimento lateral do glúteo. Volume alto para máximo estímulo.'
+        reps: '1x15-20 + 1x10-15 + 1x8-12 +rest pause + 1x6-10 + rest pause de 10seg',
+        restTime: '90s',
+        rpe: 9,
+        notes: 'Exercício principal para glúteos. Máxima carga possível com boa execução. 2 segundos de pico de contração no topo. Glúteo é protagonista neste treino. Progressão de carga é mais importante que técnicas extremas - glúteo responde muito bem a carga progressiva simples.'
       },
       {
         id: 'ex6',
+        name: 'Abdutora',
+        sets: 4,
+        reps: '5x10-15 com 3s pico de contração',
+        restTime: '45s',
+        rpe: 7,
+        notes: 'Desenvolvimento lateral do glúteo. Volume alto para máximo estímulo.'
+      },
+      {
+        id: 'ex7',
         name: 'Panturrilha Sentada',
         sets: 3,
         reps: '3x15-20',
