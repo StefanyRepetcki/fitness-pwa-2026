@@ -182,8 +182,9 @@ export const Macros = () => {
             <div className={styles.goalsForm}>
               <div className={styles.goalsFormGrid}>
                 <div className={styles.formGroup}>
-                  <label>Calorias (kcal)</label>
+                  <label htmlFor="macros-goal-calories">Calorias (kcal)</label>
                   <input
+                    id="macros-goal-calories"
                     type="number"
                     value={goalCalories}
                     onChange={(e) => setGoalCalories(e.target.value)}
@@ -191,8 +192,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Proteína (g)</label>
+                  <label htmlFor="macros-goal-protein">Proteína (g)</label>
                   <input
+                    id="macros-goal-protein"
                     type="number"
                     step="0.1"
                     value={goalProtein}
@@ -201,8 +203,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Carboidratos (g)</label>
+                  <label htmlFor="macros-goal-carbs">Carboidratos (g)</label>
                   <input
+                    id="macros-goal-carbs"
                     type="number"
                     step="0.1"
                     value={goalCarbs}
@@ -211,8 +214,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Gorduras (g)</label>
+                  <label htmlFor="macros-goal-fat">Gorduras (g)</label>
                   <input
+                    id="macros-goal-fat"
                     type="number"
                     step="0.1"
                     value={goalFat}
@@ -399,8 +403,9 @@ export const Macros = () => {
 
             <div className={styles.addForm}>
               <div className={styles.formGroup}>
-                <label>Refeição</label>
+                <label htmlFor="macros-add-meal">Refeição</label>
                 <select
+                  id="macros-add-meal"
                   value={selectedMeal}
                   onChange={(e) => setSelectedMeal(e.target.value)}
                   className={styles.formInput}
@@ -414,8 +419,9 @@ export const Macros = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label>Nome do Alimento</label>
+                <label htmlFor="macros-add-food-name">Nome do Alimento</label>
                 <input
+                  id="macros-add-food-name"
                   type="text"
                   value={foodName}
                   onChange={(e) => setFoodName(e.target.value)}
@@ -426,8 +432,9 @@ export const Macros = () => {
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label>Quantidade</label>
+                  <label htmlFor="macros-add-quantity">Quantidade</label>
                   <input
+                    id="macros-add-quantity"
                     type="number"
                     step="0.1"
                     value={quantity}
@@ -436,8 +443,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Unidade</label>
+                  <label htmlFor="macros-add-unit">Unidade</label>
                   <select
+                    id="macros-add-unit"
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
                     className={styles.formInput}
@@ -450,8 +458,9 @@ export const Macros = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label>Calorias (kcal)</label>
+                <label htmlFor="macros-add-calories">Calorias (kcal)</label>
                 <input
+                  id="macros-add-calories"
                   type="number"
                   step="0.1"
                   value={calories}
@@ -463,8 +472,9 @@ export const Macros = () => {
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label>Proteína (g)</label>
+                  <label htmlFor="macros-add-protein">Proteína (g)</label>
                   <input
+                    id="macros-add-protein"
                     type="number"
                     step="0.1"
                     value={protein}
@@ -473,8 +483,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Carboidratos (g)</label>
+                  <label htmlFor="macros-add-carbs">Carboidratos (g)</label>
                   <input
+                    id="macros-add-carbs"
                     type="number"
                     step="0.1"
                     value={carbs}
@@ -483,8 +494,9 @@ export const Macros = () => {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Gorduras (g)</label>
+                  <label htmlFor="macros-add-fat">Gorduras (g)</label>
                   <input
+                    id="macros-add-fat"
                     type="number"
                     step="0.1"
                     value={fat}

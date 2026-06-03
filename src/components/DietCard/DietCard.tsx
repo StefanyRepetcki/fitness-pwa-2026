@@ -27,7 +27,7 @@ export const DietCard = ({ meal }: DietCardProps) => {
           </span>
         )}
       </div>
-      <ul className={styles.items} role="list">
+      <ul className={styles.items}>
         {meal.items.map((item: string, index: number) => (
           <li key={index} className={styles.item}>
             <span className={styles.bullet} aria-hidden="true">•</span>

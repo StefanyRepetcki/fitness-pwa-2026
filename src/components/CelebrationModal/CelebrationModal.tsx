@@ -46,12 +46,15 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
   return (
     <div
       className={`${styles.overlay} ${show ? styles.show : ''}`}
-      onClick={handleClose}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          handleClose();
+        }
+      }}
       role="presentation"
     >
       <div
         className={`${styles.modal} ${show ? styles.show : ''}`}
-        onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="celebration-title"

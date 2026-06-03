@@ -12,6 +12,7 @@ import { ProfileProvider } from './contexts/ProfileContext';
 import { initializeNotifications } from './utils/notificationService';
 import { SkeletonLoader } from './components/SkeletonLoader/SkeletonLoader';
 import { SafetyDisclaimer } from './components/SafetyDisclaimer/SafetyDisclaimer';
+import { PwaReloadListener } from './components/PwaReloadListener/PwaReloadListener';
 import './styles/global.css';
 
 const Workouts = lazy(() => import('./pages/Workouts/Workouts').then(m => ({ default: m.Workouts })));
@@ -60,6 +61,7 @@ function App() {
           <ProfileProvider>
             <MenuProvider>
               <ToastProvider>
+            <PwaReloadListener />
             <SafetyDisclaimer />
             <SkipLink />
             <SEO />

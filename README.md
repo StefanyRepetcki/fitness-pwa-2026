@@ -78,6 +78,17 @@ O app estará disponível em `http://localhost:5173`
 npm run build
 ```
 
+## ✅ Qualidade (CI local e GitHub)
+
+```bash
+npm run lint
+npm run test:run
+```
+
+**GitHub Actions** (`.github/workflows/ci.yml`) corre em cada `push` e *pull request*: `lint`, testes (`vitest`), `build` e um `npm audit` informativo (nível high). Serve para validar o código antes de integrar — **não substitui o deploy**.
+
+**Netlify** continua a ser onde o site é publicado: o repositório ligado ao Netlify corre o `npm run build` e publica a pasta `dist` conforme o [`netlify.toml`](netlify.toml). Ou seja: CI no GitHub = barreira de qualidade; Netlify = *hosting* e build de produção.
+
 ## 🎨 Identidade Visual Ciclei
 
 ### Paleta de Cores Única

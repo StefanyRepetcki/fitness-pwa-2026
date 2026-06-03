@@ -334,8 +334,9 @@ export const RestTimer = () => {
                 </div>
                 <div className={styles.customInputs}>
                   <div className={styles.customInputGroup}>
-                    <label>Min</label>
+                    <label htmlFor="rest-timer-custom-min">Min</label>
                     <input
+                      id="rest-timer-custom-min"
                       type="number"
                       min="0"
                       max="10"
@@ -345,8 +346,9 @@ export const RestTimer = () => {
                     />
                   </div>
                   <div className={styles.customInputGroup}>
-                    <label>Seg</label>
+                    <label htmlFor="rest-timer-custom-sec">Seg</label>
                     <input
+                      id="rest-timer-custom-sec"
                       type="number"
                       min="0"
                       max="59"

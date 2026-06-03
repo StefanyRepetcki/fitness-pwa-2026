@@ -75,11 +75,11 @@ export const Diary = () => {
           </div>
         )}
 
-        <div className={styles.section}>
-          <label className={styles.label}>
+        <div className={styles.section} role="group" aria-labelledby="diary-energy-heading">
+          <div id="diary-energy-heading" className={styles.label}>
             <Zap className={styles.labelIcon} size={18} strokeWidth={2} />
             Como estava sua energia?
-          </label>
+          </div>
           <div className={styles.ratingButtons}>
             {[1, 2, 3, 4, 5].map((value) => (
               <button
@@ -99,11 +99,11 @@ export const Diary = () => {
           </div>
         </div>
 
-        <div className={styles.section}>
-          <label className={styles.label}>
+        <div className={styles.section} role="group" aria-labelledby="diary-mood-heading">
+          <div id="diary-mood-heading" className={styles.label}>
             <Heart className={styles.labelIcon} size={18} strokeWidth={2} />
             Como estava seu humor?
-          </label>
+          </div>
           <div className={styles.ratingButtons}>
             {[1, 2, 3, 4, 5].map((value) => (
               <button

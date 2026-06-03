@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- Provider + hook no mesmo ficheiro */
 import { createContext, useContext, useState, type ReactNode } from 'react';
+import { Toast, type ToastType } from '../components/Toast/Toast';
 
 interface ToastData {
   id: string;
