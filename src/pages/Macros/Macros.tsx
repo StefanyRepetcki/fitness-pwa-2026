@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { 
@@ -33,15 +33,21 @@ export const Macros = () => {
   const today = new Date().toISOString().split('T')[0];
   const [selectedDate, setSelectedDate] = useState<string>(today);
   const [goals, setGoals] = useState<MacroGoals>(getMacroGoals());
-  const [dailyMacros, setDailyMacros] = useState(getDailyMacros(selectedDate));
-  const [totals, setTotals] = useState(calculateDailyTotals(selectedDate));
+  const [macrosRefreshKey, setMacrosRefreshKey] = useState(0);
+  const dailyMacros = useMemo(() => {
+    void macrosRefreshKey;
+    return getDailyMacros(selectedDate);
+  }, [selectedDate, macrosRefreshKey]);
+  const totals = useMemo(() => {
+    void macrosRefreshKey;
+    return calculateDailyTotals(selectedDate);
+  }, [selectedDate, macrosRefreshKey]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showGoalsForm, setShowGoalsForm] = useState(false);
   const [editingEntry, setEditingEntry] = useState<MacroEntry | null>(null);
   const [selectedMeal, setSelectedMeal] = useState<string>('breakfast');
   const { showToast } = useToast();
 
-  // Form states
   const [foodName, setFoodName] = useState('');
   const [calories, setCalories] = useState<string>('');
   const [protein, setProtein] = useState<string>('');
@@ -50,18 +56,10 @@ export const Macros = () => {
   const [quantity, setQuantity] = useState<string>('100');
   const [unit, setUnit] = useState<string>('g');
 
-  // Goals form states
   const [goalCalories, setGoalCalories] = useState<string>('');
   const [goalProtein, setGoalProtein] = useState<string>('');
   const [goalCarbs, setGoalCarbs] = useState<string>('');
   const [goalFat, setGoalFat] = useState<string>('');
-
-  useEffect(() => {
-    const daily = getDailyMacros(selectedDate);
-    setDailyMacros(daily);
-    setTotals(calculateDailyTotals(selectedDate));
-    setGoals(getMacroGoals());
-  }, [selectedDate]);
 
   const resetForm = () => {
     setFoodName('');
@@ -103,17 +101,13 @@ export const Macros = () => {
     }
 
     resetForm();
-    const daily = getDailyMacros(selectedDate);
-    setDailyMacros(daily);
-    setTotals(calculateDailyTotals(selectedDate));
+    setMacrosRefreshKey((k) => k + 1);
   };
 
   const handleDeleteEntry = (id: string) => {
     if (window.confirm('Tem certeza que deseja remover este alimento?')) {
       removeMacroEntry(id);
-      const daily = getDailyMacros(selectedDate);
-      setDailyMacros(daily);
-      setTotals(calculateDailyTotals(selectedDate));
+      setMacrosRefreshKey((k) => k + 1);
       showToast('Alimento removido com sucesso!', 'success');
     }
   };
@@ -141,7 +135,7 @@ export const Macros = () => {
 
     saveMacroGoals(newGoals);
     setGoals(newGoals);
-    setTotals(calculateDailyTotals(selectedDate));
+    setMacrosRefreshKey((k) => k + 1);
     setShowGoalsForm(false);
     showToast('Metas atualizadas com sucesso!', 'success');
   };
@@ -168,7 +162,6 @@ export const Macros = () => {
     <>
       <Header title="Controle de Macros" />
       <PageContainer>
-        {/* Seção de Metas */}
         <div className={styles.goalsSection}>
           <div className={styles.goalsHeader}>
             <div className={styles.goalsTitleGroup}>
@@ -262,7 +255,6 @@ export const Macros = () => {
           )}
         </div>
 
-        {/* Seletor de Data */}
         <div className={styles.dateSelector}>
           <input
             type="date"
@@ -273,11 +265,9 @@ export const Macros = () => {
           />
         </div>
 
-        {/* Resumo do Dia */}
         <div className={styles.summarySection}>
           <h3 className={styles.summaryTitle}>Resumo do Dia</h3>
           <div className={styles.macroBars}>
-            {/* Calorias */}
             <div className={styles.macroBar}>
               <div className={styles.macroBarHeader}>
                 <span className={styles.macroBarLabel}>Calorias</span>
@@ -306,7 +296,6 @@ export const Macros = () => {
               </div>
             </div>
 
-            {/* Proteína */}
             <div className={styles.macroBar}>
               <div className={styles.macroBarHeader}>
                 <span className={styles.macroBarLabel}>Proteína</span>
@@ -335,7 +324,6 @@ export const Macros = () => {
               </div>
             </div>
 
-            {/* Carboidratos */}
             <div className={styles.macroBar}>
               <div className={styles.macroBarHeader}>
                 <span className={styles.macroBarLabel}>Carboidratos</span>
@@ -364,7 +352,6 @@ export const Macros = () => {
               </div>
             </div>
 
-            {/* Gorduras */}
             <div className={styles.macroBar}>
               <div className={styles.macroBarHeader}>
                 <span className={styles.macroBarLabel}>Gorduras</span>
@@ -395,7 +382,6 @@ export const Macros = () => {
           </div>
         </div>
 
-        {/* Formulário de Adicionar Alimento */}
         {showAddForm && (
           <div className={styles.addFormSection}>
             <div className={styles.addFormHeader}>
@@ -519,7 +505,6 @@ export const Macros = () => {
           </div>
         )}
 
-        {/* Lista de Refeições */}
         <div className={styles.mealsSection}>
           {MEALS.map(meal => {
             const mealEntries = getMealEntries(meal.id);
@@ -606,7 +591,6 @@ export const Macros = () => {
           })}
         </div>
 
-        {/* Botão Flutuante */}
         {!showAddForm && (
           <button
             onClick={() => setShowAddForm(true)}

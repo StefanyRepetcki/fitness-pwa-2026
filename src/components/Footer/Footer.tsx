@@ -19,6 +19,7 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <button
+          type="button"
           className={styles.creditsButton}
           onClick={handleToggle}
           onKeyDown={handleKeyDown}

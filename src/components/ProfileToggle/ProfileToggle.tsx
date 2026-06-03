@@ -7,6 +7,7 @@ export const ProfileToggle = () => {
 
   return (
     <button
+      type="button"
       onClick={toggleProfile}
       className={styles.toggle}
       aria-label={profileType === 'female' ? 'Trocar para perfil masculino' : 'Trocar para perfil feminino'}

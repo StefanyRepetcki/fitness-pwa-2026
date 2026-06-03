@@ -26,7 +26,7 @@ export const VideoCard = ({ video }: VideoCardProps) => {
             allowFullScreen
             className={styles.video}
             loading="lazy"
-            aria-label={`Vídeo: ${video.title}`}
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         ) : (
           <video 

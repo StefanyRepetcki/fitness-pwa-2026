@@ -15,10 +15,8 @@ export const Toast = ({ message, type = 'info', duration = 3000, onClose }: Toas
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Animação de entrada
     setTimeout(() => setIsVisible(true), 10);
 
-    // Auto-fechar
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onClose, 300);
@@ -42,14 +40,15 @@ export const Toast = ({ message, type = 'info', duration = 3000, onClose }: Toas
   const IconComponent = icons[type];
 
   return (
-    <div 
+    <div
       className={`${styles.toast} ${styles[type]} ${isVisible ? styles.visible : ''}`}
-      role="alert"
-      aria-live="polite"
+      role={type === 'error' ? 'alert' : 'status'}
+      aria-live={type === 'error' ? 'assertive' : 'polite'}
     >
       <IconComponent className={styles.icon} size={20} strokeWidth={2.5} />
       <span className={styles.message}>{message}</span>
       <button
+        type="button"
         className={styles.closeButton}
         onClick={handleClose}
         aria-label="Fechar notificação"

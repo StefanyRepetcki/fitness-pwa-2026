@@ -14,7 +14,6 @@ import { SkeletonLoader } from './components/SkeletonLoader/SkeletonLoader';
 import { SafetyDisclaimer } from './components/SafetyDisclaimer/SafetyDisclaimer';
 import './styles/global.css';
 
-// Lazy loading de páginas para melhor performance
 const Workouts = lazy(() => import('./pages/Workouts/Workouts').then(m => ({ default: m.Workouts })));
 const WorkoutDetail = lazy(() => import('./pages/WorkoutDetail/WorkoutDetail').then(m => ({ default: m.WorkoutDetail })));
 const Diet = lazy(() => import('./pages/Diet/Diet').then(m => ({ default: m.Diet })));
@@ -35,21 +34,21 @@ const Macros = lazy(() => import('./pages/Macros/Macros').then(m => ({ default: 
 const RestTimer = lazy(() => import('./pages/RestTimer/RestTimer').then(m => ({ default: m.RestTimer })));
 const Water = lazy(() => import('./pages/Water/Water').then(m => ({ default: m.Water })));
 
-// Loading component melhorado com Skeleton Loader
 const PageLoader = () => (
-  <div 
-    style={{ 
+  <div
+    style={{
       padding: '2rem 1rem',
     }}
     role="status"
-    aria-label="Carregando página"
+    aria-busy="true"
+    aria-live="polite"
   >
+    <span className="visuallyHidden">Carregando página…</span>
     <SkeletonLoader type="card" count={3} />
   </div>
 );
 
 function App() {
-  // Inicializar notificações quando o app carrega
   useEffect(() => {
     initializeNotifications().catch(console.error);
   }, []);

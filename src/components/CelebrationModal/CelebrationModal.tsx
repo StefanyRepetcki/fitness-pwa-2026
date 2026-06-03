@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { X, Sparkles } from 'lucide-react';
 import type { Badge } from '../../data/badges';
 import styles from './CelebrationModal.module.css';
@@ -11,30 +11,54 @@ interface CelebrationModalProps {
 
 export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalProps) => {
   const [show, setShow] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    // Animação de entrada
-    setTimeout(() => setShow(true), 10);
-  }, []);
-
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setShow(false);
     setTimeout(onClose, 300);
-  };
+  }, [onClose]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShow(true), 10);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        handleClose();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [handleClose]);
 
   return (
-    <div 
+    <div
       className={`${styles.overlay} ${show ? styles.show : ''}`}
       onClick={handleClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="celebration-title"
+      role="presentation"
     >
-      <div 
+      <div
         className={`${styles.modal} ${show ? styles.show : ''}`}
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="celebration-title"
       >
         <button
+          ref={closeButtonRef}
+          type="button"
           className={styles.closeButton}
           onClick={handleClose}
           aria-label="Fechar"
@@ -46,7 +70,7 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
           {badge && (
             <>
               <div className={styles.iconContainer}>
-                <div 
+                <div
                   className={styles.badgeIcon}
                   style={{ backgroundColor: `${badge.color}20`, borderColor: badge.color }}
                 >
@@ -54,10 +78,16 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
                 </div>
                 <div className={styles.confetti}>
                   {[...Array(12)].map((_, i) => (
-                    <span key={i} className={styles.confettiPiece} style={{
-                      '--delay': `${i * 0.1}s`,
-                      '--angle': `${i * 30}deg`
-                    } as React.CSSProperties}>
+                    <span
+                      key={i}
+                      className={styles.confettiPiece}
+                      style={
+                        {
+                          '--delay': `${i * 0.1}s`,
+                          '--angle': `${i * 30}deg`,
+                        } as React.CSSProperties
+                      }
+                    >
                       ✨
                     </span>
                   ))}
@@ -79,10 +109,16 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
                 </div>
                 <div className={styles.confetti}>
                   {[...Array(12)].map((_, i) => (
-                    <span key={i} className={styles.confettiPiece} style={{
-                      '--delay': `${i * 0.1}s`,
-                      '--angle': `${i * 30}deg`
-                    } as React.CSSProperties}>
+                    <span
+                      key={i}
+                      className={styles.confettiPiece}
+                      style={
+                        {
+                          '--delay': `${i * 0.1}s`,
+                          '--angle': `${i * 30}deg`,
+                        } as React.CSSProperties
+                      }
+                    >
                       🎉
                     </span>
                   ))}
@@ -102,6 +138,3 @@ export const CelebrationModal = ({ badge, streak, onClose }: CelebrationModalPro
     </div>
   );
 };
-
-
-

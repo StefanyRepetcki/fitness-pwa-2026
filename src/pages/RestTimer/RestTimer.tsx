@@ -192,7 +192,6 @@ export const RestTimer = () => {
       />
       <PageContainer>
         <div className={styles.container}>
-        {/* Timer Principal - Compacto */}
         <div className={styles.timerContainer}>
           <div className={styles.timerCircle}>
             <svg className={styles.timerSvg} viewBox="0 0 100 100">
@@ -235,14 +234,12 @@ export const RestTimer = () => {
             </div>
           </div>
 
-          {/* Status compacto */}
           {timeLeft === 0 && initialTime > 0 && (
             <div className={styles.finishedMessage}>
               <span>⏰ Tempo Finalizado!</span>
             </div>
           )}
 
-          {/* Controles compactos */}
           <div className={styles.controls}>
             {!isRunning && timeLeft === 0 && !showCustomInput && (
               <div className={styles.startPrompt}>
@@ -294,7 +291,6 @@ export const RestTimer = () => {
           </div>
         </div>
 
-        {/* Tempos Pré-definidos - Grid compacto */}
         {!isRunning && !isPaused && (
           <div className={styles.presetsSection}>
             <div className={styles.presetsGrid}>
@@ -314,7 +310,6 @@ export const RestTimer = () => {
           </div>
         )}
 
-        {/* Timer Customizado - Compacto inline */}
         {!isRunning && !isPaused && (
           <div className={styles.customSection}>
             {!showCustomInput ? (
@@ -372,7 +367,6 @@ export const RestTimer = () => {
           </div>
         )}
 
-        {/* Configurações e Informações - Compacto no rodapé */}
         <div className={styles.footerSection}>
           <div className={styles.settingsSection}>
             <button
@@ -389,7 +383,6 @@ export const RestTimer = () => {
             </button>
           </div>
 
-          {/* Informações compactas */}
           <div className={styles.infoSection}>
             <div className={styles.infoTitle}>💡 Dicas de Descanso</div>
             <div className={styles.infoList}>

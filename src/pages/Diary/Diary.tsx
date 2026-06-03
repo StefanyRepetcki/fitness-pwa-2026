@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { getDiaryEntry, saveDiaryEntry, getRecentEntries, type DiaryEntry } from '../../data/diary';
@@ -9,13 +9,16 @@ import styles from './Diary.module.css';
 
 export const Diary = () => {
   const today = new Date().toISOString().split('T')[0];
+  const initialEntry = getDiaryEntry(today);
   const [selectedDate, setSelectedDate] = useState(today);
-  const [notes, setNotes] = useState('');
-  const [energy, setEnergy] = useState<number>(3);
-  const [mood, setMood] = useState<number>(3);
+  const [notes, setNotes] = useState(initialEntry?.notes ?? '');
+  const [energy, setEnergy] = useState(initialEntry?.energy ?? 3);
+  const [mood, setMood] = useState(initialEntry?.mood ?? 3);
   const [recentEntries, setRecentEntries] = useState(getRecentEntries(5));
 
-  useEffect(() => {
+  const [prevDate, setPrevDate] = useState(selectedDate);
+  if (selectedDate !== prevDate) {
+    setPrevDate(selectedDate);
     const savedEntry = getDiaryEntry(selectedDate);
     if (savedEntry) {
       setNotes(savedEntry.notes || '');
@@ -26,7 +29,7 @@ export const Diary = () => {
       setEnergy(3);
       setMood(3);
     }
-  }, [selectedDate]);
+  }
 
   const handleSave = () => {
     const workout = getWorkoutByDate(selectedDate);
@@ -55,7 +58,6 @@ export const Diary = () => {
           <p>Registre como você se sentiu hoje</p>
         </div>
 
-        {/* Seletor de Data */}
         <div className={styles.dateSelector}>
           <input
             type="date"
@@ -66,7 +68,6 @@ export const Diary = () => {
           />
         </div>
 
-        {/* Informações do Treino do Dia */}
         {workoutData && (
           <div className={styles.workoutInfo}>
             <h3 className={styles.workoutTitle}>Treino do Dia</h3>
@@ -74,7 +75,6 @@ export const Diary = () => {
           </div>
         )}
 
-        {/* Energia */}
         <div className={styles.section}>
           <label className={styles.label}>
             <Zap className={styles.labelIcon} size={18} strokeWidth={2} />
@@ -99,7 +99,6 @@ export const Diary = () => {
           </div>
         </div>
 
-        {/* Humor */}
         <div className={styles.section}>
           <label className={styles.label}>
             <Heart className={styles.labelIcon} size={18} strokeWidth={2} />
@@ -124,7 +123,6 @@ export const Diary = () => {
           </div>
         </div>
 
-        {/* Anotações */}
         <div className={styles.section}>
           <label className={styles.label} htmlFor="notes">
             Anotações do dia
@@ -139,7 +137,6 @@ export const Diary = () => {
           />
         </div>
 
-        {/* Botão Salvar */}
         <button
           className={styles.saveButton}
           onClick={handleSave}
@@ -148,7 +145,6 @@ export const Diary = () => {
           Salvar
         </button>
 
-        {/* Entradas Recentes */}
         {recentEntries.length > 0 && (
           <div className={styles.recentSection}>
             <h2 className={styles.recentTitle}>Entradas Recentes</h2>

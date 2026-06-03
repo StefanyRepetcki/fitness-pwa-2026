@@ -13,7 +13,6 @@ import { Droplet, Plus, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
 import styles from './Water.module.css';
 
-// Tamanhos de copo/garrafa em ml
 const WATER_SIZES = [
   { label: '150ml', value: 150, icon: '🥤' },
   { label: '200ml', value: 200, icon: '🥤' },
@@ -31,21 +30,23 @@ export const Water = () => {
   const [entry, setEntry] = useState<WaterEntry>(getTodayWaterEntry(goal));
   const [customAmount, setCustomAmount] = useState<string>('');
 
-  // Atualizar quando o perfil mudar
   useEffect(() => {
-    const newGoal = getTodayWaterGoal(profileType);
-    setGoal(newGoal);
-    setEntry(getTodayWaterEntry(newGoal));
-  }, [profileType]);
-
-  // Verificar se é um novo dia e resetar se necessário
-  useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    if (entry.date !== today) {
+    queueMicrotask(() => {
       const newGoal = getTodayWaterGoal(profileType);
       setGoal(newGoal);
       setEntry(getTodayWaterEntry(newGoal));
-    }
+    });
+  }, [profileType]);
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      const today = new Date().toISOString().split('T')[0];
+      if (entry.date !== today) {
+        const newGoal = getTodayWaterGoal(profileType);
+        setGoal(newGoal);
+        setEntry(getTodayWaterEntry(newGoal));
+      }
+    });
   }, [entry.date, profileType]);
 
   const handleAddWater = (amount: number) => {
@@ -105,7 +106,6 @@ export const Water = () => {
           <p>Mantenha-se hidratado! Sua meta diária é <strong>{goalLiters}L</strong> de água 💧</p>
         </div>
 
-        {/* Card Principal de Progresso */}
         <div className={styles.progressCard}>
           <div className={styles.progressHeader}>
             <div className={styles.progressInfo}>
@@ -129,7 +129,6 @@ export const Water = () => {
             )}
           </div>
 
-          {/* Barra de Progresso */}
           <div className={styles.progressBarContainer}>
             <div 
               className={styles.progressBar}
@@ -163,7 +162,6 @@ export const Water = () => {
           </div>
         </div>
 
-        {/* Botões Rápidos de Adicionar Água */}
         <div className={styles.quickAddSection}>
           <h3 className={styles.sectionTitle}>Adicionar Água</h3>
           <div className={styles.waterSizes}>
@@ -181,7 +179,6 @@ export const Water = () => {
           </div>
         </div>
 
-        {/* Adicionar Quantidade Customizada */}
         <div className={styles.customSection}>
           <h3 className={styles.sectionTitle}>Quantidade Personalizada</h3>
           <div className={styles.customInput}>
@@ -207,7 +204,6 @@ export const Water = () => {
           </div>
         </div>
 
-        {/* Dicas de Hidratação */}
         <div className={styles.tipsSection}>
           <h3 className={styles.tipsTitle}>💡 Dicas de Hidratação</h3>
           <ul className={styles.tipsList}>
