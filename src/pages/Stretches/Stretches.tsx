@@ -28,7 +28,6 @@ export const Stretches = () => {
           <p>Alongamentos específicos para cada treino do seu ciclo</p>
         </div>
 
-        {/* Seletor de treino */}
         <div className={styles.workoutSelector}>
           <h2 className={styles.selectorTitle}>Escolha o Treino</h2>
           <div className={styles.workoutButtons}>
@@ -56,7 +55,6 @@ export const Stretches = () => {
           </div>
         </div>
 
-        {/* Informações do treino */}
         {selectedWorkoutData && (
           <div className={styles.workoutInfo}>
             <Link 
@@ -72,7 +70,6 @@ export const Stretches = () => {
           </div>
         )}
 
-        {/* Lista de alongamentos */}
         {selectedStretches && (
           <div className={styles.stretchesSection}>
             <div className={styles.sectionHeader}>
@@ -109,7 +106,6 @@ export const Stretches = () => {
           </div>
         )}
 
-        {/* Dica final */}
         <div className={styles.tipCard}>
           <div className={styles.tipContent}>
             <Activity className={styles.tipIcon} size={24} strokeWidth={2} />

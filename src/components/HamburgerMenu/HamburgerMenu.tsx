@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { X, Dumbbell, UtensilsCrossed, ShoppingCart, Pill, Calendar, Sparkles, Activity, Flame, TrendingUp, BookOpen, ChefHat, User, BarChart3, Timer, Droplet, GraduationCap } from 'lucide-react';
 import { useMenu } from '../../contexts/MenuContext';
@@ -10,8 +11,9 @@ export const HamburgerMenu = () => {
   const { isMenuOpen: isOpen, setIsMenuOpen: setIsOpen } = useMenu();
   const location = useLocation();
   const navigate = useNavigate();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
-  // Menu organizado por categorias lógicas
   interface MenuItem {
     path: string;
     icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
@@ -21,7 +23,6 @@ export const HamburgerMenu = () => {
   }
 
   const menuItems: MenuItem[] = [
-    // === TREINO ===
     { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos', category: 'treino' },
     { path: '/routine', icon: Calendar, label: 'Rotina', ariaLabel: 'Ir para rotina semanal', category: 'treino' },
     { path: '/rest-timer', icon: Timer, label: 'Timer de Descanso', ariaLabel: 'Ir para timer de descanso', category: 'treino' },
@@ -30,16 +31,14 @@ export const HamburgerMenu = () => {
     { path: '/techniques', icon: GraduationCap, label: 'Técnicas de Treino', ariaLabel: 'Ir para guia de técnicas de treino', category: 'treino' },
     { path: '/stats', icon: TrendingUp, label: 'Estatísticas', ariaLabel: 'Ir para estatísticas', category: 'treino' },
     { path: '/diary', icon: BookOpen, label: 'Diário', ariaLabel: 'Ir para diário', category: 'treino' },
-    
-    // === NUTRIÇÃO ===
+
     { path: '/nutrition', icon: UtensilsCrossed, label: 'Alimentação', ariaLabel: 'Ir para plano alimentar', category: 'nutricao' },
     { path: '/macros', icon: BarChart3, label: 'Macros', ariaLabel: 'Ir para controle de macros', category: 'nutricao' },
     { path: '/recipes', icon: ChefHat, label: 'Receitas', ariaLabel: 'Ir para receitas', category: 'nutricao' },
     { path: '/supplements', icon: Pill, label: 'Suplementos', ariaLabel: 'Ir para suplementação', category: 'nutricao' },
     { path: '/shopping', icon: ShoppingCart, label: 'Compras', ariaLabel: 'Ir para lista de compras', category: 'nutricao' },
     { path: '/water', icon: Droplet, label: 'Hidratação', ariaLabel: 'Ir para controle de água', category: 'nutricao' },
-    
-    // === PERFIL E OUTROS ===
+
     { path: '/profile', icon: User, label: 'Perfil', ariaLabel: 'Ir para perfil', category: 'outros' },
     { path: '/tips', icon: Sparkles, label: 'Dicas', ariaLabel: 'Ir para dicas e motivação', category: 'outros' }
   ];
@@ -48,20 +47,64 @@ export const HamburgerMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsOpen(false);
-  };
+  }, [setIsOpen]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      closeMenu();
-    }
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const menu = navRef.current;
+    const menuButtonEl = menuButtonRef.current;
+    const focusableSelector =
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled])';
+
+    const getFocusable = () => {
+      if (!menu) return [];
+      return Array.from(menu.querySelectorAll<HTMLElement>(focusableSelector));
+    };
+
+    const raf = requestAnimationFrame(() => {
+      getFocusable()[0]?.focus();
+    });
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMenu();
+        return;
+      }
+      if (e.key !== 'Tab' || !menu) return;
+      const list = getFocusable();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      cancelAnimationFrame(raf);
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      menuButtonEl?.focus();
+    };
+  }, [isOpen, closeMenu]);
 
   const handleMenuItemClick = (item: MenuItem, e: React.MouseEvent<HTMLAnchorElement>) => {
     closeMenu();
-    
-    // Se for "Treinos", ir direto para o último treino (se houver)
+
     if (item.path === '/') {
       e.preventDefault();
       const lastWorkoutPath = getLastWorkoutPath();
@@ -76,9 +119,11 @@ export const HamburgerMenu = () => {
   return (
     <>
       <button
+        ref={menuButtonRef}
+        type="button"
         className={styles.menuButton}
         onClick={toggleMenu}
-        aria-label="Abrir menu"
+        aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={isOpen}
         aria-controls="hamburger-menu"
       >
@@ -91,26 +136,25 @@ export const HamburgerMenu = () => {
 
       {isOpen && (
         <>
-          <div 
+          <div
             className={styles.overlay}
             onClick={closeMenu}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
-            aria-label="Fechar menu"
+            aria-hidden="true"
           />
-          <nav 
+          <nav
+            ref={navRef}
             id="hamburger-menu"
             className={`${styles.menu} ${isOpen ? styles.open : ''}`}
-            aria-label="Menu de navegação"
+            aria-labelledby="hamburger-menu-title"
           >
             <div className={styles.menuHeader}>
               <div className={styles.headerTop}>
-                <h2 className={styles.menuTitle}>Menu</h2>
+                <h2 id="hamburger-menu-title" className={styles.menuTitle}>Menu</h2>
                 <div className={styles.headerActions}>
                   <ProfileToggle />
                   <ThemeToggle />
                   <button
+                    type="button"
                     className={styles.closeButton}
                     onClick={closeMenu}
                     aria-label="Fechar menu"
@@ -121,7 +165,6 @@ export const HamburgerMenu = () => {
               </div>
             </div>
             <ul className={styles.menuList}>
-              {/* Seção: TREINO */}
               <li className={styles.menuSection}>
                 <h3 className={styles.sectionTitle}>💪 Treino</h3>
               </li>
@@ -129,7 +172,10 @@ export const HamburgerMenu = () => {
                 .filter(item => item.category === 'treino')
                 .map((item) => {
                   const IconComponent = item.icon;
-                  const isActive = location.pathname === item.path;
+                  const isActive =
+                    item.path === '/'
+                      ? location.pathname === '/' || location.pathname.startsWith('/workout/')
+                      : location.pathname === item.path;
                   
                   return (
                     <li key={item.path}>
@@ -151,7 +197,6 @@ export const HamburgerMenu = () => {
                   );
                 })}
               
-              {/* Seção: NUTRIÇÃO */}
               <li className={styles.menuSection}>
                 <h3 className={styles.sectionTitle}>🍎 Nutrição</h3>
               </li>
@@ -159,7 +204,10 @@ export const HamburgerMenu = () => {
                 .filter(item => item.category === 'nutricao')
                 .map((item) => {
                   const IconComponent = item.icon;
-                  const isActive = location.pathname === item.path;
+                  const isActive =
+                    item.path === '/'
+                      ? location.pathname === '/' || location.pathname.startsWith('/workout/')
+                      : location.pathname === item.path;
                   
                   return (
                     <li key={item.path}>
@@ -181,7 +229,6 @@ export const HamburgerMenu = () => {
                   );
                 })}
               
-              {/* Seção: PERFIL E OUTROS */}
               <li className={styles.menuSection}>
                 <h3 className={styles.sectionTitle}>⚙️ Outros</h3>
               </li>
@@ -189,7 +236,10 @@ export const HamburgerMenu = () => {
                 .filter(item => item.category === 'outros')
                 .map((item) => {
                   const IconComponent = item.icon;
-                  const isActive = location.pathname === item.path;
+                  const isActive =
+                    item.path === '/'
+                      ? location.pathname === '/' || location.pathname.startsWith('/workout/')
+                      : location.pathname === item.path;
                   
                   return (
                     <li key={item.path}>

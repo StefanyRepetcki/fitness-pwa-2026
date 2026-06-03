@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CheckCircle2, Circle, Weight } from 'lucide-react';
 import type { Exercise } from '../../data/workouts';
 import { getExerciseWeight, saveExerciseWeight } from '../../data/exerciseWeights';
@@ -11,28 +11,32 @@ interface ExerciseListProps {
   onToggleExercise?: (exerciseId: string) => void;
 }
 
-export const ExerciseList = ({ 
-  exercises, 
+function buildExerciseWeights(
+  workoutId: string | undefined,
+  exercises: Exercise[]
+): Record<string, string> {
+  if (!workoutId) return {};
+  const weights: Record<string, string> = {};
+  exercises.forEach((exercise) => {
+    const savedWeight = getExerciseWeight(workoutId, exercise.id);
+    if (savedWeight !== null) {
+      weights[exercise.id] = savedWeight.toString();
+    } else {
+      weights[exercise.id] = '';
+    }
+  });
+  return weights;
+}
+
+export const ExerciseList = ({
+  exercises,
   workoutId,
   completedExercises = [],
-  onToggleExercise 
+  onToggleExercise,
 }: ExerciseListProps) => {
-  const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (workoutId) {
-      const weights: Record<string, string> = {};
-      exercises.forEach(exercise => {
-        const savedWeight = getExerciseWeight(workoutId, exercise.id);
-        if (savedWeight !== null) {
-          weights[exercise.id] = savedWeight.toString();
-        } else {
-          weights[exercise.id] = '';
-        }
-      });
-      setExerciseWeights(weights);
-    }
-  }, [workoutId, exercises]);
+  const [exerciseWeights, setExerciseWeights] = useState(() =>
+    buildExerciseWeights(workoutId, exercises)
+  );
 
   if (exercises.length === 0) {
     return (
@@ -49,28 +53,27 @@ export const ExerciseList = ({
   };
 
   const handleWeightChange = (exerciseId: string, value: string) => {
-    setExerciseWeights(prev => ({
+    setExerciseWeights((prev) => ({
       ...prev,
-      [exerciseId]: value
+      [exerciseId]: value,
     }));
   };
 
   const handleWeightBlur = (exerciseId: string) => {
     if (!workoutId) return;
-    
+
     const value = exerciseWeights[exerciseId]?.replace(',', '.') || '';
     const weight = parseFloat(value);
-    
+
     if (value === '' || isNaN(weight)) {
-      // Se estiver vazio, não salva
       return;
     }
-    
+
     if (weight > 0 && weight <= 1000) {
       saveExerciseWeight(workoutId, exerciseId, weight);
-      setExerciseWeights(prev => ({
+      setExerciseWeights((prev) => ({
         ...prev,
-        [exerciseId]: weight.toString()
+        [exerciseId]: weight.toString(),
       }));
     }
   };
@@ -79,10 +82,10 @@ export const ExerciseList = ({
     <ol className={styles.list}>
       {exercises.map((exercise, index) => {
         const isCompleted = completedExercises.includes(exercise.id);
-        
+
         return (
-          <li 
-            key={exercise.id} 
+          <li
+            key={exercise.id}
             className={`${styles.exercise} ${isCompleted ? styles.completed : ''}`}
           >
             <div className={styles.exerciseContent}>
@@ -92,9 +95,14 @@ export const ExerciseList = ({
                 </span>
                 {workoutId && onToggleExercise && (
                   <button
+                    type="button"
                     className={styles.checkboxButton}
                     onClick={() => handleToggle(exercise.id)}
-                    aria-label={isCompleted ? `Marcar ${exercise.name} como não feito` : `Marcar ${exercise.name} como feito`}
+                    aria-label={
+                      isCompleted
+                        ? `Marcar ${exercise.name} como não feito`
+                        : `Marcar ${exercise.name} como feito`
+                    }
                     aria-pressed={isCompleted}
                   >
                     {isCompleted ? (
@@ -114,19 +122,25 @@ export const ExerciseList = ({
                   <span className={styles.value}>
                     {typeof exercise.sets === 'number' ? exercise.sets : exercise.sets}
                   </span>
-                  <span className={styles.separator} aria-hidden="true">•</span>
+                  <span className={styles.separator} aria-hidden="true">
+                    •
+                  </span>
                   <span className={styles.label}>Reps:</span>
                   <span className={styles.value}>{exercise.reps}</span>
                   {exercise.restTime && (
                     <>
-                      <span className={styles.separator} aria-hidden="true">•</span>
+                      <span className={styles.separator} aria-hidden="true">
+                        •
+                      </span>
                       <span className={styles.label}>Descanso:</span>
                       <span className={styles.value}>{exercise.restTime}</span>
                     </>
                   )}
                   {exercise.rpe && (
                     <>
-                      <span className={styles.separator} aria-hidden="true">•</span>
+                      <span className={styles.separator} aria-hidden="true">
+                        •
+                      </span>
                       <span className={styles.label}>RPE:</span>
                       <span className={styles.value}>{exercise.rpe}/10</span>
                     </>
@@ -134,17 +148,20 @@ export const ExerciseList = ({
                 </div>
                 {exercise.cadence && (
                   <div className={styles.cadence} role="note">
-                    <span className={styles.cadenceIcon} aria-hidden="true">⏱️</span>
+                    <span className={styles.cadenceIcon} aria-hidden="true">
+                      ⏱️
+                    </span>
                     <span className={styles.cadenceText}>Cadência: {exercise.cadence}</span>
                   </div>
                 )}
                 {exercise.notes && (
                   <div className={styles.notes} role="note">
-                    <span className={styles.notesIcon} aria-hidden="true">💡</span>
+                    <span className={styles.notesIcon} aria-hidden="true">
+                      💡
+                    </span>
                     <span className={styles.notesText}>{exercise.notes}</span>
                   </div>
                 )}
-                {/* Campo de Carga/Peso */}
                 {workoutId && (
                   <div className={styles.weightInputContainer}>
                     <Weight className={styles.weightIcon} size={16} strokeWidth={2} />

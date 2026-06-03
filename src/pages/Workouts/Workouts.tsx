@@ -19,38 +19,30 @@ export const Workouts = () => {
   const hasAutoRedirected = useRef(false);
 
   useEffect(() => {
-    // Só redirecionar se estiver na página de treinos (não em uma rota de treino específico)
     if (location.pathname !== '/') {
       return;
     }
 
-    // Se a navegação foi explícita (clique no botão voltar ou breadcrumb), não redirecionar
     const isExplicitNavigation = location.state?.explicitNavigation === true;
     if (isExplicitNavigation) {
-      // Apenas mostrar o último treino como destacado, mas não redirecionar
-      setLastWorkoutId(getLastWorkout());
+      queueMicrotask(() => setLastWorkoutId(getLastWorkout()));
       return;
     }
 
     const lastWorkout = getLastWorkout();
     const lastWorkoutPath = getLastWorkoutPath();
-    setLastWorkoutId(lastWorkout);
-    
-    // Se houver um último treino, redirecionar automaticamente
+    queueMicrotask(() => setLastWorkoutId(lastWorkout));
+
     if (lastWorkout) {
-      // Verificar se o treino existe na lista atual
-      const workoutExists = currentWorkouts.some(w => w.id === lastWorkout);
+      const workoutExists = currentWorkouts.some((w) => w.id === lastWorkout);
       if (workoutExists && !hasAutoRedirected.current) {
         hasAutoRedirected.current = true;
-        // Usar o caminho salvo se disponível, senão construir
         const targetPath = lastWorkoutPath || `/workout/${lastWorkout}`;
-        // Pequeno delay para melhor UX
         setTimeout(() => {
           navigate(targetPath, { replace: false });
         }, 300);
       }
     } else {
-      // Se não houver último treino, resetar o flag
       hasAutoRedirected.current = false;
     }
   }, [location.pathname, location.state, currentWorkouts, navigate]);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Bell, BellOff, Clock, Calendar, X } from 'lucide-react';
 import {
   requestNotificationPermission,
@@ -14,17 +14,13 @@ import styles from './NotificationSettings.module.css';
 
 export const NotificationSettings = () => {
   const [hasPermission, setHasPermission] = useState(canSendNotifications());
-  const [schedules, setSchedules] = useState<NotificationSchedule[]>([]);
+  const [schedules, setSchedules] = useState<NotificationSchedule[]>(() => getNotificationSchedules());
   const [showAddForm, setShowAddForm] = useState(false);
   const { showToast } = useToast();
 
   const loadSchedules = () => {
     setSchedules(getNotificationSchedules());
   };
-
-  useEffect(() => {
-    loadSchedules();
-  }, []);
 
   const handleRequestPermission = async () => {
     const granted = await requestNotificationPermission();

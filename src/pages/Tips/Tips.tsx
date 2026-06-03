@@ -39,7 +39,6 @@ export const Tips = () => {
           <p>Inspiração e conhecimento para seu ciclo completo</p>
         </div>
 
-        {/* Playlist do Spotify */}
         <div className={styles.playlistCard}>
           <div className={styles.playlistHeader}>
             <Music2 className={styles.playlistIcon} size={32} strokeWidth={2} />
@@ -59,7 +58,6 @@ export const Tips = () => {
           </a>
         </div>
 
-        {/* Quote do dia */}
         <div className={styles.quoteCard}>
           <div className={styles.quoteHeader}>
             <Lightbulb className={styles.quoteIcon} size={28} strokeWidth={2} />
@@ -81,7 +79,6 @@ export const Tips = () => {
           </button>
         </div>
 
-        {/* Filtros de categoria */}
         <div className={styles.categories}>
           <div className={styles.categoriesScroll}>
             {categories.map((category) => {
@@ -107,7 +104,6 @@ export const Tips = () => {
           </div>
         </div>
 
-        {/* Lista de dicas */}
         <div className={styles.tipsSection}>
           <h2 className={styles.sectionTitle}>
             {selectedCategory === 'all' ? 'Todas as Dicas' : `Dicas de ${categories.find(c => c.id === selectedCategory)?.label}`}

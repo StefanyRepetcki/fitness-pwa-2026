@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
@@ -13,7 +13,6 @@ import {
   getWorkoutProgress, 
   toggleExercise, 
   clearWorkoutProgress,
-  type WorkoutProgress 
 } from '../../data/workoutProgress';
 import { updateStreak } from '../../data/streaks';
 import { checkAndUnlockBadges, type Badge } from '../../data/badges';
@@ -29,7 +28,11 @@ export const WorkoutDetail = () => {
   const { profileType } = useProfile();
   const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
   const workout = currentWorkouts.find((w) => w.id === id);
-  const [progress, setProgress] = useState<WorkoutProgress | null>(null);
+  const [progressTick, setProgressTick] = useState(0);
+  const progress = useMemo(() => {
+    void progressTick;
+    return id ? getWorkoutProgress(id) : null;
+  }, [id, progressTick]);
   const [celebrationBadge, setCelebrationBadge] = useState<Badge | null>(null);
   const [celebrationStreak, setCelebrationStreak] = useState<number | null>(null);
   const { showToast } = useToast();
@@ -39,11 +42,7 @@ export const WorkoutDetail = () => {
   };
 
   useEffect(() => {
-    if (id) {
-      setProgress(getWorkoutProgress(id));
-      // Salvar como último treino aberto com o caminho completo
-      saveLastWorkout(id, true);
-    }
+    if (id) saveLastWorkout(id, true);
   }, [id]);
 
   if (!workout) {
@@ -66,32 +65,26 @@ export const WorkoutDetail = () => {
   const handleToggleExercise = (exerciseId: string) => {
     if (!id || !workout) return;
     const updated = toggleExercise(id, exerciseId);
-    setProgress(updated);
-    
-    // Verificar se completou todos os exercícios
+    setProgressTick((t) => t + 1);
+
     const allCompleted = updated.completedExercises.length === workout.exercises.length;
-    
+
     if (allCompleted) {
-      // Salvar no histórico
       const today = new Date().toISOString().split('T')[0];
       saveWorkoutHistory({
         date: today,
         workoutId: workout.id,
-        workoutName: workout.name
+        workoutName: workout.name,
       });
-      
-      // Atualizar streak
+
       const streakData = updateStreak();
-      
-      // Verificar badges (passar horário do treino para Early Bird/Night Owl)
+
       const workoutTime = new Date();
       const unlockedBadges = checkAndUnlockBadges(streakData, workoutTime);
-      
-      // Notificações
+
       showWorkoutCompleteNotification();
       showStreakNotification(streakData.currentStreak);
-      
-      // Mostrar celebração
+
       if (unlockedBadges.length > 0) {
         setCelebrationBadge(unlockedBadges[0]);
       } else if (streakData.currentStreak > 0 && streakData.currentStreak % 7 === 0) {
@@ -104,7 +97,7 @@ export const WorkoutDetail = () => {
     if (!id) return;
     if (window.confirm('Tem certeza que deseja limpar todo o progresso deste treino?')) {
       clearWorkoutProgress(id);
-      setProgress(getWorkoutProgress(id));
+      setProgressTick((t) => t + 1);
       showToast('Progresso do treino limpo com sucesso!', 'success');
     }
   };
@@ -132,7 +125,6 @@ export const WorkoutDetail = () => {
           <p>{workout.description}</p>
         </div>
 
-        {/* Progress Bar */}
         <div className={styles.progressSection}>
           <div className={styles.progressHeader}>
             <div className={styles.progressInfo}>
@@ -170,7 +162,6 @@ export const WorkoutDetail = () => {
           </div>
         </div>
 
-        {/* Links rápidos para aquecimento e alongamento */}
         <section className={styles.quickLinks} aria-label="Links rápidos">
           <h2 className={styles.quickLinksTitle}>Preparação e Recuperação</h2>
           <div className={styles.quickLinksGrid}>
@@ -193,7 +184,8 @@ export const WorkoutDetail = () => {
 
         <section className={styles.exercises} aria-labelledby="exercises-title">
           <h2 id="exercises-title" className={styles.sectionTitle}>Exercícios</h2>
-          <ExerciseList 
+          <ExerciseList
+            key={id}
             exercises={workout.exercises}
             workoutId={id}
             completedExercises={progress?.completedExercises || []}
@@ -218,7 +210,6 @@ export const WorkoutDetail = () => {
         />
       )}
       
-      {/* Timer flutuante para acesso rápido */}
       <QuickTimer variant="floating" />
     </>
   );

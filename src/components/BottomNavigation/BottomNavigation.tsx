@@ -11,11 +11,9 @@ export const BottomNavigation = () => {
   const navigate = useNavigate();
   const { isMenuOpen } = useMenu();
   const isScrollingDown = useScrollHide(50);
-  
-  // Esconde se estiver scrollando para baixo OU se o menu hambúrguer estiver aberto
+
   const shouldHide = isScrollingDown || isMenuOpen;
 
-  // Apenas itens essenciais para treinar no bottom nav
   const navItems = [
     { path: '/', icon: Dumbbell, label: 'Treinos', ariaLabel: 'Ir para treinos' },
     { path: '/rest-timer', icon: Timer, label: 'Timer', ariaLabel: 'Ir para timer de descanso' },
@@ -24,7 +22,6 @@ export const BottomNavigation = () => {
   ];
   
   const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Se for para a lista de treinos, ir direto para o último treino (se houver)
     if (path === '/') {
       e.preventDefault();
       const lastWorkoutPath = getLastWorkoutPath();
@@ -42,7 +39,10 @@ export const BottomNavigation = () => {
       <nav className={`${styles.nav} ${shouldHide ? styles.hidden : ''}`} aria-label="Navegação principal">
         {navItems.map((item) => {
           const IconComponent = item.icon;
-          const isActive = location.pathname === item.path;
+          const isActive =
+            item.path === '/'
+              ? location.pathname === '/' || location.pathname.startsWith('/workout/')
+              : location.pathname === item.path;
           
           return (
             <Link

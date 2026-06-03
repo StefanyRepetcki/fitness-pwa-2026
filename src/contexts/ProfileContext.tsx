@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- Provider + hook no mesmo ficheiro */
 import { createContext, useContext, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -17,11 +18,9 @@ interface ProfileContextType {
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
-  // Usar diretamente os valores do hook useLocalStorage (já sincroniza com localStorage)
   const [profileType, setStoredProfile] = useLocalStorage<ProfileType>('profile-type', 'female');
   const [routineType, setStoredRoutine] = useLocalStorage<RoutineType>('routine-type', 'abc');
 
-  // Aplicar perfil ao documento para CSS
   useEffect(() => {
     if (typeof document === 'undefined') return;
 

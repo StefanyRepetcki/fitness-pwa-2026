@@ -50,7 +50,6 @@ export const Stats = () => {
           <p>Veja seu progresso e conquistas</p>
         </div>
 
-        {/* Cards de Estatísticas Principais */}
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #eb3157 0%, #ff6b9d 100%)' }}>
@@ -93,7 +92,6 @@ export const Stats = () => {
           </div>
         </div>
 
-        {/* Gráfico Simples */}
         <div className={styles.chartSection}>
           <h2 className={styles.sectionTitle}>
             <Calendar className={styles.sectionIcon} size={20} strokeWidth={2} />
@@ -118,7 +116,6 @@ export const Stats = () => {
           </div>
         </div>
 
-        {/* Badges */}
         <div className={styles.badgesSection}>
           <h2 className={styles.sectionTitle}>
             <Award className={styles.sectionIcon} size={20} strokeWidth={2} />
@@ -158,7 +155,6 @@ export const Stats = () => {
           </div>
         </div>
 
-        {/* Estatísticas Adicionais */}
         <div className={styles.additionalStats}>
           <div className={styles.additionalCard}>
             <p className={styles.additionalValue}>{stats.workoutsThisMonth}</p>

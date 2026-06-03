@@ -26,17 +26,20 @@ export const VideoCard = ({ video }: VideoCardProps) => {
             allowFullScreen
             className={styles.video}
             loading="lazy"
-            aria-label={`Vídeo: ${video.title}`}
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         ) : (
-          <video 
-            controls 
-            className={styles.video}
-            aria-label={`Vídeo: ${video.title}`}
-          >
-            <source src={video.videoUrl} type="video/mp4" />
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+          <>
+            {/* eslint-disable-next-line jsx-a11y/media-has-caption -- vídeos locais de demonstração sem ficheiro de legendas */}
+            <video 
+              controls 
+              className={styles.video}
+              aria-label={`Vídeo: ${video.title}`}
+            >
+              <source src={video.videoUrl} type="video/mp4" />
+              Seu navegador não suporta o elemento de vídeo.
+            </video>
+          </>
         )}
       </div>
     </article>

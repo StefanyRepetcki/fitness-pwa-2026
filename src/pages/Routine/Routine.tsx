@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lightbulb, Dumbbell, Check, X, Calendar as CalendarIcon } from 'lucide-react';
 import { Header } from '../../components/Header/Header';
@@ -18,15 +18,11 @@ import styles from './Routine.module.css';
 
 export const Routine = () => {
   const { profileType } = useProfile();
-  const [history, setHistory] = useState<WorkoutHistoryEntry[]>([]);
+  const [history, setHistory] = useState<WorkoutHistoryEntry[]>(() => getWorkoutHistory());
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [showCalendar, setShowCalendar] = useState(false);
   
   const currentWorkouts = profileType === 'male' ? workoutsMale : workouts;
-
-  useEffect(() => {
-    setHistory(getWorkoutHistory());
-  }, []);
 
   const workoutIds = currentWorkouts.map(w => w.id);
   const suggestedWorkoutId = suggestNextWorkout(workoutIds);
@@ -52,7 +48,6 @@ export const Routine = () => {
     handleMarkWorkout(workoutId);
   };
 
-  // Gerar últimos 7 dias para o calendário
   const getLast7Days = () => {
     const days = [];
     for (let i = 6; i >= 0; i--) {
@@ -84,7 +79,6 @@ export const Routine = () => {
           <p>Organize seus treinos de forma flexível</p>
         </div>
 
-        {/* Sugestão de treino do dia */}
         {suggestedWorkout && (
           <div className={styles.suggestionCard}>
             <div className={styles.suggestionHeader}>
@@ -119,7 +113,6 @@ export const Routine = () => {
           </div>
         )}
 
-        {/* Calendário dos últimos 7 dias */}
         <div className={styles.calendarSection}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Últimos 7 Dias</h2>
@@ -165,7 +158,6 @@ export const Routine = () => {
             </div>
           )}
 
-          {/* Seleção de treino para a data escolhida */}
           <div className={styles.workoutSelector}>
             <h3 className={styles.selectorTitle}>
               {selectedDate === new Date().toISOString().split('T')[0]
@@ -191,7 +183,6 @@ export const Routine = () => {
                   className={styles.removeButton}
                   onClick={() => {
                     if (window.confirm('Remover este treino do dia?')) {
-                      // Remove o treino do dia selecionado
                       const filtered = history.filter(h => h.date !== selectedDate);
                       localStorage.setItem('ciclei-workout-history', JSON.stringify(filtered));
                       setHistory(filtered);
@@ -223,14 +214,14 @@ export const Routine = () => {
           </div>
         </div>
 
-        {/* Histórico recente */}
         {history.length > 0 && (
           <div className={styles.historySection}>
             <h2 className={styles.sectionTitle}>Histórico Recente</h2>
             <div className={styles.historyList}>
               {(() => {
-                const today = new Date().toISOString().split('T')[0];
-                const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                const now = new Date();
+                const today = now.toISOString().split('T')[0];
+                const yesterday = new Date(now.getTime() - 86400000).toISOString().split('T')[0];
                 return history.slice(0, 5).map((entry) => {
                   const date = new Date(entry.date);
                   const isToday = entry.date === today;

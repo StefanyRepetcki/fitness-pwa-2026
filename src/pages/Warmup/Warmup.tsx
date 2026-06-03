@@ -28,7 +28,6 @@ export const Warmup = () => {
           <p>Rotinas de aquecimento específicas para cada treino do seu ciclo</p>
         </div>
 
-        {/* Seletor de treino */}
         <div className={styles.workoutSelector}>
           <h2 className={styles.selectorTitle}>Escolha o Treino</h2>
           <div className={styles.workoutButtons}>
@@ -56,7 +55,6 @@ export const Warmup = () => {
           </div>
         </div>
 
-        {/* Informações do treino */}
         {selectedWorkoutData && (
           <div className={styles.workoutInfo}>
             <Link 
@@ -72,7 +70,6 @@ export const Warmup = () => {
           </div>
         )}
 
-        {/* Rotina de aquecimento */}
         {selectedWarmup && (
           <div className={styles.warmupSection}>
             <div className={styles.sectionHeader}>
@@ -111,7 +108,6 @@ export const Warmup = () => {
           </div>
         )}
 
-        {/* Dica final */}
         <div className={styles.tipCard}>
           <div className={styles.tipContent}>
             <Activity className={styles.tipIcon} size={24} strokeWidth={2} />

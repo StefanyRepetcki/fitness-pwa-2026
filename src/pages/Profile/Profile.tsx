@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '../../components/Header/Header';
 import { PageContainer } from '../../components/PageContainer/PageContainer';
 import { Target, TrendingDown, TrendingUp, Plus, Calendar } from 'lucide-react';
@@ -15,7 +15,7 @@ import { useToast } from '../../contexts/ToastContext';
 import styles from './Profile.module.css';
 
 export const Profile = () => {
-  const [profile, setProfile] = useState(getWeightProfile());
+  const [profile, setProfile] = useState(() => getWeightProfile());
   const [currentWeightInput, setCurrentWeightInput] = useState<string>('');
   const [targetWeightInput, setTargetWeightInput] = useState<string>('');
   const [showAddWeight, setShowAddWeight] = useState(false);
@@ -23,7 +23,6 @@ export const Profile = () => {
   const [newWeightValue, setNewWeightValue] = useState<string>('');
   const { showToast } = useToast();
 
-  // Recalcular sempre que o profile mudar
   const weightDifference = useMemo(() => {
     if (profile.currentWeight !== null && profile.targetWeight !== null) {
       return profile.targetWeight - profile.currentWeight;
@@ -43,14 +42,9 @@ export const Profile = () => {
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [profile.entries]);
 
-  // Histórico completo para exibição (todos os registros, ordenados do mais recente para o mais antigo)
   const allHistory = useMemo(() => {
     return [...profile.entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [profile.entries]);
-
-  useEffect(() => {
-    setProfile(getWeightProfile());
-  }, []);
 
   const handleUpdateCurrentWeight = () => {
     try {
@@ -104,7 +98,6 @@ export const Profile = () => {
     }
   };
 
-  // Preparar dados para o gráfico
   const chartData = history.length > 0 ? history : 
     (profile.currentWeight ? [{
       id: 'current',
@@ -128,9 +121,7 @@ export const Profile = () => {
           <p>Acompanhe sua evolução e controle seu peso</p>
         </div>
 
-        {/* Cards de Peso */}
         <div className={styles.weightCards}>
-          {/* Peso Atual */}
           <div className={styles.weightCard}>
             <div className={styles.cardHeader}>
               <Target className={styles.cardIcon} size={24} strokeWidth={2} />
@@ -168,7 +159,6 @@ export const Profile = () => {
             </div>
           </div>
 
-          {/* Peso Desejado */}
           <div className={styles.weightCard}>
             <div className={styles.cardHeader}>
               <Target className={styles.cardIcon} size={24} strokeWidth={2} />
@@ -207,7 +197,6 @@ export const Profile = () => {
           </div>
         </div>
 
-        {/* Card "Faltam X KGs" */}
         {weightDifference !== null && (
           <div className={`${styles.differenceCard} ${weightDifference > 0 ? styles.positive : weightDifference < 0 ? styles.negative : styles.neutral}`}>
             <div className={styles.differenceContent}>
@@ -238,13 +227,11 @@ export const Profile = () => {
           </div>
         )}
 
-        {/* Gráfico */}
         {(profile.currentWeight || profile.targetWeight || chartData.length > 0) && (
           <div className={styles.chartSection}>
             <h2 className={styles.chartTitle}>Evolução do Peso</h2>
             <div className={styles.chartContainer}>
               <div className={styles.chart}>
-                {/* Linha de referência - Peso Desejado */}
                 {profile.targetWeight && (
                   <div 
                     className={styles.targetLine}
@@ -256,7 +243,6 @@ export const Profile = () => {
                   </div>
                 )}
 
-                {/* Linha de referência - Peso Atual */}
                 {profile.currentWeight && (
                   <div 
                     className={styles.currentLine}
@@ -268,7 +254,6 @@ export const Profile = () => {
                   </div>
                 )}
 
-                {/* Pontos do histórico */}
                 {chartData.map((entry, index) => {
                   const height = ((entry.weight - minWeight) / weightRange) * 100;
                   const isToday = entry.date === new Date().toISOString().split('T')[0];
@@ -288,7 +273,6 @@ export const Profile = () => {
                   );
                 })}
 
-                {/* Linha conectando os pontos */}
                 {chartData.length > 1 && (
                   <svg className={styles.chartLine} viewBox="0 0 100 100" preserveAspectRatio="none">
                     <polyline
@@ -307,7 +291,6 @@ export const Profile = () => {
                 )}
               </div>
 
-              {/* Eixo Y (peso) */}
               <div className={styles.chartYAxis}>
                 <span>{maxWeight.toFixed(1)}</span>
                 <span>{((maxWeight + minWeight) / 2).toFixed(1)}</span>
@@ -317,17 +300,14 @@ export const Profile = () => {
           </div>
         )}
 
-        {/* Calculadora de Macros */}
         <div className={styles.macroCalculatorSection}>
           <MacroCalculator currentWeight={profile.currentWeight} />
         </div>
 
-        {/* Configurações de Notificações */}
         <div className={styles.notificationSection}>
           <NotificationSettings />
         </div>
 
-        {/* Controle de Peso */}
         <div className={styles.weightControl}>
           <div className={styles.controlHeader}>
             <h2 className={styles.controlTitle}>Registrar Peso</h2>
@@ -384,14 +364,14 @@ export const Profile = () => {
             </div>
           )}
 
-          {/* Histórico recente */}
           {allHistory.length > 0 && (
             <div className={styles.historySection}>
               <h3 className={styles.historyTitle}>Histórico Recente</h3>
               <div className={styles.historyList}>
                 {(() => {
-                  const today = new Date().toISOString().split('T')[0];
-                  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                  const now = new Date();
+                  const today = now.toISOString().split('T')[0];
+                  const yesterday = new Date(now.getTime() - 86400000).toISOString().split('T')[0];
                   return allHistory.slice(0, 7).map((entry) => {
                     const entryDate = new Date(entry.date);
                     const isToday = entry.date === today;

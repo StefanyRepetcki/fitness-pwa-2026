@@ -30,7 +30,6 @@ export const Recipes = () => {
           <p>Receitas práticas e saudáveis para seu ciclo alimentar</p>
         </div>
 
-        {/* Filtros de categoria */}
         <div className={styles.categories}>
           <div className={styles.categoriesScroll}>
             {categories.map((category) => (
@@ -48,7 +47,6 @@ export const Recipes = () => {
           </div>
         </div>
 
-        {/* Lista de receitas */}
         <div className={styles.recipesList}>
           {filteredRecipes.length === 0 ? (
             <div className={styles.emptyState}>

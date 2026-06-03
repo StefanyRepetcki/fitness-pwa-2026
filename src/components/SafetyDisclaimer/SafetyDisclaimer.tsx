@@ -2,16 +2,26 @@ import { useState, useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import styles from './SafetyDisclaimer.module.css';
 
+function readDisclaimerVisible(): boolean {
+  if (typeof window === 'undefined') return false;
+  try {
+    return !localStorage.getItem('ciclei-disclaimer-accepted');
+  } catch {
+    return true;
+  }
+}
+
 export const SafetyDisclaimer = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(readDisclaimerVisible);
 
   useEffect(() => {
-    // Verificar se o usuário já aceitou o disclaimer
-    const hasAccepted = localStorage.getItem('ciclei-disclaimer-accepted');
-    if (!hasAccepted) {
-      setIsVisible(true);
-    }
-  }, []);
+    if (!isVisible) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isVisible]);
 
   const handleAccept = () => {
     localStorage.setItem('ciclei-disclaimer-accepted', 'true');
@@ -25,7 +35,9 @@ export const SafetyDisclaimer = () => {
       <div className={styles.modal}>
         <div className={styles.header}>
           <AlertTriangle className={styles.icon} size={24} aria-hidden="true" />
-          <h2 id="disclaimer-title" className={styles.title}>Aviso Importante</h2>
+          <h2 id="disclaimer-title" className={styles.title}>
+            Aviso Importante
+          </h2>
         </div>
         <div className={styles.content}>
           <p>
@@ -39,10 +51,13 @@ export const SafetyDisclaimer = () => {
             <li>Respeite seus limites e progressão gradual</li>
           </ul>
           <p className={styles.warning}>
-            <strong>Não nos responsabilizamos por lesões ou problemas de saúde decorrentes do uso deste aplicativo.</strong>
+            <strong>
+              Não nos responsabilizamos por lesões ou problemas de saúde decorrentes do uso deste aplicativo.
+            </strong>
           </p>
         </div>
-        <button 
+        <button
+          type="button"
           className={styles.acceptButton}
           onClick={handleAccept}
           aria-label="Aceitar aviso e continuar"
@@ -53,4 +68,3 @@ export const SafetyDisclaimer = () => {
     </div>
   );
 };
-
