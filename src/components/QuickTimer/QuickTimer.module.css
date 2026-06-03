@@ -1,8 +1,8 @@
 /* Timer Flutuante */
 .floatingButton {
   position: fixed;
-  bottom: 5.5rem; /* Acima da bottom navigation */
-  right: 1rem;
+  bottom: var(--mobile-bottom-clearance);
+  right: calc(1rem + var(--safe-right));
   width: 3.5rem;
   height: 3.5rem;
   background: var(--color-primary);
@@ -32,8 +32,8 @@
 
 .floatingTimer {
   position: fixed;
-  bottom: 5.5rem;
-  right: 1rem;
+  bottom: var(--mobile-bottom-clearance);
+  right: calc(1rem + var(--safe-right));
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 1rem;
@@ -255,24 +255,24 @@
 /* Responsivo - ajustar posição em telas maiores */
 @media (min-width: 768px) {
   .floatingButton {
-    bottom: 6rem;
-    right: 1.5rem;
+    bottom: calc(6rem + var(--safe-bottom));
+    right: calc(1.5rem + var(--safe-right));
   }
   
   .floatingTimer {
-    bottom: 6rem;
-    right: 1.5rem;
+    bottom: calc(6rem + var(--safe-bottom));
+    right: calc(1.5rem + var(--safe-right));
   }
 }
 
 /* Ajustar quando bottom nav está visível */
 @media (max-height: 600px) {
   .floatingButton {
-    bottom: 4.5rem;
+    bottom: calc(4.5rem + var(--safe-bottom));
   }
   
   .floatingTimer {
-    bottom: 4.5rem;
+    bottom: calc(4.5rem + var(--safe-bottom));
   }
 }
 

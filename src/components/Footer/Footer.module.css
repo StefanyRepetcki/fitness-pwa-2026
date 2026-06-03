@@ -1,7 +1,6 @@
 .footer {
   margin-top: 2rem;
-  padding: 1rem 1.5rem;
-  padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+  padding: 1rem max(1.5rem, var(--safe-left)) calc(6rem + var(--safe-bottom)) max(1.5rem, var(--safe-right));
   background: var(--color-surface);
   border-top: 1px solid var(--color-border-light);
 }

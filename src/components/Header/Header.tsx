@@ -34,6 +34,7 @@ export const Header = ({
   const navigate = useNavigate();
   const isScrollingDown = useScrollHide(50);
   const shouldHide = isScrollingDown;
+  const hasLeadingNav = showBackButton || Boolean(breadcrumbs?.length);
   
   const handleBack = () => {
     if (backPath) {
@@ -63,8 +64,11 @@ export const Header = ({
   };
   
   return (
-    <header className={`${styles.header} ${shouldHide ? styles.hidden : ''}`}>
-      {(showBackButton || breadcrumbs) && (
+    <header
+      className={`${styles.header} ${shouldHide ? styles.hidden : ''}`}
+      {...(hasLeadingNav ? { 'data-leading-nav': 'true' } : {})}
+    >
+      {hasLeadingNav && (
         <div className={styles.navigationBar}>
           {showBackButton && (
             <button

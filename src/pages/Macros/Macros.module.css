@@ -524,8 +524,8 @@
 /* Botão Flutuante */
 .fabButton {
   position: fixed;
-  bottom: 5rem;
-  right: 1.5rem;
+  bottom: var(--mobile-bottom-clearance);
+  right: calc(1.5rem + var(--safe-right));
   width: 3.5rem;
   height: 3.5rem;
   background: var(--color-primary);
@@ -564,8 +564,8 @@
   }
 
   .fabButton {
-    bottom: 6rem;
-    right: 1rem;
+    bottom: calc(6rem + var(--safe-bottom));
+    right: calc(1rem + var(--safe-right));
   }
 }
 
