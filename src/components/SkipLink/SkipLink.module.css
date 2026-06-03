@@ -13,9 +13,10 @@
   outline: none;
 }
 
-.skipLink:focus {
+.skipLink:focus,
+.skipLink:focus-visible {
   top: 0;
-  outline: 2px solid var(--color-primary-dark);
+  outline: 3px solid var(--color-text);
   outline-offset: 2px;
 }
 

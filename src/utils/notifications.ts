@@ -1,8 +1,5 @@
-// Sistema de Notificações PWA
-
 export const requestNotificationPermission = async (): Promise<boolean> => {
   if (!('Notification' in window)) {
-    // Navegador não suporta notificações
     return false;
   }
 
@@ -30,13 +27,11 @@ export const showNotification = (title: string, options?: NotificationOptions) =
 };
 
 export const scheduleWorkoutReminder = (hour: number, minute: number = 0) => {
-  // Verificar se já passou o horário hoje
   const now = new Date();
   const reminderTime = new Date();
   reminderTime.setHours(hour, minute, 0, 0);
 
   if (reminderTime <= now) {
-    // Se já passou, agendar para amanhã
     reminderTime.setDate(reminderTime.getDate() + 1);
   }
 
