@@ -1,7 +1,7 @@
 .menuButton {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: calc(var(--fab-gap) + var(--safe-top));
+  right: calc(var(--fab-gap) + var(--safe-right));
   z-index: 1002;
   width: 3rem;
   height: 3rem;
@@ -101,8 +101,8 @@
   transition: transform var(--transition-base);
   display: flex;
   flex-direction: column;
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
   overflow: hidden;
 }
 
@@ -248,8 +248,8 @@
 
 @media (min-width: 768px) {
   .menuButton {
-    top: 1.5rem;
-    right: 1.5rem;
+    top: calc(1.5rem + var(--safe-top));
+    right: calc(1.5rem + var(--safe-right));
   }
   
   .menu {

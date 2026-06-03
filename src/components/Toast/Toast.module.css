@@ -10,7 +10,7 @@
   min-width: 280px;
   max-width: 90vw;
   position: fixed;
-  bottom: calc(80px + env(safe-area-inset-bottom) + 1rem);
+  bottom: calc(80px + var(--safe-bottom) + 1rem);
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   opacity: 0;
@@ -102,8 +102,8 @@
 
 @media (max-width: 480px) {
   .toast {
-    left: 1rem;
-    right: 1rem;
+    left: calc(1rem + var(--safe-left));
+    right: calc(1rem + var(--safe-right));
     transform: translateY(20px);
     max-width: none;
   }
